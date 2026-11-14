@@ -1,0 +1,49 @@
+{
+  "id": "379479e8711df8e4",
+  "name": "Marble Chain",
+  "author": "Cyberdelia",
+  "version": "0.2",
+  "rate": 33,
+  "help": "A chain of balls rolls toward the hole. Shoot balls into it: three or more of one colour together pop. Where a gap's two sides match, the chain rolls back to close it, and that can pop again for a bigger score. Rest your thumb on the wheel to aim, tap Select to shoot, hold Select (or press Play) to swap your two balls. Balls with a mark carry a power-up: slow, back or bomb. Clear all six levels before the chain reaches the hole.",
+  "boards": [
+    {
+      "name": "points",
+      "title": "Marble Chain"
+    }
+  ],
+  "options": [
+    {
+      "name": "steering",
+      "title": "Aiming",
+      "type": "choice",
+      "choices": [
+        "Thumb",
+        "Spin"
+      ],
+      "default": 0,
+      "help": "Thumb: the gun points where your thumb rests on the wheel. Spin: turning the wheel turns the gun, finer, and Prev and Next turn it too."
+    }
+  ],
+  "achievements": [
+    {
+      "name": "first",
+      "title": "First Clear",
+      "text": "Clear level 1."
+    },
+    {
+      "name": "domino",
+      "title": "Domino",
+      "text": "Set off a chain reaction three deep."
+    },
+    {
+      "name": "bomb",
+      "title": "Big Bang",
+      "text": "Pop a bomb power-up."
+    },
+    {
+      "name": "master",
+      "title": "Marble Master",
+      "text": "Clear all six levels."
+    }
+  ]
+}
