@@ -1,0 +1,55 @@
+# An independent workflow so development of the other carts stays separate.
+name: Kremlin Blocks
+on:
+  push:
+    paths:
+      - 'kremlinblocks/**'
+      - 'tools/kremlinblocks*'
+      - '.github/workflows/kremlinblocks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: games
+      - uses: actions/checkout@v4
+        with:
+          repository: anthonyfletcher/podbox
+          ref: 126ebba20eb4f650d98ec03e6838d226af2e7013
+          path: podbox
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare SDK
+        working-directory: podbox/arcade/sdk
+        run: |
+          npm ci
+          sh host/build.sh
+      - name: Check generated assets
+        working-directory: games
+        run: |
+          python3 -m pip install 'Pillow==12.3.0'
+          python3 tools/kremlinblocks_assets.py
+      - name: Build standalone releases
+        working-directory: games
+        run: node tools/kremlinblocks_web.mjs
+      - name: Verify rules, autoplay, browser and performance
+        working-directory: games
+        run: |
+          python3 tools/kremlinblocks_test.py --browser-runtime dist/kremlinblocks-runtime.wasm --keep dist/kremlinblocks-checks
+          python3 tools/kremlinblocks_test.py --selftest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kremlinblocks
+          path: |
+            games/dist/kremlinblocks.pbg
+            games/dist/kremlinblocks.html
+            games/dist/kremlinblocks-release.json
+            games/dist/kremlinblocks-checks/report.json
