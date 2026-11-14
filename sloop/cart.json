@@ -1,0 +1,86 @@
+{
+  "id": "16ba6248223b8eb9",
+  "name": "Sloop",
+  "author": "Cyberdelia",
+  "version": "1.0",
+  "rate": 33,
+  "music": "listen",
+  "help": "A wrecking ball swings on its chain round a crane, and blocks fly in from all sides to cross its ring on the beat of your music. Turn the wheel to swing the ball: it keeps going and slows down. Be at a block when it lands: the faster the ball, the harder it hits, and a red block hit on its beat takes triple damage. Play gives a hard shove, Prev and Next nudge the ball to aim. A block that reaches the crane costs one of three hearts. A round lasts a track; without music, or when no beat is found, the game keeps its own tempo.",
+  "boards": [
+    {
+      "name": "points",
+      "title": "Sloop"
+    }
+  ],
+  "options": [
+    {
+      "name": "steering",
+      "title": "Steering",
+      "type": "choice",
+      "choices": [
+        "Swing",
+        "Thumb"
+      ],
+      "default": 0,
+      "help": "Swing: turning the wheel pushes the ball round, and it keeps going. Thumb: the ball is pulled toward where your thumb rests on the wheel."
+    },
+    {
+      "name": "window",
+      "title": "Downbeat window",
+      "type": "choice",
+      "choices": [
+        "Narrow",
+        "Normal",
+        "Wide"
+      ],
+      "default": 1,
+      "help": "How close to its beat a red block must be hit for triple damage: 80, 120 or 180 ms either side."
+    },
+    {
+      "name": "beat",
+      "title": "Play to the music",
+      "type": "onoff",
+      "default": true,
+      "help": "On: the game listens to your music and the blocks land on its beat, a round a track. Off: it keeps its own tempo, a little faster each round."
+    },
+    {
+      "name": "shake",
+      "title": "Screen shake",
+      "type": "onoff",
+      "default": true,
+      "help": "The screen shakes on a heavy smash and when a block reaches the crane."
+    }
+  ],
+  "achievements": [
+    {
+      "name": "triple",
+      "title": "On the One",
+      "text": "Smash a red block on its beat for triple damage."
+    },
+    {
+      "name": "combo",
+      "title": "Full Combo",
+      "text": "Reach a combo of 9."
+    },
+    {
+      "name": "gold",
+      "title": "Gold Rush",
+      "text": "Smash five gold blocks in one game."
+    },
+    {
+      "name": "clean",
+      "title": "Clean Round",
+      "text": "Clear a round without losing a heart."
+    },
+    {
+      "name": "encore",
+      "title": "Encore",
+      "text": "Reach round 5."
+    },
+    {
+      "name": "wrecker",
+      "title": "Wrecking Crew",
+      "text": "Smash 200 blocks in one game."
+    }
+  ]
+}

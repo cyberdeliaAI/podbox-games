@@ -8,6 +8,7 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Marble Chain](marbles/) | A marble shooter with six levels and power-ups: stop the chain before it reaches the hole | [docs/marbles.md](docs/marbles.md) |
 | [Bubble Beat](bubblebeat/) | A bubble shooter whose ceiling comes down with the bars of your music: shoot on the beat for double | [docs/bubblebeat.md](docs/bubblebeat.md) |
 | [Pocket Wings 3D](pocketwings/) | A relaxed flight over six 3D landscapes, no score, no hurry; Discovery finds thirty landmarks; plays in a browser too | [docs/pocketwings.md](docs/pocketwings.md) |
+| [Sloop](sloop/) | A wrecking ball on the beat: swing it with the wheel to smash the blocks landing on the beats of your music | [docs/sloop.md](docs/sloop.md) |
 | [Powder Run 3D](powderrun/) | Endless downhill skiing over a 3D mountain: five slopes, pines and boulders, Free Ride and Endless Run, plays in a browser too | [docs/powderrun.md](docs/powderrun.md) |
 
 ## Playing
@@ -32,6 +33,7 @@ sh build.sh                                     # every cart into dist/ (not kep
 ```sh
 python3 tools/marbles_stress.py      # plays every level by itself, checks the chain, reports units a tick
 python3 tools/bubblebeat_stress.py   # the same for Bubble Beat, with and without music
+python3 tools/sloop_stress.py        # the same for Sloop: a smart, a blind and a still player
 python3 tools/pocketwings_test.py    # flies Pocket Wings, checks it and measures every level (--sessions: long flights, saves, memory)
 python3 tools/powderrun_test.py      # the same for Powder Run, skiing (--sessions: long runs, saves, memory)
 ```
