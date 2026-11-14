@@ -2,20 +2,20 @@
 
 Drafts of one thread per game for the **Games** category of [PodBox's Discussions](https://github.com/anthonyfletcher/podbox/discussions), following the list in [discussion 42](https://github.com/anthonyfletcher/podbox/discussions/42): screenshots, a download, a browser link where there is one, the players it was tested on, the PodBox release it was built with, how to play, licence and credit.
 
-| Game | Draft | Browser |
-|---|---|---|
-| Pulse Tunnel | [pulsetunnel.md](pulsetunnel.md) | no: it follows the music |
-| Marble Chain | [marbles.md](marbles.md) | yes |
-| Bubble Beat | [bubblebeat.md](bubblebeat.md) | no: it follows the music |
-| Sloop | [sloop.md](sloop.md) | no: it follows the music |
-| Pocket Wings 3D | [pocketwings.md](pocketwings.md) | yes |
-| Powder Run 3D | [powderrun.md](powderrun.md) | yes |
-| Outpost Echo 3D | [outpostecho.md](outpostecho.md) | yes |
-| Pocket Golf Deluxe | [pocketgolf.md](pocketgolf.md) | yes |
+| Game | Draft | Browser | Thread |
+|---|---|---|---|
+| Pulse Tunnel | [pulsetunnel.md](pulsetunnel.md) | no: it follows the music | [#48](https://github.com/anthonyfletcher/podbox/discussions/48) |
+| Marble Chain | [marbles.md](marbles.md) | yes | [#49](https://github.com/anthonyfletcher/podbox/discussions/49) |
+| Bubble Beat | [bubblebeat.md](bubblebeat.md) | no: it follows the music | [#50](https://github.com/anthonyfletcher/podbox/discussions/50) |
+| Sloop | [sloop.md](sloop.md) | no: it follows the music | [#51](https://github.com/anthonyfletcher/podbox/discussions/51) |
+| Pocket Wings 3D | [pocketwings.md](pocketwings.md) | yes | [#52](https://github.com/anthonyfletcher/podbox/discussions/52) |
+| Powder Run 3D | [powderrun.md](powderrun.md) | yes | [#53](https://github.com/anthonyfletcher/podbox/discussions/53) |
+| Outpost Echo 3D | [outpostecho.md](outpostecho.md) | yes | [#54](https://github.com/anthonyfletcher/podbox/discussions/54) |
+| Pocket Golf Deluxe | [pocketgolf.md](pocketgolf.md) | yes | [#55](https://github.com/anthonyfletcher/podbox/discussions/55) |
 
 Pocket City 3D gets a post when it's more than a prototype.
 
-The thread's title is the draft's first heading. Paste the rest, from the line under it.
+Posted on 2026-11-14 as cyberdeliaAI. The thread's title is the draft's first heading, the post the rest, from the line under it.
 
 ## Before posting
 
