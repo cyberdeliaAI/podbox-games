@@ -1,0 +1,43 @@
+{
+  "id": "13d2636956e00513",
+  "name": "Bubble Beat",
+  "author": "Cyberdelia",
+  "version": "0.1",
+  "rate": 33,
+  "music": "listen",
+  "help": "Bubbles hang from a ceiling that comes down to the beat of your music. Turn the wheel to aim, press Select to shoot and Play to swap your two bubbles. Three or more of a colour together pop, and whatever they held up falls too. Shoot on the beat and the pop counts double, on the first beat of a bar triple. Clear the field before a bubble hangs below the line. Without music, or when no beat is found, the ceiling comes down every few shots instead.",
+  "boards": [
+    { "name": "points", "title": "Bubble Beat" }
+  ],
+  "options": [
+    {
+      "name": "aiming",
+      "title": "Aiming",
+      "type": "choice",
+      "choices": ["Spin", "Thumb"],
+      "default": 0,
+      "help": "Spin: turning the wheel turns the launcher, finely; Prev and Next nudge it. Thumb: the launcher points where your thumb rests on the wheel."
+    },
+    {
+      "name": "beat",
+      "title": "Beat bonus",
+      "type": "onoff",
+      "default": true,
+      "help": "On: the game listens to your music, the ceiling comes down with its bars and shots on the beat score more. Off: the ceiling comes down every few shots and the music is just music."
+    },
+    {
+      "name": "marks",
+      "title": "Colour marks",
+      "type": "onoff",
+      "default": false,
+      "help": "A small mark on every bubble, a different one for each colour, for telling them apart without the colours."
+    }
+  ],
+  "achievements": [
+    { "name": "first", "title": "First Clear", "text": "Clear level 1." },
+    { "name": "ten", "title": "Double Digits", "text": "Reach level 10." },
+    { "name": "avalanche", "title": "Avalanche", "text": "Drop 12 bubbles with one shot." },
+    { "name": "downbeat", "title": "Downbeat", "text": "Pop a group on the first beat of a bar." },
+    { "name": "groove", "title": "In the Groove", "text": "Pop on the beat five shots in a row." }
+  ]
+}
