@@ -8,11 +8,9 @@
 # cart that reads the music (Pulse Tunnel, Bubble Beat and Sloop, even with
 # their modes without it). pages.yml publishes the pages on GitHub Pages.
 #
-# Pocket City 3D is built and checked like the others but left out of the
-# releases while it's a prototype.
-#
-# Outpost Echo 3D and Pocket Golf Deluxe are built here as carts too, so a
-# release carries them; their own workflows test them and build their pages.
+# Outpost Echo 3D, Pocket Golf Deluxe and Beat Dancer 3D are built here as
+# carts too, so a release carries them; their own workflows test them (and
+# build the first two's pages).
 
 name: Build
 
@@ -29,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cart: [pulsetunnel, marbles, bubblebeat, sloop, pocketwings, powderrun, pocketcity, outpostecho, pocketgolf]
+        cart: [pulsetunnel, marbles, bubblebeat, sloop, pocketwings, powderrun, pocketcity, outpostecho, pocketgolf, beatdancer]
         include:
           - cart: marbles
             page: true
@@ -69,6 +67,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          rm -f carts/pocketcity.*
           ls -la carts
           gh release create "$GITHUB_REF_NAME" carts/* --generate-notes --repo "$GITHUB_REPOSITORY"
