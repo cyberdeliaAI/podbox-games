@@ -1,0 +1,66 @@
+{
+  "id": "f8d58ac1293dd3eb",
+  "name": "Kremlin Blocks",
+  "author": "Cyberdelia",
+  "version": "0.1",
+  "rate": 33,
+  "music": "listen",
+  "help": "Turn the wheel to move a falling block. Prev rotates left, Next rotates right. Select drops instantly. Hold Play for a soft drop. Complete horizontal rows to clear them. The ghost marks your landing and the next three pieces are shown. Every ten lines raises the speed. Menu pauses. Your own music keeps playing.",
+  "boards": [
+    {
+      "name": "points",
+      "title": "Kremlin Blocks"
+    }
+  ],
+  "options": [
+    {
+      "name": "sounds",
+      "title": "Sound effects",
+      "type": "onoff",
+      "default": true
+    },
+    {
+      "name": "ghost",
+      "title": "Landing guide",
+      "type": "onoff",
+      "default": true
+    },
+    {
+      "name": "level",
+      "title": "Starting level",
+      "type": "number",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "name": "stats",
+      "title": "Performance",
+      "type": "onoff",
+      "default": false
+    }
+  ],
+  "achievements": [
+    {
+      "name": "four",
+      "title": "Four at Once",
+      "text": "Clear four rows with one block."
+    },
+    {
+      "name": "forty",
+      "title": "Forty Lines",
+      "text": "Clear forty rows in one game."
+    },
+    {
+      "name": "combo",
+      "title": "Chain Reaction",
+      "text": "Clear rows on five successive blocks."
+    },
+    {
+      "name": "ten",
+      "title": "Level Ten",
+      "text": "Reach level ten."
+    }
+  ]
+}
