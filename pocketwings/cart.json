@@ -1,0 +1,47 @@
+{
+  "id": "2fef46f0bee75502",
+  "name": "Pocket Wings 3D",
+  "author": "Cyberdelia",
+  "version": "0.1",
+  "rate": 33,
+  "help": "Fly a small aircraft over a landscape, for as long as you like. Turn the wheel to bank and turn; leave it and the wings level. Hold Prev to climb and Next to dive. Play steps through slow, cruise and fast. Select switches between the view from behind and the cockpit. The ground can't hurt you: fly low and the aircraft lifts itself over the hills. The picture adjusts itself to what your iPod can draw smoothly.",
+  "lazy_images": [
+    "valley_h",
+    "valley_c",
+    "valley_h2",
+    "valley_c2",
+    "valley_sky"
+  ],
+  "options": [
+    {
+      "name": "steering",
+      "title": "Steering",
+      "type": "choice",
+      "choices": [
+        "Spin",
+        "Thumb"
+      ],
+      "default": 0,
+      "help": "Spin: turning the wheel banks the aircraft, and the wings level when you stop. Thumb: rest your thumb right or left of the top of the wheel to bank that way."
+    },
+    {
+      "name": "picture",
+      "title": "Picture",
+      "type": "choice",
+      "choices": [
+        "Auto",
+        "Fast",
+        "Detailed"
+      ],
+      "default": 0,
+      "help": "Auto: the picture steps up and down with what the iPod can draw smoothly. Fast: always the plainer picture at 25 frames a second. Detailed: always the finest, which an iPod Video playing music can't keep up with."
+    },
+    {
+      "name": "stats",
+      "title": "Frame rate",
+      "type": "onoff",
+      "default": false,
+      "help": "Shows the picture's level (Q0 finest to Q4 plainest) and the frames a second."
+    }
+  ]
+}
