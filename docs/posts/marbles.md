@@ -14,6 +14,8 @@ A chain of marbles rolls along a winding track toward the hole. Shoot marbles in
 
 **Play in the browser:** [https://cyberdeliaai.github.io/podbox-games/marbles.html](https://cyberdeliaai.github.io/podbox-games/marbles.html)
 
+**All the games:** [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/), to download or play in a browser.
+
 **Tested on:** iPod Video 5.5G. Also tested at length in PodBox's own VM (`pbgvm`): played by an automatic player with its rules checked every tick, and measured against the iPod Video's budget while playing FLAC.
 
 **Built with:** PodBox release 2026-11-13 (Latest build).

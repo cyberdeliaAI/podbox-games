@@ -14,6 +14,8 @@ Ski down a mountain that never ends, carving with the wheel between pines and bo
 
 **Play in the browser:** [https://cyberdeliaai.github.io/podbox-games/powderrun.html](https://cyberdeliaai.github.io/podbox-games/powderrun.html)
 
+**All the games:** [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/), to download or play in a browser.
+
 **Tested on:** iPod Video 5.5G. Also tested at length in PodBox's own VM (`pbgvm`): played by an automatic player with its rules checked every tick, and measured against the iPod Video's budget while playing FLAC.
 
 **Built with:** PodBox release 2026-11-13 (Latest build).
