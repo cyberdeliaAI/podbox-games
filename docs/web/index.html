@@ -1,0 +1,130 @@
+<!doctype html>
+<!-- The front page of the games' GitHub Pages site. .github/workflows/pages.yml
+     puts it at the root with docs/screenshots/ as screenshots/ and the games'
+     web pages beside it. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PodBox games</title>
+<meta name="description" content="Games for the PodBox Arcade on the iPod Video and iPod Classic. Some play in a browser too.">
+<style>
+  :root {
+    --bg: #101216;
+    --card: #1a1d23;
+    --line: #2a2e36;
+    --text: #e8e9ec;
+    --muted: #9aa0aa;
+    --accent: #6fd3ff;
+    --accent-ink: #06222e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 28px; margin: 0 0 6px; }
+  .lead { color: var(--muted); margin: 0 0 28px; max-width: 46em; }
+  a { color: var(--accent); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .game { background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+          display: flex; flex-direction: column; }
+  .game img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; image-rendering: pixelated;
+              border-bottom: 1px solid var(--line); background: #000; }
+  .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .game h2 { font-size: 18px; margin: 0; }
+  .game p { margin: 0; color: var(--muted); font-size: 15px; }
+  .links { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a { text-decoration: none; font-size: 14px; padding: 6px 12px; border-radius: 6px;
+             border: 1px solid var(--line); color: var(--text); }
+  .links a.play { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .links a:hover { border-color: var(--accent); }
+  .links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .note { font-size: 13px; color: var(--muted); }
+  footer { margin-top: 36px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>PodBox games</h1>
+  <p class="lead">Games for the Arcade of <a href="https://github.com/anthonyfletcher/podbox">PodBox</a>, the firmware for the iPod Video and iPod Classic.
+  Copy a <code>.pbg</code> to a folder called <code>Games</code> on the iPod, eject it and pick <strong>Arcade</strong> on the main menu.
+  Five of them play in a browser too: the games that follow your music can't.</p>
+
+  <div class="grid">
+    <article class="game">
+      <img src="screenshots/pocketwings-1.png" width="320" height="240" alt="Pocket Wings 3D: the aircraft over a green valley">
+      <div class="body">
+        <h2>Pocket Wings 3D</h2>
+        <p>A relaxed flight over six 3D landscapes. Free Flight, or Discovery: thirty landmarks to find.</p>
+        <div class="links"><a class="play" href="pocketwings.html">Play</a><a href="https://github.com/cyberdeliaAI/podbox-games/releases/latest/download/pocketwings.pbg">Download .pbg</a><a href="https://github.com/cyberdeliaAI/podbox-games/blob/main/docs/pocketwings.md">How to play</a></div>
+      </div>
+    </article>
+    <article class="game">
+      <img src="screenshots/powderrun-1.png" width="320" height="240" alt="Powder Run 3D: the skier carving between pines">
+      <div class="body">
+        <h2>Powder Run 3D</h2>
+        <p>Endless downhill skiing between pines and boulders, over rollers that throw you in the air. Five slopes.</p>
+        <div class="links"><a class="play" href="powderrun.html">Play</a><a href="https://github.com/cyberdeliaAI/podbox-games/releases/latest/download/powderrun.pbg">Download .pbg</a><a href="https://github.com/cyberdeliaAI/podbox-games/blob/main/docs/powderrun.md">How to play</a></div>
+      </div>
+    </article>
+    <article class="game">
+      <img src="screenshots/outpostecho-3.png" width="320" height="240" alt="Outpost Echo 3D: the scanner showing the Docking Hall's map">
+      <div class="body">
+        <h2>Outpost Echo 3D</h2>
+        <p>A first-person sci-fi adventure: restore the five sectors of a silent research station, past its security robots.</p>
+        <div class="links"><a class="play" href="outpostecho.html">Play</a><a href="https://github.com/cyberdeliaAI/podbox-games/releases/latest/download/outpostecho.pbg">Download .pbg</a><a href="https://github.com/cyberdeliaAI/podbox-games/blob/main/outpostecho/README.md">How to play</a></div>
+      </div>
+    </article>
+    <article class="game">
+      <img src="screenshots/pocketgolf-2.png" width="320" height="240" alt="Pocket Golf Deluxe: a hole of Pirate Cove">
+      <div class="body">
+        <h2>Pocket Golf Deluxe</h2>
+        <p>Top-down mini golf: 36 holes on four themed courses, four ways to play and low-score records.</p>
+        <div class="links"><a class="play" href="pocketgolf.html">Play</a><a href="https://github.com/cyberdeliaAI/podbox-games/releases/latest/download/pocketgolf.pbg">Download .pbg</a><a href="https://github.com/cyberdeliaAI/podbox-games/blob/main/pocketgolf/README.md">How to play</a></div>
+      </div>
+    </article>
+    <article class="game">
+      <img src="screenshots/marbles-2.png" width="320" height="240" alt="Marble Chain: the chain of marbles on its track and the gun">
+      <div class="body">
+        <h2>Marble Chain</h2>
+        <p>A marble shooter with six levels and power-ups: stop the chain before it reaches the hole.</p>
+        <div class="links"><a class="play" href="marbles.html">Play</a><a href="https://github.com/cyberdeliaAI/podbox-games/releases/latest/download/marbles.pbg">Download .pbg</a><a href="https://github.com/cyberdeliaAI/podbox-games/blob/main/docs/marbles.md">How to play</a></div>
+      </div>
+    </article>
+    <article class="game">
+      <img src="screenshots/pulsetunnel-2.png" width="320" height="240" alt="Pulse Tunnel: the ship in the tunnel, enemies coming on the beat">
+      <div class="body">
+        <h2>Pulse Tunnel</h2>
+        <p>A neon tube shooter that flies to your music: everything arrives on the beats of whatever is playing.</p>
+        <p class="note">iPod only: it follows your music.</p>
+        <div class="links"><a href="https://github.com/cyberdeliaAI/podbox-games/releases/latest/download/pulsetunnel.pbg">Download .pbg</a><a href="https://github.com/cyberdeliaAI/podbox-games/blob/main/docs/pulsetunnel.md">How to play</a></div>
+      </div>
+    </article>
+    <article class="game">
+      <img src="screenshots/sloop-2.png" width="320" height="240" alt="Sloop: the wrecking ball swinging round the crane, blocks flying in">
+      <div class="body">
+        <h2>Sloop</h2>
+        <p>A wrecking ball on the beat: swing it with the wheel to smash the blocks landing on the beats of your music.</p>
+        <p class="note">iPod only: it follows your music.</p>
+        <div class="links"><a href="https://github.com/cyberdeliaAI/podbox-games/releases/latest/download/sloop.pbg">Download .pbg</a><a href="https://github.com/cyberdeliaAI/podbox-games/blob/main/docs/sloop.md">How to play</a></div>
+      </div>
+    </article>
+    <article class="game">
+      <img src="screenshots/bubblebeat-2.png" width="320" height="240" alt="Bubble Beat: the hex grid of bubbles, a shot in flight and the launcher">
+      <div class="body">
+        <h2>Bubble Beat</h2>
+        <p>A bubble shooter whose ceiling comes down with the bars of your music. Shoot on the beat for double.</p>
+        <p class="note">iPod only: it follows your music.</p>
+        <div class="links"><a href="https://github.com/cyberdeliaAI/podbox-games/releases/latest/download/bubblebeat.pbg">Download .pbg</a><a href="https://github.com/cyberdeliaAI/podbox-games/blob/main/docs/bubblebeat.md">How to play</a></div>
+      </div>
+    </article>
+  </div>
+
+  <footer>Source, builds and every game's notes: <a href="https://github.com/cyberdeliaAI/podbox-games">github.com/cyberdeliaAI/podbox-games</a>.</footer>
+</main>
+</body>
+</html>

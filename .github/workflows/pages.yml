@@ -1,0 +1,111 @@
+# Publishes the games that play in a browser on GitHub Pages, with a front
+# page listing every game (docs/web/index.html), for every tag like v1.0 and
+# by hand. It needs the repository public and Settings > Pages > Source set
+# to GitHub Actions; until then the deploy step fails and nothing else does.
+#
+# Marble Chain, Pocket Wings 3D and Powder Run 3D get their pages from the
+# Arcade builder, as in build.yml. Outpost Echo 3D and Pocket Golf Deluxe
+# from their own web builders on the SDK their workflows pin, so these are
+# the pages their release checks test. The games that follow the music have
+# no page: the exporter refuses them. Pocket City 3D is left out while it's
+# a prototype.
+
+name: Pages
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  builder:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cart: [marbles, pocketwings, powderrun]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: anthonyfletcher/podbox-arcade-builder@latest
+        id: cart
+        with:
+          cart: ${{ matrix.cart }}
+          page: true
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: page-${{ matrix.cart }}
+          path: ${{ steps.cart.outputs.page }}
+
+  own:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: games
+
+      - uses: actions/checkout@v4
+        with:
+          repository: anthonyfletcher/podbox
+          ref: 126ebba20eb4f650d98ec03e6838d226af2e7013
+          path: podbox
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Prepare SDK
+        working-directory: podbox/arcade/sdk
+        run: npm ci
+
+      - name: Build the pages
+        working-directory: games
+        run: |
+          node tools/outpostecho_web.mjs
+          node tools/pocketgolf_web.mjs
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: page-own
+          path: |
+            games/dist/outpostecho.html
+            games/dist/pocketgolf.html
+
+  deploy:
+    needs: [builder, own]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: page-*
+          path: site
+          merge-multiple: true
+
+      - name: The front page and its pictures
+        run: |
+          cp docs/web/index.html site/
+          mkdir -p site/screenshots
+          cp docs/screenshots/*.png site/screenshots/
+          ls -la site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
