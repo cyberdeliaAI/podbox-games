@@ -1,0 +1,41 @@
+{
+  "id": "7e3cbce82911cc18",
+  "name": "Powder Run 3D",
+  "author": "Cyberdelia",
+  "version": "0.1",
+  "rate": 33,
+  "help": "Ski down an endless mountain. The slope takes you down by itself: steep snow is fast, flat snow slow. Turn the wheel to carve left or right; let go and the skis run straight. Sharp turns cost speed, and rollers and bumps throw you in the air. The picture adjusts itself to what your iPod can draw smoothly.",
+  "lazy_images": ["alpine_h", "alpine_c", "alpine_h2", "alpine_c2", "alpine_sky"],
+  "options": [
+    {
+      "name": "steering",
+      "title": "Steering",
+      "type": "choice",
+      "choices": ["Spin", "Thumb"],
+      "default": 0,
+      "help": "Spin: turning the wheel carves, and the skis run straight when you stop. Thumb: rest your thumb right or left of the top of the wheel to carve that way."
+    },
+    {
+      "name": "hud",
+      "title": "Distance and speed",
+      "type": "onoff",
+      "default": true,
+      "help": "Shows how far down the mountain you are and how fast you're going."
+    },
+    {
+      "name": "picture",
+      "title": "Picture",
+      "type": "choice",
+      "choices": ["Auto", "Fast", "Detailed"],
+      "default": 0,
+      "help": "Auto: the picture steps up and down with what the iPod can draw smoothly. Fast: always the plainer picture at 25 frames a second. Detailed: always the finest, which an iPod Video playing music can't keep up with."
+    },
+    {
+      "name": "stats",
+      "title": "Frame rate",
+      "type": "onoff",
+      "default": false,
+      "help": "Shows the picture's level (Q0 finest to Q4 plainest) and the frames a second."
+    }
+  ]
+}
