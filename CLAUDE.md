@@ -102,7 +102,7 @@ pocketcity/                   Pocket City 3D
   sounds/*.json               sfxr settings
 outpostecho/                  Outpost Echo 3D: its own README.md says what each file does
 beatdancer/                   Beat Dancer 3D: likewise; previews/disco.gif is its moving picture for posts and the site
-kremlinblocks/                Kremlin Blocks: likewise; previews/game.gif runs through its five stages
+kremlinblocks/                Kremlin Blocks: likewise; previews/game.gif runs through its five stages (on the site and in its post)
 pocketgolf/                   Pocket Golf Deluxe: likewise, in its README.md
 pulsetunnel/                  Pulse Tunnel
   cart.json                   music: control, suspend: false, three options

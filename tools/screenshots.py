@@ -107,6 +107,12 @@ SHOTS = {
         ("police", "pocketcity_test", [], ["--ticks", "430", "--seed", "2", "--setting", "stress_ticks=9000",
                                            "--setting", "stress_heat=60", "--buttons", "20:0"], {}),
     ],
+    # Kremlin Blocks' own previews, from its autoplay (tools/kremlinblocks_preview.py)
+    "kremlinblocks": [
+        ("title", "copy", [], ["kremlinblocks/previews/title.png"], {}),
+        ("winter", "copy", [], ["kremlinblocks/previews/winter.png"], {}),
+        ("night", "copy", [], ["kremlinblocks/previews/night.png"], {}),
+    ],
     "beatdancer": [
         ("groove", None, [], ["--ticks", "400", "--seed", "1"] + BEAT, {}),
         ("disco", None, [], ["--ticks", "900", "--seed", "1"] + BEAT, {}),

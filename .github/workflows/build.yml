@@ -8,9 +8,9 @@
 # cart that reads the music (Pulse Tunnel, Bubble Beat and Sloop, even with
 # their modes without it). pages.yml publishes the pages on GitHub Pages.
 #
-# Outpost Echo 3D, Pocket Golf Deluxe and Beat Dancer 3D are built here as
-# carts too, so a release carries them; their own workflows test them (and
-# build the first two's pages).
+# Outpost Echo 3D, Pocket Golf Deluxe, Beat Dancer 3D and Kremlin Blocks
+# are built here as carts too, so a release carries them; their own
+# workflows test them (and build the pages, but for Beat Dancer's).
 
 name: Build
 
@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cart: [pulsetunnel, marbles, bubblebeat, sloop, pocketwings, powderrun, pocketcity, outpostecho, pocketgolf, beatdancer]
+        cart: [pulsetunnel, marbles, bubblebeat, sloop, pocketwings, powderrun, pocketcity, outpostecho, pocketgolf, beatdancer, kremlinblocks]
         include:
           - cart: marbles
             page: true

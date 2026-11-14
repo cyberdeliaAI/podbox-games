@@ -14,6 +14,7 @@ Drafts of one thread per game for the **Games** category of [PodBox's Discussion
 | Pocket Golf Deluxe | [pocketgolf.md](pocketgolf.md) | yes | [#55](https://github.com/anthonyfletcher/podbox/discussions/55) |
 | Pocket City 3D | [pocketcity.md](pocketcity.md) | yes | [#56](https://github.com/anthonyfletcher/podbox/discussions/56) |
 | Beat Dancer 3D | [beatdancer.md](beatdancer.md) | no: it follows the music (its post shows the GIF from `beatdancer/previews/`) | [#57](https://github.com/anthonyfletcher/podbox/discussions/57) |
+| Kremlin Blocks | [kremlinblocks.md](kremlinblocks.md) | yes (its post shows the GIF from `kremlinblocks/previews/`) | not yet posted |
 
 All ten were posted on 2026-11-14 as cyberdeliaAI, the last two with release 1.1. The thread's title is the draft's first heading, the post the rest, from the line under it.
 
