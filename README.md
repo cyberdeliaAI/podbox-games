@@ -24,6 +24,10 @@ Every folder with a `cart.json` is a cart. With the PodBox repository cloned nex
 sh build.sh                                     # every cart into dist/ (not kept in git)
 ```
 
-`tools/` holds the scripts that make each game's placeholder art and data.
+`tools/` holds the scripts that make each game's placeholder art and data, and Marble Chain's stress test:
+
+```sh
+python3 tools/marbles_stress.py     # plays every level by itself, checks the chain, reports units a tick
+```
 
 To add a game, give its folder a `cart.json` and add its name to the cart list in `.github/workflows/build.yml`.

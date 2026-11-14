@@ -74,13 +74,19 @@ A ball shot into the chain is inserted into the sorted list at once, on the side
 
 Every ball's state (rolling, arriving, popping) lives in the same arrays as its colour and position and moves with it when the arrays shift. Nothing refers to a ball by its index for longer than one tick, so inserting and removing balls can't leave stale references behind.
 
-The rules were stress tested with an automatic shooter that fires a ball every third of a second at random balls in the chain, with invariant checks on every tick: the list stays sorted, the colour counts match the balls, and no ball gets stuck in a state. Over four long runs it popped about 150 runs and set off chain reactions up to three deep, without a single violation.
-
 A power-up is one more number kept for every ball (`pw`), shifted with the other arrays. When a run pops, `match()` collects the power-ups in it: slow and back are reported to the game (`gotPower`), a bomb is carried out by the chain itself (`blast`, which marks every ball within reach as popping with the run). `rewind()` moves every ball back along the track and returns the ones that go right back in to the tunnel.
 
 Shots find their ball with `hitTest()`. Most of a shot's flight is over empty ground, so each track carries a small map (20 by 15 squares, made by the asset script) of where a ball could be within reach; outside it the shot skips the search.
 
-The rules were stress tested with an automatic shooter that fires at random balls in the front of the chain, with invariant checks on every tick: the list stays sorted, the colour counts match the balls, no ball is stuck in a state, no popping ball still carries a power-up, and no ball sits further back in the tunnel than it should. All six levels ran for 9,000 ticks with two seeds each, with bombs, slows and rewinds going off throughout, without a single violation.
+## Stress test
+
+`python3 tools/marbles_stress.py` plays every level by itself and checks the chain's invariants at the start of every tick: the list stays sorted, the colour counts match the balls, no ball is stuck in a state or left without a timer to finish it, no popping ball still carries a power-up, every gap is flagged and no ball sits further back in the tunnel than it should. It reports the units each tick of play costs, with its own work taken out.
+
+It plays three ways. Smart aims where the loaded ball pops a run, nearest the hole, and swaps when the next ball does better. Blind shoots at random. Still never shoots, so the whole chain rolls to the hole. By default it runs six levels, two seeds, smart and blind, 9,000 ticks each, in about a second. `--selftest` raises `POP` from 8 to 12 in a scratch copy to show the checks catch a pop that outlasts its timer.
+
+The game's own files are never changed: the tool builds a scratch copy of the cart with `tools/marbles_stress.js` added and a call to it at the top of `update()`.
+
+On 14 November 2026 it found no violations. It did warn 23 times that `rewind()` was about to send a popping ball back into the tunnel. That ball has already been scored, and it comes out again later as a new ball.
 
 ## Saved progress
 
@@ -88,16 +94,18 @@ The game keeps seven of the Arcade's saved numbers: number 0 is how many levels 
 
 ## Performance
 
-Measured with `pbgvm` on the cart alone (the stress test's own checks taken out):
+Measured with the stress test, its own work taken out:
 
-| Screen | Average | 95th percentile |
+| Run | Average | 95th percentile |
 |---|---|---|
-| Start screen | 3,800 | 5,300 |
-| Level 1, shooting every 0.6 s | 4,700 | 7,000 |
-| Level 3, same | 6,300 | 9,800 |
-| Level 6, same | 7,300 | 10,800 |
+| Start screen | 3,850 | 5,500 |
+| Level 1, smart shot every 0.6 s | 4,750 | 7,050 |
+| Level 3, same | 5,500 | 8,500 |
+| Level 6, same | 6,200 | 8,800 |
+| Level 6, no shots: the whole chain rolls to the hole | 11,200 | 16,400 |
+| Level 6, random shot every 0.6 s | 11,900 | 18,200 |
 
-Units a tick. An iPod Video playing FLAC gives a cart about 12,500 at 33 ticks a second, so even level 6 stays inside it at the 99th percentile (about 11,700). Shooting much faster than a person can pushes level 6 past that; if frames start running late for a whole second the game drops to 25 ticks a second by itself, and every speed in it is scaled to match. Most of the cost is the chain: each ball on screen takes about 150 units a tick.
+Units a tick. An iPod Video playing FLAC gives a cart about 12,500 at 33 ticks a second. A player who keeps the chain short stays inside it on every level: the worst smart tick in 12 runs was 11,850. A long chain doesn't. Each ball on screen costs about 135 units a tick, and each shot in flight checks every ball. Left to grow, the chain on levels 4 to 6 is over 12,500 on 9% to 36% of ticks, and random shooting on level 6 puts 8% of ticks over 17,500. If frames run late for a whole second the game drops to 25 ticks a second by itself, and every speed in it is scaled to match, but that doesn't cover the worst of level 6.
 
 The start screen draws its menu once into a picture, rolls only the balls that are not behind it, and moves them every other tick.
 
