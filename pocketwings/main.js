@@ -46,6 +46,8 @@ function takeOff() {
 function update() {
     if (opt.changed())
         readOptions();
+    if (resumed())
+        quality.resume();          // back from a pause: its frames weren't late
     quality.tick();
     var k = 33.0 / rate();
     if (scene == TITLE) {

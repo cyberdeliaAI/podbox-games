@@ -2,8 +2,10 @@
 # release for every tag pushed. To add a game, put its folder next to the
 # others (it needs a cart.json) and add the folder's name to the cart list.
 #
-# The web page that the builder can also make is off: Pulse Tunnel plays the
-# owner's music, which a web page cannot, and Pages needs a public repo.
+# Powder Run 3D also gets a web page to play it in a browser (the builder's
+# page option), attached beside the carts. The others stay without: Pulse
+# Tunnel and Bubble Beat play to the owner's music, which a page cannot, and
+# Pocket Wings hasn't been tried in one. Pages would need a public repo.
 
 name: Build
 
@@ -21,6 +23,9 @@ jobs:
       fail-fast: false
       matrix:
         cart: [pulsetunnel, marbles, bubblebeat, pocketwings, powderrun]
+        include:
+          - cart: powderrun
+            page: true
     steps:
       - uses: actions/checkout@v4
 
@@ -28,11 +33,14 @@ jobs:
         id: cart
         with:
           cart: ${{ matrix.cart }}
+          page: ${{ matrix.page || false }}
 
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.cart }}
-          path: ${{ steps.cart.outputs.pbg }}
+          path: |
+            ${{ steps.cart.outputs.pbg }}
+            ${{ steps.cart.outputs.page }}
 
   release:
     if: startsWith(github.ref, 'refs/tags/')
@@ -44,7 +52,7 @@ jobs:
           path: carts
           merge-multiple: true
 
-      - name: Attach every cart to the release
+      - name: Attach every cart (and page) to the release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" carts/*.pbg --generate-notes --repo "$GITHUB_REPOSITORY"
+        run: gh release create "$GITHUB_REF_NAME" carts/* --generate-notes --repo "$GITHUB_REPOSITORY"

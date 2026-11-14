@@ -2,18 +2,56 @@
   "id": "7e3cbce82911cc18",
   "name": "Powder Run 3D",
   "author": "Cyberdelia",
-  "version": "0.1",
+  "version": "1.0",
   "rate": 33,
-  "help": "Ski down an endless mountain. The slope takes you down by itself: steep snow is fast, flat snow slow. Turn the wheel to carve left or right; let go and the skis run straight. Sharp turns cost speed, and rollers and bumps throw you in the air. The picture adjusts itself to what your iPod can draw smoothly.",
-  "lazy_images": ["alpine_h", "alpine_c", "alpine_h2", "alpine_c2", "alpine_sky"],
+  "help": "Ski down an endless mountain. Turn the wheel to carve left or right; let go and the skis run straight. Next tucks for speed, Prev ploughs to slow down, Select jumps, Play moves the camera. Miss the pines and boulders. Free Ride goes on for ever. Endless Run gets steeper and thicker with trees as it goes and ends at the third fall. Five slopes, and a seed to ski the same run again.",
+  "lazy_images": [
+    "alpine_h",
+    "alpine_c",
+    "alpine_h2",
+    "alpine_c2",
+    "alpine_sky",
+    "forest_h",
+    "forest_c",
+    "forest_h2",
+    "forest_c2",
+    "forest_sky",
+    "high_h",
+    "high_c",
+    "high_h2",
+    "high_c2",
+    "high_sky",
+    "sunset_h",
+    "sunset_c",
+    "sunset_h2",
+    "sunset_c2",
+    "sunset_sky",
+    "frozen_h",
+    "frozen_c",
+    "frozen_h2",
+    "frozen_c2",
+    "frozen_sky"
+  ],
   "options": [
     {
       "name": "steering",
       "title": "Steering",
       "type": "choice",
-      "choices": ["Spin", "Thumb"],
+      "choices": [
+        "Spin",
+        "Thumb"
+      ],
       "default": 0,
       "help": "Spin: turning the wheel carves, and the skis run straight when you stop. Thumb: rest your thumb right or left of the top of the wheel to carve that way."
+    },
+    {
+      "name": "sensitivity",
+      "title": "Wheel sensitivity",
+      "type": "number",
+      "min": 1,
+      "max": 5,
+      "default": 3,
+      "help": "How far a turn of the wheel carves: 1 gentle, 5 sharp."
     },
     {
       "name": "hud",
@@ -23,10 +61,21 @@
       "help": "Shows how far down the mountain you are and how fast you're going."
     },
     {
+      "name": "sounds",
+      "title": "Snow sounds",
+      "type": "onoff",
+      "default": true,
+      "help": "The hiss of the skis on the snow, louder the faster you go."
+    },
+    {
       "name": "picture",
       "title": "Picture",
       "type": "choice",
-      "choices": ["Auto", "Fast", "Detailed"],
+      "choices": [
+        "Auto",
+        "Fast",
+        "Detailed"
+      ],
       "default": 0,
       "help": "Auto: the picture steps up and down with what the iPod can draw smoothly. Fast: always the plainer picture at 25 frames a second. Detailed: always the finest, which an iPod Video playing music can't keep up with."
     },
@@ -36,6 +85,60 @@
       "type": "onoff",
       "default": false,
       "help": "Shows the picture's level (Q0 finest to Q4 plainest) and the frames a second."
+    }
+  ],
+  "boards": [
+    {
+      "name": "alpine",
+      "title": "Endless: Alpine Valley"
+    },
+    {
+      "name": "forest",
+      "title": "Endless: Winter Forest"
+    },
+    {
+      "name": "high",
+      "title": "Endless: High Mountains"
+    },
+    {
+      "name": "sunset",
+      "title": "Endless: Sunset Ridge"
+    },
+    {
+      "name": "frozen",
+      "title": "Endless: Frozen Wilds"
+    }
+  ],
+  "achievements": [
+    {
+      "name": "kilometre",
+      "title": "First Kilometre",
+      "text": "Ski 1 km in one run."
+    },
+    {
+      "name": "speed",
+      "title": "Speed Demon",
+      "text": "Reach 110 km/h."
+    },
+    {
+      "name": "air",
+      "title": "Big Air",
+      "text": "Stay in the air for a whole second."
+    },
+    {
+      "name": "clean",
+      "title": "Clean Run",
+      "text": "Ski 3 km without a fall."
+    },
+    {
+      "name": "endurance",
+      "title": "Endurance",
+      "text": "Ski 5 km in an Endless Run."
+    },
+    {
+      "name": "tour",
+      "title": "Grand Tour",
+      "text": "Ski 500 m or more on all five slopes."
     }
   ]
 }

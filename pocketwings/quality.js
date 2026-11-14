@@ -116,6 +116,13 @@ function tick() {
     late = 0;
 }
 
+// Back from a pause: what skipped() saw meanwhile doesn't count
+function resume() {
+    skipped();
+    late = 0;
+    settle = 2;
+}
+
 // At the end of draw(), for sim: did this tick cost more than it had?
 function after() {
     if (sim == 0)
