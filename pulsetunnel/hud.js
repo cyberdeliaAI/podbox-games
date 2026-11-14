@@ -59,6 +59,8 @@ function title() {
         status = (frame() & 8) != 0 ? "LISTENING..." : "";
     else if (locked)
         status = bpm + " BPM";
+    else if (retryAt >= 0)
+        status = "NO BEAT YET: " + bpm + " BPM";
     else
         status = "NO BEAT FOUND: " + bpm + " BPM";
     centre(status, 58, 13);

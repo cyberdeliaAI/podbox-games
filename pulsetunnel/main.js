@@ -17,7 +17,9 @@ const ST_TITLE = 0, ST_PLAY = 1, ST_DYING = 2, ST_OVER = 3;
 
 const DEFAULT_BEAT = 500;          // 120 BPM, with no music
 const BEAT_TARGET = 500, BEAT_FAST = 370, BEAT_MIN = 300, BEAT_MAX = 860;
-const LISTEN_BEATS = 24;           // beats to listen before keeping the old tempo
+const LISTEN_BEATS = 24;           // beats a try listens before it gives up
+const RETRY_BEATS = 16;            // four bars on the old tempo before trying again
+const LISTEN_TRIES = 3;            // tries a track gets: a quiet intro can hide its beat
 const SECTOR_BEATS = 64;           // sixteen bars a sector
 const MAX_POWER = 3, MAX_BOMBS = 3;
 const STEER_MAX = 0.05;            // turns a tick the ship can move, at 33 a second
@@ -45,8 +47,10 @@ var barRes = 0;                    // the residue of four that starts a bar
 var subMs = 250;                   // the guns' beat
 var lastSub = 0;
 var listening = false;
-var listened = 0;                  // beats listened this time
-var locked = false;                // a tempo has been taken from the music
+var listened = 0;                  // beats listened this try
+var locked = false;                // the tempo was taken from the track playing now
+var tries = 0;                     // tries at this track's tempo so far
+var retryAt = -1;                  // the beat to listen again on, -1 for none
 var bs = new Int32Array(6);
 var moodBuf = new Int32Array(3);
 var energy = 50;
@@ -188,6 +192,9 @@ function newMusic() {
     font(FONT.CAPS);
     trackText = textfit(trackName, 150);
     trackUntil = gt + 3500;
+    // the grid keeps the last track's tempo until this one's is found
+    locked = false;
+    tries = 0;
     startListening();
 }
 
@@ -249,6 +256,8 @@ function startListening() {
     beat.listen(true);
     listening = true;
     listened = 0;
+    tries++;
+    retryAt = -1;
     // the tracker takes about 6,300 units a tick at 33, half of what a
     // tick has: at 25 there is room for it and the tunnel both, and the
     // game, timed on the music's ms, plays the same
@@ -370,10 +379,18 @@ function onBeat() {
     }
     if (listening) {
         if (!tryLatch() && ++listened >= LISTEN_BEATS) {
+            // no beat yet, perhaps a quiet intro: fly on the old tempo and
+            // try again a few bars on
             stopListening();
-            if (!locked)
+            if (tries < LISTEN_TRIES) {
+                retryAt = curBeat + RETRY_BEATS;
+                announce("NO BEAT YET");
+            } else {
                 announce("NO BEAT FOUND");
+            }
         }
+    } else if (retryAt >= 0 && curBeat >= retryAt) {
+        startListening();
     } else {
         nudge();
         if (strong)
@@ -576,7 +593,7 @@ function startRun() {
     setrate(listening ? 25 : 33);
     announce("GET READY");
     sfx(SFX.sector);
-    if (playback.playing() && !locked && !listening)
+    if (playback.playing() && !locked && !listening && tries < LISTEN_TRIES)
         startListening();
 }
 
