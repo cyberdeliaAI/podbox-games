@@ -131,7 +131,7 @@ jobs:
         run: |
           cp docs/web/index.html site/
           mkdir -p site/screenshots
-          cp docs/screenshots/*.png site/screenshots/
+          cp docs/screenshots/*.png docs/screenshots/*.gif site/screenshots/
           cp beatdancer/previews/disco.gif site/screenshots/beatdancer.gif
           cp kremlinblocks/previews/game.gif site/screenshots/kremlinblocks.gif
           ls -la site

@@ -30,7 +30,7 @@ Done on 2026-11-14: the MIT licence, every game played on an iPod Video 5.5G, th
 
 The drafts link the pictures in `docs/screenshots/` on `raw.githubusercontent.com`, which works once the repository is public. Dragging the PNGs into the post's editor works as well and doesn't depend on the repository.
 
-`python3 tools/screenshots.py` takes them again: each game is built in a scratch copy, played by its test harness where it needs a player and photographed in `pbgvm`. Run it after a change that shows, and update the post.
+`python3 tools/screenshots.py` takes them again: each game is built in a scratch copy, played by its test harness where it needs a player and photographed in `pbgvm`. `python3 tools/gifs.py` makes each post's moving picture, the first in it, the same way: a run a frame, a few seconds of play (Pocket Golf's replays its release test's saved input: run that test with `--keep dist/pocketgolf-checks` first). Beat Dancer and Kremlin Blocks make their own. Run them after a change that shows, and update the post.
 
 ## Updating
 

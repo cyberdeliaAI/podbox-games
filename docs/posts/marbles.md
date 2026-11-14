@@ -6,7 +6,7 @@
 
 A chain of marbles rolls along a winding track toward the hole. Shoot marbles into it: three or more of a colour together pop, and where the gap's two sides match the chain rolls back to close it, which can pop again for a bigger score. Six levels on three tracks, with slow, back and bomb power-ups.
 
-<img width="320" height="240" alt="Marble Chain" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/marbles-1.png" />
+<img width="320" height="240" alt="Marble Chain" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/marbles.gif" />
 <img width="320" height="240" alt="Marble Chain" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/marbles-2.png" />
 <img width="320" height="240" alt="Marble Chain" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/marbles-3.png" />
 

@@ -6,7 +6,7 @@
 
 A bubble shooter whose ceiling comes down with the bars of the music you're playing. Aim with the wheel and pop groups of three or more; whatever they held up falls with them. Shoot on the beat for double, on the first beat of a bar for triple.
 
-<img width="320" height="240" alt="Bubble Beat" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/bubblebeat-1.png" />
+<img width="320" height="240" alt="Bubble Beat" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/bubblebeat.gif" />
 <img width="320" height="240" alt="Bubble Beat" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/bubblebeat-2.png" />
 <img width="320" height="240" alt="Bubble Beat" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/bubblebeat-3.png" />
 

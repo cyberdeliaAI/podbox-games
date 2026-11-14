@@ -6,7 +6,7 @@
 
 Ski down a mountain that never ends, carving with the wheel between pines and boulders, over rollers that throw you in the air. Five slopes, Free Ride (for ever) and Endless Run (three falls and it's over, steeper as it goes), a board per slope, and a seed to ski the same run again.
 
-<img width="320" height="240" alt="Powder Run 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/powderrun-1.png" />
+<img width="320" height="240" alt="Powder Run 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/powderrun.gif" />
 <img width="320" height="240" alt="Powder Run 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/powderrun-2.png" />
 <img width="320" height="240" alt="Powder Run 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/powderrun-3.png" />
 
