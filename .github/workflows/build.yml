@@ -7,6 +7,9 @@
 # touches the music. The exporter refuses any cart that reads the music
 # (Pulse Tunnel, Bubble Beat and Sloop, even with their modes without it).
 # Pages would need a public repo.
+#
+# Outpost Echo 3D and Pocket Golf Deluxe are built here as carts too, so a
+# release carries them; their own workflows test them and build their pages.
 
 name: Build
 
@@ -23,7 +26,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cart: [pulsetunnel, marbles, bubblebeat, sloop, pocketwings, powderrun]
+        cart: [pulsetunnel, marbles, bubblebeat, sloop, pocketwings, powderrun, outpostecho, pocketgolf]
         include:
           - cart: pocketwings
             page: true

@@ -9,6 +9,8 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Bubble Beat](bubblebeat/) | A bubble shooter whose ceiling comes down with the bars of your music: shoot on the beat for double | [docs/bubblebeat.md](docs/bubblebeat.md) |
 | [Pocket Wings 3D](pocketwings/) | A relaxed flight over six 3D landscapes, no score, no hurry; Discovery finds thirty landmarks; plays in a browser too | [docs/pocketwings.md](docs/pocketwings.md) |
 | [Sloop](sloop/) | A wrecking ball on the beat: swing it with the wheel to smash the blocks landing on the beats of your music | [docs/sloop.md](docs/sloop.md) |
+| [Outpost Echo 3D](outpostecho/) | A first-person sci-fi adventure: restore five sectors of a silent research station, past its security robots | [outpostecho/README.md](outpostecho/README.md) |
+| [Pocket Golf Deluxe](pocketgolf/) | Top-down mini golf: 36 holes in four themed courses, with tunnels, teleporters, gates and ice | [pocketgolf/README.md](pocketgolf/README.md) |
 | [Powder Run 3D](powderrun/) | Endless downhill skiing over a 3D mountain: five slopes, pines and boulders, Free Ride and Endless Run, plays in a browser too | [docs/powderrun.md](docs/powderrun.md) |
 
 ## Playing
@@ -36,6 +38,8 @@ python3 tools/bubblebeat_stress.py   # the same for Bubble Beat, with and withou
 python3 tools/sloop_stress.py        # the same for Sloop: a smart, a blind and a still player
 python3 tools/pocketwings_test.py    # flies Pocket Wings, checks it and measures every level (--sessions: long flights, saves, memory)
 python3 tools/powderrun_test.py      # the same for Powder Run, skiing (--sessions: long runs, saves, memory)
+python3 tools/outpostecho_test.py    # plays Outpost Echo's whole campaign, checks saves and measures it
+python3 tools/pocketgolf_test.py     # plays all 36 holes of Pocket Golf, checks the physics and measures it
 ```
 
 To add a game, give its folder a `cart.json` and add its name to the cart list in `.github/workflows/build.yml`.
