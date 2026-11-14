@@ -2,10 +2,10 @@
 # release for every tag pushed. To add a game, put its folder next to the
 # others (it needs a cart.json) and add the folder's name to the cart list.
 #
-# Powder Run 3D also gets a web page to play it in a browser (the builder's
-# page option), attached beside the carts. The others stay without: Pulse
-# Tunnel and Bubble Beat play to the owner's music, which a page cannot, and
-# Pocket Wings hasn't been tried in one. Pages would need a public repo.
+# Pocket Wings 3D and Powder Run 3D also get a web page to play them in a
+# browser (the builder's page option), attached beside the carts: neither
+# touches the music. Pulse Tunnel and Bubble Beat play to the owner's music,
+# which a page cannot. Pages would need a public repo.
 
 name: Build
 
@@ -24,6 +24,8 @@ jobs:
       matrix:
         cart: [pulsetunnel, marbles, bubblebeat, pocketwings, powderrun]
         include:
+          - cart: pocketwings
+            page: true
           - cart: powderrun
             page: true
     steps:

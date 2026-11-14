@@ -23,9 +23,11 @@
 const LEVELS = 5;
 var COARSE = [1, 2, 2, 2, 2];      // land.draw's coarse: 2 samples every other column
 var HALF = [0, 0, 1, 1, 1];        // the half-size landscape
-var FAR = [300, 300, 300, 200, 200];   // how far the ground is drawn, world pixels
+var FAR = [300, 300, 220, 180, 180];   // how far the ground is drawn, world pixels
 var PANO = [1, 1, 0, 0, 0];        // the hills on the horizon
 var RATES = [33, 33, 25, 25, 20];
+var CAP = [24, 16, 5, 5, 5];       // scenery drawn at most
+var RANGE = [150, 140, 110, 100, 100];   // ...and how far ahead it's looked for (landmarks 1.8 times)
 
 const AUTO = 0, FAST = 1, DETAILED = 2;
 var mode = AUTO;
@@ -52,6 +54,7 @@ function start() {
     changes = 0;
 }
 
+// The Picture option: Auto, or a level held
 function setMode(m) {
     mode = m;
     if (m == FAST)
@@ -60,6 +63,7 @@ function setMode(m) {
         setLevel(0);
 }
 
+// Level q, its rate set
 function setLevel(q) {
     level = q;
     if (rate() != RATES[q])

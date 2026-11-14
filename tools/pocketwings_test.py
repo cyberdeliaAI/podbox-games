@@ -29,6 +29,7 @@ import concurrent.futures
 import os
 import random
 import shutil
+import struct
 import subprocess
 import sys
 import tempfile
@@ -56,15 +57,19 @@ def fail(msg, code=2):
     sys.exit(code)
 
 
-def plan(seed, ticks):
-    """A flight plan: wheel turns and held buttons, as pbgvm takes them."""
+LANDS = ["valley", "islands", "alps", "canyon", "frozen", "volcano"]
+
+
+def plan(seed, ticks, turns=True):
+    """A flight plan: wheel turns and held buttons, as pbgvm takes them;
+    without turns when the harness steers (seek)."""
     rnd = random.Random(seed)
     wheel, buttons = [], []
     t = 60
     while t < ticks - 10:
         kind = rnd.choice(["turn", "turn", "climb", "dive", "dive", "speed", "cruise"])
         length = rnd.randrange(40, 160)
-        if kind == "turn":
+        if kind == "turn" and turns:
             clicks = rnd.choice([-1, 1]) * rnd.randrange(8, 36)
             # turned in over a few ticks, and back a while later
             for i in range(4):
@@ -111,19 +116,34 @@ def build(sdk, work, name, patches=()):
     return pbg
 
 
-def fly(vm, pbg, seed, ticks, view, level, device):
+def fly(vm, pbg, seed, ticks, view, level, device, land=0, mode=0, scenic=0, seek=0, extra=()):
     cmd = [vm, pbg, "--ticks", str(ticks), "--seed", str(seed), "--units",
            "--setting", "stress_view=%d" % view, "--setting", "stress_level=%d" % level,
-           "--setting", "stress_device=%d" % device, "--setting", "stress_ticks=%d" % ticks] + plan(seed, ticks)
+           "--setting", "stress_device=%d" % device, "--setting", "stress_ticks=%d" % ticks,
+           "--setting", "stress_land=%d" % land, "--setting", "stress_mode=%d" % mode,
+           "--setting", "stress_scenic=%d" % scenic, "--setting", "stress_seek=%d" % seek] + \
+        plan(seed, ticks, not seek) + list(extra)
     r = subprocess.run(cmd, capture_output=True, text=True)
-    run = {"seed": seed, "view": view, "level": level, "device": device, "exit": r.returncode,
-           "errors": [], "problems": [], "summary": {}, "ticks": []}
+    run = {"seed": seed, "view": view, "level": level, "device": device, "land": land, "mode": mode,
+           "scenic": scenic, "seek": seek, "exit": r.returncode, "stress": [], "start": {}, "memory": {},
+           "paused": 0, "resumed": 0, "errors": [], "problems": [], "summary": {}, "ticks": []}
     for line in r.stdout.splitlines():
         if line.startswith("VIOLATION"):
             run["problems"].append(line)
         elif line.startswith("STRESS "):
+            run["stress"].append(line)
             p = line.split()[1:]
             run["summary"] = {p[i]: int(p[i + 1]) for i in range(0, len(p) - 1, 2)}
+        elif line.startswith("START "):
+            p = line.split()[1:]
+            run["start"] = {p[i]: int(p[i + 1]) for i in range(0, len(p) - 1, 2)}
+        elif line.startswith("memory arena"):
+            p = line.split()[1:]
+            run["memory"] = {p[i]: int(p[i + 1]) for i in range(0, len(p) - 1, 2)}
+        elif line == "paused":
+            run["paused"] += 1
+        elif line == "resumed":
+            run["resumed"] += 1
     harness, q = 0, -1
     for line in r.stderr.splitlines():
         p = line.split()
@@ -152,7 +172,7 @@ def bad(run):
     return run["exit"] != 0 or run["errors"] or not run["summary"] or run["summary"].get("violations", 0)
 
 
-def report(levels, autos, verbose):
+def report(levels, autos, lands, verbose):
     print()
     print("Each level held, units a tick with the harness taken out:")
     print("  level  rate  view      avg     p95     max   fits")
@@ -181,20 +201,110 @@ def report(levels, autos, verbose):
             run["summary"].get("level", -1), run["summary"].get("changes", 0), share,
             100.0 * over / len(t)))
     print("  (over budget: ticks that cost more than that iPod has at the rate they ran at)")
+    print()
+    print("Every landscape, Auto on the iPod Video playing FLAC:")
+    print("  landscape  flight              seed  settled     avg     p95  over  landmarks found  scenery drawn")
+    for run in lands:
+        t = run["ticks"]
+        u = stats([v for _, v in t]) or {"avg": 0, "p95": 0}
+        over = sum(1 for q, v in t if v > BUDGETS[1][RATES[q]])
+        how = "discovery, seeking" if run["mode"] else "follow the ground" if run["scenic"] else "free"
+        s = run["summary"]
+        print("  %-9s  %-18s  %4d  Q%d      %6s  %6s  %3.1f%%  %15d  %13d" % (
+            LANDS[run["land"]], how, run["seed"], s.get("level", -1), "{:,}".format(u["avg"]),
+            "{:,}".format(u["p95"]), 100.0 * over / max(1, len(t)), s.get("found", 0), s.get("drawn", 0)))
 
     fails = 0
-    for run in levels + autos:
-        name = "level %s view %d device %d seed %d" % (run["level"], run["view"], run["device"], run["seed"])
+    for run in levels + autos + lands:
+        name = "level %s view %d device %d seed %d land %s mode %d scenic %d" % (
+            run["level"], run["view"], run["device"], run["seed"], LANDS[run["land"]], run["mode"], run["scenic"])
         if bad(run):
             fails += 1
             print("\n%s: exit %d" % (name, run["exit"]))
             for line in (run["errors"][:5] + (run["problems"] if verbose else run["problems"][:5])):
                 print("  " + line)
-    lows = [r["summary"].get("low", 0) for r in levels + autos]
-    clear = min(r["summary"].get("clear", 999) for r in levels + autos)
+    seekers = [r for r in lands if r["seek"]]
+    lost = [r for r in seekers if r["summary"].get("found", 0) < 5]
+    if lost:
+        fails += 1
+        print("\nDiscovery runs that didn't find all five landmarks: %s" % ", ".join(
+            "%s %d" % (LANDS[r["land"]], r["summary"].get("found", 0)) for r in lost))
+    lows = [r["summary"].get("low", 0) for r in levels + autos + lands]
+    clear = min(r["summary"].get("clear", 999) for r in levels + autos + lands)
     print()
     print("Ticks the ground lifted the aircraft: %d in all; the closest it came to the ground: %d" % (sum(lows), clear))
-    print("%d runs: %s" % (len(levels + autos), "FAIL" if fails else "ok"))
+    print("%d runs: %s" % (len(levels + autos + lands), "FAIL" if fails else "ok"))
+    return 1 if fails else 0
+
+
+def saved(path):
+    with open(path, "rb") as f:
+        return struct.unpack("<256i", f.read()[:1024])
+
+
+def sessions(vm, pbg, work, ticks, jobs):
+    """Long flights in every landscape with the saves kept, the saves read
+    back, a suspend, pauses and fifty changes of landscape."""
+    fails = []
+    print("Long flights: %d ticks each in Discovery, seeking, Auto on the iPod Video playing FLAC, saves kept" % ticks)
+    print("  landscape  found  violations  saved found  saved seconds  flown  over")
+    paths = {n: os.path.join(work, "saves_%d.bin" % n) for n in range(6)}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, jobs)) as pool:
+        runs = list(pool.map(lambda n: fly(vm, pbg, 7 + n, ticks, 0, -1, 1, n, 1, 0, 1,
+                                           ["--saves", paths[n]]), range(6)))
+    for n, run in enumerate(runs):
+        s = run["summary"]
+        v = saved(paths[n]) if os.path.exists(paths[n]) else [0] * 256
+        t = run["ticks"]
+        over = sum(1 for q, u in t if u > BUDGETS[1][RATES[q]])
+        print("  %-9s  %5d  %10d  %11d  %13d  %5d  %3.1f%%" % (
+            LANDS[n], s.get("found", 0), s.get("violations", 0), v[2 + n], v[10], v[8], 100.0 * over / max(1, len(t))))
+        if bad(run):
+            fails.append(("long " + LANDS[n], run["errors"][:3] + run["problems"][:3]))
+        if v[2 + n] != 31 or v[9] != n or v[8] != 1 << n:
+            fails.append(("long " + LANDS[n], ["saved found %d land %d flown %d" % (v[2 + n], v[9], v[8])]))
+        # seconds flown: the ticks less the start, at the rates run, within a few
+        if not (ticks / 33 - 5 <= v[10] <= ticks / 20 + 5):
+            fails.append(("long " + LANDS[n], ["saved seconds %d for %d ticks" % (v[10], ticks)]))
+
+    path = paths[3]
+    v = saved(path)
+    run = fly(vm, pbg, 1, 30, 0, -1, 1, 3, 0, 0, 0, ["--saves", path])
+    st = run["start"]
+    ok = st.get("land") == 3 and st.get("found") == v[5] and st.get("seconds") == v[10]
+    print()
+    print("Saves read back: landscape %s, found %s, seconds %s: %s" % (
+        st.get("land"), st.get("found"), st.get("seconds"), "ok" if ok else "FAIL"))
+    if not ok:
+        fails.append(("saves", ["start %s" % st]))
+
+    a = fly(vm, pbg, 3, 3000, 0, -1, 1, 0, 0, 0, 0)
+    b = fly(vm, pbg, 3, 3000, 0, -1, 1, 0, 0, 0, 0, ["--suspend-at", "1500"])
+    same = a["stress"] == b["stress"] and b["resumed"] == 1
+    print("Suspended at tick 1500 and resumed: %s" % ("the same flight" if same else "DIFFERENT"))
+    if not same or bad(b):
+        fails.append(("suspend", ["resumed %d" % b["resumed"]]))
+
+    c = fly(vm, pbg, 3, 3000, 1, -1, 1, 2, 0, 0, 0, ["--pause", "500,1500,2500"])
+    print("Paused three times: %d pauses, %s" % (c["paused"], "ok" if not bad(c) and c["paused"] == 3 else "FAIL"))
+    if bad(c) or c["paused"] != 3:
+        fails.append(("pause", c["errors"][:3] + c["problems"][:3]))
+
+    one = fly(vm, pbg, 5, 4000, 0, -1, 1, 0, 0, 0, 0, ["--memory"])
+    tour = fly(vm, pbg, 5, 20000, 0, -1, 1, 0, 0, 0, 0, ["--memory", "--setting", "stress_tour=397"])
+    m1, m2 = one["memory"], tour["memory"]
+    steady = bool(m1) and bool(m2) and m2.get("held", 0) <= m1.get("held", 0) + 4096 and not bad(tour)
+    print("Memory after one landscape: %s held; after 50 changes of landscape: %s held: %s" % (
+        "{:,}".format(m1.get("held", 0)), "{:,}".format(m2.get("held", 0)), "steady" if steady else "FAIL"))
+    if not steady:
+        fails.append(("memory", tour["errors"][:3] + tour["problems"][:3]))
+
+    for name, lines in fails:
+        print("\n%s:" % name)
+        for line in lines:
+            print("  " + line)
+    print()
+    print("Sessions: %s" % ("FAIL" if fails else "ok"))
     return 1 if fails else 0
 
 
@@ -208,6 +318,9 @@ def main():
                     help="the SDK folder (default $SDK or ../podbox/arcade/sdk)")
     ap.add_argument("--keep", action="store_true", help="keep the scratch folder and say where it is")
     ap.add_argument("--verbose", action="store_true", help="print every problem line in full")
+    ap.add_argument("--sessions", action="store_true",
+                    help="long flights in every landscape with saves kept, the saves read back, a suspend, pauses and memory")
+    ap.add_argument("--long", type=int, default=30000, help="ticks a long flight with --sessions (default 30000)")
     ap.add_argument("--selftest", action="store_true",
                     help="take away the lift over the ground in a scratch copy and check that the checks catch it")
     args = ap.parse_args()
@@ -231,12 +344,18 @@ def main():
             print("ok: the checks caught it" if v else "FAIL: no violations, so the checks aren't working")
             return 0 if v else 1
         pbg = build(sdk, work, "pocketwings")
-        jobs = [(s, view, q, 0) for s in seeds for q in range(5) for view in (0, 1)]
-        jobs += [(s, 0, -1, d) for s in seeds for d in (1, 2, 3)]
-        print("Pocket Wings 3D: %d runs of %d ticks" % (len(jobs), args.ticks))
+        if args.sessions:
+            return sessions(vm, pbg, work, args.long, args.jobs)
+        jobs = [(s, view, q, 0, 0, 0, 0, 0) for s in seeds for q in range(5) for view in (0, 1)]
+        jobs += [(s, 0, -1, d, 0, 0, 0, 0) for s in seeds for d in (1, 2, 3)]
+        lands = [(s, 0, -1, 1, n, 1, 0, 1) for s in seeds for n in range(6)]
+        lands += [(s, 1, -1, 1, n, 0, 1, 0) for s in seeds for n in range(6)]
+        print("Pocket Wings 3D: %d runs of %d ticks" % (len(jobs + lands), args.ticks))
         with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
-            runs = list(pool.map(lambda j: fly(vm, pbg, j[0], args.ticks, j[1], j[2], j[3]), jobs))
-        return report([r for r in runs if r["level"] >= 0], [r for r in runs if r["level"] < 0], args.verbose)
+            runs = list(pool.map(lambda j: fly(vm, pbg, j[0], args.ticks, *j[1:]), jobs + lands))
+        n = len(jobs)
+        return report([r for r in runs[:n] if r["level"] >= 0], [r for r in runs[:n] if r["level"] < 0],
+                      runs[n:], args.verbose)
     finally:
         if args.keep:
             print("scratch folder kept: %s" % work)

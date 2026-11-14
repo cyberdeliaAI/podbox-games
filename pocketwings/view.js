@@ -5,8 +5,12 @@
 // The chase camera hangs BEHIND world pixels back and ABOVE up from the
 // aircraft, kept clear of the ground. The cockpit camera sits in the
 // aircraft. plane.view can't roll the picture, so the horizon stays level
-// in a turn: the aircraft's banked sprite, and the instrument in the
+// in a turn: the aircraft's banked sprite, and the attitude display in the
 // cockpit, show the bank. Climbing and diving move the horizon instead.
+//
+// The scenery is drawn over the ground, far to near, the aircraft over it
+// all; everything from the camera's copy nearest the scenery's list (see
+// scenery.js), which land.draw's wrapping makes the same view.
 
 const FOV = 0.22;                  // the field of view, turns
 const FOCAL = 96.7;                // 80 / tan(FOV / 2): screen pixels a world pixel at depth 1
@@ -16,6 +20,7 @@ const HORIZON = 52.0;              // the horizon's row in level flight
 var chase = true;
 var hz = 52.0;                     // the horizon's row now
 var cx = 0.0, cy = 0.0, cz = 0.0;  // the camera
+var fx = 0.0, fy = 0.0;            // ...in the scenery's frame, as last drawn
 var at = [0.0, 0.0, 0.0, 0.0];     // plane.project's answer
 
 // A tick: the camera follows the aircraft
@@ -34,8 +39,10 @@ function update(k) {
         cy = flight.y;
         cz = flight.z;
     }
+    scenery.look(scenery.frameX(cx), scenery.frameY(cy), cz);
 }
 
+// The whole picture: sky, far hills, ground, scenery and the aircraft
 function draw() {
     var q = quality.level;
     // the half-size landscape is drawn with everything halved: the same
@@ -50,7 +57,9 @@ function draw() {
     rectfill(0, hy * 2 / 5 + 1, 159, hy * 3 / 4, world.SKY);
     rectfill(0, hy * 3 / 4 + 1, 159, hy - 3, world.SKY_LOW);
     rectfill(0, hy - 2, 159, bottom, world.HAZE);
-    plane.view(cx * s, cy * s, cz * s, flight.hdg, hy, FOV);
+    fx = scenery.frameX(cx);
+    fy = scenery.frameY(cy);
+    plane.view(fx * s, fy * s, cz * s, flight.hdg, hy, FOV);
     // the far hills stand where the drawn ground ends, which is below the
     // true horizon by the camera's height over the land, seen from far away
     if (quality.PANO[q] != 0)
@@ -61,6 +70,8 @@ function draw() {
         land.draw(world.heights2, world.colours2, far, 1, quality.COARSE[q]);
     else
         land.draw(world.heights, world.colours, far, 1, quality.COARSE[q]);
+    scenery.sort(fx, fy, flight.hdg);
+    scenery.draw(s);
     clip();
     if (chase)
         aircraft(s);
@@ -68,13 +79,14 @@ function draw() {
 
 // The aircraft from behind, banked, over its shadow; s is the world's scale
 function aircraft(s) {
-    if (plane.project(flight.x * s, flight.y * s, flight.gnd * s, at) != 0) {
+    var px = scenery.frameX(flight.x) * s, py = scenery.frameY(flight.y) * s;
+    if (plane.project(px, py, flight.gnd * s, at) != 0) {
         var r = mid(2.0, at[2] * 7.0 / s, 14.0);
         fillp(0xa5a5);
         ovalfill(at[0] - r, at[1] - r / 3.0, at[0] + r, at[1] + r / 3.0, 1);
         fillp();
     }
-    if (plane.project(flight.x * s, flight.y * s, flight.z * s, at) != 0) {
+    if (plane.project(px, py, flight.z * s, at) != 0) {
         var f = mid(0, flr(flight.bank * 2.5 + 2.5), 4);
         spr(64 + f * 3, at[0] - 12, at[1] - 8, 3, 2);
     }
