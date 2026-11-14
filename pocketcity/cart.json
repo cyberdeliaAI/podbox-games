@@ -1,0 +1,42 @@
+{
+  "id": "8a0657134ddb56b7",
+  "name": "Pocket City 3D",
+  "author": "Cyberdelia",
+  "version": "0.1",
+  "rate": 33,
+  "flags": [
+    "solid",
+    "water",
+    "grass",
+    "walk",
+    "road"
+  ],
+  "help": "Drive about a small city seen from above. Hold Select for the throttle, Prev to brake and reverse, turn the wheel to steer; the wheels come back straight when you let go. Play is the handbrake, for a slide round a corner. Next sounds the horn. Grass and sidewalks slow you down. Phase 1: one district, one car.",
+  "options": [
+    {
+      "name": "steering",
+      "title": "Steering",
+      "type": "choice",
+      "choices": [
+        "Spin",
+        "Thumb"
+      ],
+      "default": 0,
+      "help": "Spin: turning the wheel turns the front wheels, and they come back straight when you stop. Thumb: the wheels follow where your thumb rests, right or left of the top."
+    },
+    {
+      "name": "sounds",
+      "title": "Engine sounds",
+      "type": "onoff",
+      "default": true,
+      "help": "The engine and the tyres."
+    },
+    {
+      "name": "stats",
+      "title": "Frame rate",
+      "type": "onoff",
+      "default": false,
+      "help": "Shows the frames a second."
+    }
+  ]
+}
