@@ -1,0 +1,50 @@
+# Builds every game into a .pbg on every push and attaches them all to a
+# release for every tag pushed. To add a game, put its folder next to the
+# others (it needs a cart.json) and add the folder's name to the cart list.
+#
+# The web page that the builder can also make is off: Pulse Tunnel plays the
+# owner's music, which a web page cannot, and Pages needs a public repo.
+
+name: Build
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cart: [pulsetunnel, marbles]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: anthonyfletcher/podbox-arcade-builder@latest
+        id: cart
+        with:
+          cart: ${{ matrix.cart }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.cart }}
+          path: ${{ steps.cart.outputs.pbg }}
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: carts
+          merge-multiple: true
+
+      - name: Attach every cart to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" carts/*.pbg --generate-notes --repo "$GITHUB_REPOSITORY"

@@ -1,0 +1,48 @@
+{
+  "id": "99e08870e750cd3f",
+  "name": "Pulse Tunnel",
+  "author": "Cyberdelia",
+  "version": "1",
+  "rate": 33,
+  "music": "control",
+  "suspend": false,
+  "help": "Fly down a tunnel that moves to your music. A ring of the tunnel passes you on every beat, and enemies, gates and pickups arrive on the beats of whatever is playing. Rest your thumb on the wheel: your ship goes where your thumb is. It fires by itself, in time with the music. Press Select for a bomb that clears the tunnel. Fly through the gap in each gate. Green pickups power up your guns, orange ones give a bomb. Play some music first for the full ride; without music the tunnel runs at 120 BPM.",
+  "boards": [
+    {
+      "name": "points",
+      "title": "Pulse Tunnel"
+    }
+  ],
+  "options": [
+    {
+      "name": "steering",
+      "title": "Steering",
+      "type": "choice",
+      "choices": ["Thumb", "Spin"],
+      "default": 0,
+      "help": "Thumb: the ship goes to where your thumb rests on the wheel. Spin: turning the wheel turns the ship, and Prev and Next turn it too."
+    },
+    {
+      "name": "level",
+      "title": "Difficulty",
+      "type": "choice",
+      "choices": ["Easy", "Normal", "Hard"],
+      "default": 1,
+      "help": "How many enemies the tunnel sends, and how many shields you start with."
+    },
+    {
+      "name": "tempo",
+      "title": "Tempo",
+      "type": "choice",
+      "choices": ["Half", "As heard", "Double"],
+      "default": 1,
+      "help": "The rings against the tempo found: half or double it when the tunnel runs at the wrong speed for the music."
+    }
+  ],
+  "achievements": [
+    { "name": "deep", "title": "Deep Dive", "text": "Reach sector 4." },
+    { "name": "horizon", "title": "Event Horizon", "text": "Reach sector 8." },
+    { "name": "clean", "title": "Untouched", "text": "Fly a whole sector without a hit, from sector 2 on." },
+    { "name": "needle", "title": "Needle Threader", "text": "Fly through 16 gates in one run." }
+  ]
+}
