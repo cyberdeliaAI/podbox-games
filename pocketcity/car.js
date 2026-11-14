@@ -16,11 +16,15 @@
 // down separately so it slides along a wall. A wall it meets bounces it
 // back a little and costs speed; a hard knock is a crash.
 //
+// The player drives whatever they got into: a sedan, a van (slower to get
+// going and to the top), a sports car (quicker on both) or a gold car, a
+// sedan for finding all the tapes. Each has its paint, which the picture
+// takes through pal() (traffic.sprite()).
+//
 // Places are world pixels, the heading turns (0 east, 0.25 north), speeds
 // pixels a tick at 33 a second, scaled by k.
 
 const ACC = 0.055;                 // throttle, pixels a tick a tick, at a standstill
-const VMAX = 3.0;                  // top speed, pixels a tick; the throttle fades toward it
 const BRAKE = 0.11;
 const REV = 0.035, VREV = 0.9;     // reversing: how fast it gets going, and how fast it goes
 const ROLL = 0.003;                // speed lost a tick, rolling
@@ -39,8 +43,12 @@ const RADIUS = 4.5;                // pixels, for walls
 const BOUNCE = 0.3;                // the share of the speed into a wall that comes back
 const CRASH = 1.0;                 // speed into a wall that counts as a crash
 
+var GO = [1.0, 0.75, 1.3, 1.1];    // each shape's throttle, times ACC: sedan, van, sports, police
+var TOP = [3.0, 2.6, 3.5, 3.2];    // ...and top speed, pixels a tick
+
 var x = 0.0, y = 0.0, h = 0.25;
 var vx = 0.0, vy = 0.0;
+var shape = 0, paint = 0;
 var steer = 0.0;                   // -1 full left to 1 full right
 var idle = 0;
 var fwd = 0.0, side = 0.0;         // the velocity along the heading and across it, last tick
@@ -91,9 +99,9 @@ function update(spin, k) {
     var l = vy * c - vx * s;
     surface = city.at(x, y);
     var handbrake = btn(3);
-    var r = f / VMAX;
+    var r = f / TOP[shape];
     if (btn(4))
-        f += ACC * (1.0 - r * r) * k;
+        f += ACC * GO[shape] * (1.0 - r * r) * k;
     if (btn(0)) {
         if (f > 0.05)
             f -= BRAKE * k;
@@ -147,8 +155,13 @@ function update(spin, k) {
     }
 }
 
-// Whether the car would touch a wall at px, py
+// Whether the car would touch a wall at px, py: first the cells under the
+// corners of its square, which are all it can touch, then, if one of
+// them is solid, the eight points round it
 function blocked(px, py) {
+    if (((city.at(px - RADIUS, py - RADIUS) | city.at(px + RADIUS, py - RADIUS) |
+          city.at(px - RADIUS, py + RADIUS) | city.at(px + RADIUS, py + RADIUS)) & city.SOLID) == 0)
+        return false;
     for (var i = 0; i < 8; i++)
         if ((city.at(px + probe[i * 2], py + probe[i * 2 + 1]) & city.SOLID) != 0)
             return true;
@@ -166,7 +179,17 @@ function kmh() {
     return flr(sqrt(vx * vx + vy * vy) * 44.0);
 }
 
-// The frame of the cars' picture for the heading: 32 of them
-function frame32() {
-    return flr(h * 32.0 + 0.5) & 31;
+// The top speed of the car being driven, pixels a tick
+function vmax() {
+    return TOP[shape];
+}
+
+// The car standing still: nothing to drive, once the player is out
+function stop() {
+    vx = 0.0;
+    vy = 0.0;
+    fwd = 0.0;
+    side = 0.0;
+    sliding = false;
+    crashed = 0.0;
 }
