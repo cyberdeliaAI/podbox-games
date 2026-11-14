@@ -1,0 +1,254 @@
+[
+  {
+    "name": "First Putt",
+    "par": 2,
+    "course": 0,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "The Bank",
+    "par": 3,
+    "course": 0,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Garden Bend",
+    "par": 3,
+    "course": 0,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Sand Picnic",
+    "par": 3,
+    "course": 0,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Gentle Rise",
+    "par": 3,
+    "course": 0,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Under the Hedge",
+    "par": 3,
+    "course": 0,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Garden Gate",
+    "par": 3,
+    "course": 0,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Little Windmill",
+    "par": 3,
+    "course": 0,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Festival Finale",
+    "par": 4,
+    "course": 0,
+    "w": 192,
+    "h": 112
+  },
+  {
+    "name": "Boardwalk",
+    "par": 3,
+    "course": 1,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Twin Islands",
+    "par": 3,
+    "course": 1,
+    "w": 192,
+    "h": 112
+  },
+  {
+    "name": "The Shipwreck",
+    "par": 3,
+    "course": 1,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Tidal Bend",
+    "par": 4,
+    "course": 1,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Moon Pearl",
+    "par": 3,
+    "course": 1,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Cannon Run",
+    "par": 3,
+    "course": 1,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Captain Spinner",
+    "par": 4,
+    "course": 1,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Hidden Passage",
+    "par": 4,
+    "course": 1,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Treasure Route",
+    "par": 5,
+    "course": 1,
+    "w": 224,
+    "h": 128
+  },
+  {
+    "name": "Dune Welcome",
+    "par": 3,
+    "course": 2,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Temple Angles",
+    "par": 3,
+    "course": 2,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Sunken Courtyard",
+    "par": 4,
+    "course": 2,
+    "w": 192,
+    "h": 112
+  },
+  {
+    "name": "Rampart Jump",
+    "par": 3,
+    "course": 2,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Sand Clock",
+    "par": 4,
+    "course": 2,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Temple Switch",
+    "par": 4,
+    "course": 2,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Solar Boost",
+    "par": 4,
+    "course": 2,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Round the Ruins",
+    "par": 4,
+    "course": 2,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Pharaoh Finale",
+    "par": 5,
+    "course": 2,
+    "w": 224,
+    "h": 128
+  },
+  {
+    "name": "First Frost",
+    "par": 2,
+    "course": 3,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Snow Bank",
+    "par": 3,
+    "course": 3,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Frozen Bridge",
+    "par": 3,
+    "course": 3,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Glacier Turn",
+    "par": 4,
+    "course": 3,
+    "w": 192,
+    "h": 112
+  },
+  {
+    "name": "Polar Portals",
+    "par": 4,
+    "course": 3,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Aurora Slope",
+    "par": 4,
+    "course": 3,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Ice Windmill",
+    "par": 4,
+    "course": 3,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Snow Switch",
+    "par": 4,
+    "course": 3,
+    "w": 160,
+    "h": 88
+  },
+  {
+    "name": "Deluxe Summit",
+    "par": 5,
+    "course": 3,
+    "w": 240,
+    "h": 144
+  }
+]

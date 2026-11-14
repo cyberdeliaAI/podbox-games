@@ -1,0 +1,55 @@
+# An independent workflow so development of the other carts stays separate.
+name: Pocket Golf Deluxe
+on:
+  push:
+    paths:
+      - 'pocketgolf/**'
+      - 'tools/pocketgolf*'
+      - '.github/workflows/pocketgolf.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: games
+      - uses: actions/checkout@v4
+        with:
+          repository: anthonyfletcher/podbox
+          ref: 126ebba20eb4f650d98ec03e6838d226af2e7013
+          path: podbox
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare SDK
+        working-directory: podbox/arcade/sdk
+        run: |
+          npm ci
+          sh host/build.sh
+      - name: Check generated assets
+        working-directory: games
+        run: |
+          python3 -m pip install 'Pillow==12.3.0'
+          python3 tools/pocketgolf_assets.py --check
+      - name: Build standalone releases
+        working-directory: games
+        run: node tools/pocketgolf_web.mjs
+      - name: Verify physics, full tour, saves, browser and performance
+        working-directory: games
+        run: |
+          python3 tools/pocketgolf_test.py --browser-runtime dist/pocketgolf-runtime.wasm --keep dist/pocketgolf-checks
+          python3 tools/pocketgolf_test.py --selftest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pocketgolf
+          path: |
+            games/dist/pocketgolf.pbg
+            games/dist/pocketgolf.html
+            games/dist/pocketgolf-release.json
+            games/dist/pocketgolf-checks/report.json

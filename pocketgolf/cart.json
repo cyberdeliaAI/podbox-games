@@ -1,0 +1,129 @@
+{
+  "id": "a991a1633a722bb2",
+  "name": "Pocket Golf Deluxe",
+  "author": "Cyberdelia",
+  "version": "1.0",
+  "rate": 33,
+  "lazy_images": [
+    "h01",
+    "h02",
+    "h03",
+    "h04",
+    "h05",
+    "h06",
+    "h07",
+    "h08",
+    "h09",
+    "h10",
+    "h11",
+    "h12",
+    "h13",
+    "h14",
+    "h15",
+    "h16",
+    "h17",
+    "h18",
+    "h19",
+    "h20",
+    "h21",
+    "h22",
+    "h23",
+    "h24",
+    "h25",
+    "h26",
+    "h27",
+    "h28",
+    "h29",
+    "h30",
+    "h31",
+    "h32",
+    "h33",
+    "h34",
+    "h35",
+    "h36",
+    "o09",
+    "o11",
+    "o18",
+    "o21",
+    "o27",
+    "o31",
+    "o36"
+  ],
+  "music": "listen",
+  "help": "Aim with the wheel. Hold Select to set power, release to putt. Prev toggles precision, Next toggles the guide and Play switches to overview. Shots are disabled while the ball moves. Four courses, 36 holes, Quick Play, Championship, Full Tour and Practice. Water costs one extra stroke. Menu pauses. Progress saves automatically.",
+  "options": [
+    {
+      "name": "sounds",
+      "title": "Sound effects",
+      "type": "onoff",
+      "default": true
+    },
+    {
+      "name": "guide",
+      "title": "Aiming guide",
+      "type": "onoff",
+      "default": true
+    },
+    {
+      "name": "precision",
+      "title": "Precision aiming",
+      "type": "onoff",
+      "default": false
+    },
+    {
+      "name": "stats",
+      "title": "Performance",
+      "type": "onoff",
+      "default": false
+    }
+  ],
+  "boards": [
+    {
+      "name": "gardens",
+      "title": "Sunny Gardens",
+      "wins": "low"
+    },
+    {
+      "name": "pirate",
+      "title": "Pirate Cove",
+      "wins": "low"
+    },
+    {
+      "name": "desert",
+      "title": "Desert Adventure",
+      "wins": "low"
+    },
+    {
+      "name": "winter",
+      "title": "Winter Wonderland",
+      "wins": "low"
+    },
+    {
+      "name": "tour",
+      "title": "Full Tour",
+      "wins": "low"
+    }
+  ],
+  "achievements": [
+    {
+      "name": "ace",
+      "title": "Hole in One",
+      "text": "Sink a ranked hole in one stroke."
+    },
+    {
+      "name": "course",
+      "title": "Nine Down",
+      "text": "Complete a ranked nine-hole course."
+    },
+    {
+      "name": "par",
+      "title": "On Course",
+      "text": "Finish a championship at par or better."
+    },
+    {
+      "name": "tour",
+      "title": "Deluxe Golfer",
+      "text": "Finish the full 36-hole tour."
+    }
+  ]
+}
