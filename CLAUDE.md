@@ -106,7 +106,7 @@ $VM dist/pulsetunnel.pbg --ticks 900 --playing --beat 128 --buttons 70:16,71:0 -
 - `prof("name")` ... `prof()` in code prints `prof name units` with `--units`. Use it to time a section; it costs nothing on the iPod.
 - `--memory`, `--dirty`, `--skip t:n` (a late, undrawn tick) and the rest are listed at the top of `../podbox/arcade/sdk/host/pbgvm.c`.
 
-Pulse Tunnel has `const AUTOPILOT = false;` in `main.js`. Set it to `true` in a scratch copy for long unattended runs. Marble Chain's autoplay is the stress test above.
+Pulse Tunnel has `const AUTOPILOT = false;` in `main.js`. Set it to `true` in a scratch copy for long unattended runs. For a run that starts and restarts by itself, also make `titleUpdate()` start the run after a few ticks and `overUpdate()` restart without Select. Use `--playing --beat 0` for real track changes: the fake library's queue is ten tracks of 3 to 5.5 minutes at 64 to 128 BPM. Wrap parts of `update()` and `draw()` in `prof()` sections to see where the units go. Marble Chain's autoplay is the stress test above.
 
 The IDE (`../podbox/arcade/sdk/host/pbgide marbles`) edits a cart folder in place and has a profiler, replays and Run as iPod Video playing FLAC.
 
@@ -123,7 +123,8 @@ Performance is the hard constraint. Every change that adds work per tick gets me
 - Aim well under the budget. Look at p95 and the max, not just the average.
 - Rough costs: a script step 2 to 4, a loop turn 4, a function call about 3, `sprites.draw` about 35 a sprite, `spr` in a loop about 70, `rspr` about 320 for an 8x8 sprite and 790 for 16x16 (measured; avoid it), a string join 24, `cls` 200, a whole-screen `blit` 6,000 (1,000 with `palt(0, false)`), a FONT.CAPS character 12, `color.toned` 950, `beat.listen(true)` 6,300 a tick while listening.
 - Prefer the engine's systems (`sprites.draw`, `particles`) over script loops. Keep hot arrays global. Allocate nothing in `update()` and `draw()`: garbage collection costs time the units don't show.
-- Both carts watch `skipped()` and call `setrate(25)` after more than 4 late frames in a second. Speeds are scaled by `33.0 / rate()` (Marble Chain) or run on music milliseconds (Pulse Tunnel), so the game plays the same at 25.
+- Both carts watch `skipped()` and call `setrate(25)` after more than 4 late frames in a second. Speeds are scaled by `33.0 / rate()` (Marble Chain) or run on music milliseconds (Pulse Tunnel), so the game plays the same at 25. Pulse Tunnel also runs at 25 while the beat tracker listens.
+- In `pbgvm` the beat tracker costs more units per tick at 25 than at 33 (about 8,300 against 6,300), because a tick is longer. Moving to 25 still leaves the game about 3,000 more units.
 - Full model and formula: `../podbox/arcade/manual/reference-fast.md`.
 
 Baseline measured 2026-11-14 with SDK `126ebba`, units a tick of play. Marble Chain rows come from `tools/marbles_stress.py` (two seeds, 9,000 ticks, a shot every 20 ticks; still is seed 1):
@@ -137,7 +138,9 @@ Baseline measured 2026-11-14 with SDK `126ebba`, units a tick of play. Marble Ch
 | Marble Chain, still, level 6 | 11,200 | 16,400 | 17,800 | 36% |
 | Marble Chain, blind, level 3 | 10,600 | 16,700 | 22,800 | 20% to 35% |
 | Marble Chain, blind, level 6 | 11,900 | 18,200 | 23,500 | 40% to 44% |
-| Pulse Tunnel, 128 BPM, 3,000 ticks, no input after start | 6,100 | 7,700 | 9,500 | 0% |
+| Pulse Tunnel, AUTOPILOT, 30,000 ticks, Normal, each track at its own tempo | 8,700 | 11,100 | 19,400 | 0.7% |
+| Pulse Tunnel, same, sectors 6 and up | 9,700 | 12,000 | 19,400 | 2.4% (2% to 5% across setups) |
+| Pulse Tunnel, same, while the beat tracker listens (at 25, budget 17,500) | 17,300 | 19,700 | 20,200 | 35% over 17,500 |
 
 Marble Chain's cost grows with the balls on screen, about 135 units a ball, plus `hitTest()` over every ball for each shot in flight. A player who keeps the chain short stays inside 12,500 on every level. A long chain doesn't: still mode is over budget from level 4 up, and blind play on level 6 puts about 8% of ticks over 17,500, so the drop to 25 ticks a second doesn't cover it.
 
@@ -205,7 +208,7 @@ Fragile spots:
 
 - **Time**: `gt` is game time in integer ms. It follows `beat.clock()` (offset by `mOff`) while music plays and the tick clock otherwise, and never jumps. All gameplay timing runs on `gt`, so the game plays the same at 25 and 33 ticks a second.
 - **Beat grid**: beat k falls at `anchor + k * beatMs`. `curBeat` is the last beat passed, `barRes` the beat residue that starts a bar, `subMs` the guns' beat (eighth notes). `beats()` advances it, calls `onBeat()` and plans every beat as it comes into view.
-- **Tempo**: on a new track `beat.listen(true)` runs (6,300 units a tick) until `tryLatch()` takes a tempo with confidence 50 or more. It gives up after `LISTEN_BEATS` beats. `octave()` folds it near 500 ms and doubles anything faster than `BEAT_FAST`; the Tempo option shifts it. `nudge()` pulls the grid up to 8 ms a beat toward the tracker. `realign()` handles seeks.
+- **Tempo**: on a new track `startListening()` calls `beat.listen(true)` (6,300 units a tick at 33) and drops to 25 ticks a second, until `tryLatch()` takes a tempo with confidence 50 or more. It gives up after `LISTEN_BEATS` beats. `stopListening()` goes back to 33 unless `slowed` is set, which `pace()` does when the iPod fell behind this run. `startRun()` clears it. `octave()` folds it near 500 ms and doubles anything faster than `BEAT_FAST`; the Tempo option shifts it. `nudge()` pulls the grid up to 8 ms a beat toward the tracker. `realign()` handles seeks.
 - **Planning**: `plan(k)` decides what arrives on beat k, `tube.VIEW` (7) beats ahead: gates on bar starts, pickups, then heavies, spirals or drone formations. It skips a beat's enemies while `foes.count >= 22` to cap the cost.
 - **Foes**: slot arrays (`MAX` 40) with an arrival time `arr` and angle. Depth in beats is `(arr - gt) / bm`. `arrive()` resolves gates, pickups and hits at depth 0. Heavies fire one spark.
 - **Shots**: up to 8 volleys of 1 to 3 shots. Collision is a depth window then angle.

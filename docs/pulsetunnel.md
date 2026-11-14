@@ -52,10 +52,11 @@ Set `AUTOPILOT` to `true` in `main.js` and the ship flies itself, which is handy
 
 ## Performance
 
-Measured with `pbgvm --units` against the slowest case, an iPod Video playing FLAC, which has about 12,500 units a tick at 33 ticks a second:
+Measured with `pbgvm --units` against the slowest case, an iPod Video playing FLAC, which has about 12,500 units a tick at 33 ticks a second and 17,500 at 25. The ship flew on `AUTOPILOT` for 30,000 ticks, with and without music, on Normal and Hard:
 
-- Normal play: about 7,000 to 9,000 units a tick.
-- The densest late sectors: about 12,000 at the 95th percentile.
-- While the beat tracker listens (a second or two at each new track) it adds about 6,300.
+- Sector 1: about 7,000 units a tick on average.
+- From sector 6 on: about 10,000 on average and 12,000 to 12,500 at the 95th percentile. About 2% to 5% of ticks go over 12,500, in bursts of enemies.
+- Drawing the tunnel is about a third of every tick (some 3,300 units) and the enemies about a fifth. The tunnel is already ovals and lines, which cost little each, so there's not much left to save there.
+- The beat tracker costs about 6,300 a tick at 33 while it listens, a second or more at each new track. So the game runs at 25 ticks a second while it listens and goes back to 33 once it has the tempo. Most listening ticks then fit. When the tunnel is still full of enemies from the last track, they can still go over 17,500.
 
-When the iPod keeps falling behind, the game steps down to 25 ticks a second by itself. All timing runs on milliseconds of the music, so the game plays at the same speed either way. The iPod Classic has plenty of headroom.
+When the iPod keeps falling behind, the game steps down to 25 ticks a second by itself and stays there for the rest of the run. All timing runs on milliseconds of the music, so the game plays at the same speed either way. The iPod Classic has plenty of headroom.
