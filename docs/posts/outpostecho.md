@@ -14,7 +14,7 @@ A first-person sci-fi adventure. In 2187 a maintenance shuttle reaches a researc
 
 **Play in the browser:** [https://cyberdeliaai.github.io/podbox-games/outpostecho.html](https://cyberdeliaai.github.io/podbox-games/outpostecho.html) (Chrome or Edge). Up and Down turn, Left walks backward, Right interacts, Enter is Select, Space is Play, Escape pauses; the drawn wheel works too.
 
-**Tested on:** [TODO: iPod Video (5G/5.5G), iPod Classic (6G/7G) or both, once you've played it there.] Tested at length in PodBox's own VM (`pbgvm`), played by an automatic player with its rules checked every tick, and measured against the iPod Video's budget while playing FLAC.
+**Tested on:** iPod Video 5.5G. Also tested at length in PodBox's own VM (`pbgvm`): played by an automatic player with its rules checked every tick, and measured against the iPod Video's budget while playing FLAC.
 
 **Built with:** PodBox release 2026-11-13 (Latest build).
 
@@ -38,6 +38,6 @@ More: [outpostecho/README.md](https://github.com/cyberdeliaAI/podbox-games/blob/
 
 ### Licence and credit
 
-[TODO: the licence, as in the repository's LICENSE file.] Everything in it is original: the code, the art (made by the scripts in `tools/`) and the sound effects. Source: https://github.com/cyberdeliaAI/podbox-games
+MIT licence ([LICENSE](https://github.com/cyberdeliaAI/podbox-games/blob/main/LICENSE)). Everything in it is original: the code, the art (made by the scripts in `tools/`) and the sound effects. Source: https://github.com/cyberdeliaAI/podbox-games
 
-[TODO, your call: how it was made, as the 2048 thread does, for example "Made by Cyberdelia with AI coding assistants."]
+Made by Cyberdelia with AI coding assistants.

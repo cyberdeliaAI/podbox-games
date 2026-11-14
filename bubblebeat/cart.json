@@ -2,7 +2,7 @@
   "id": "13d2636956e00513",
   "name": "Bubble Beat",
   "author": "Cyberdelia",
-  "version": "0.1",
+  "version": "1.0",
   "rate": 33,
   "music": "listen",
   "help": "Bubbles hang from a ceiling that comes down to the beat of your music. Turn the wheel to aim, press Select to shoot and Play to swap your two bubbles. Three or more of a colour together pop, and whatever they held up falls too. Shoot on the beat and the pop counts double, on the first beat of a bar triple. Clear the field before a bubble hangs below the line. Without music, or when no beat is found, the ceiling comes down every few shots instead.",

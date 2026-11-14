@@ -185,7 +185,7 @@ function drawMenu() {
 
     rectfill(0, 104, 159, 119, 0);
     centre("WHEEL: MOVE  SELECT: OK", 106, 13);
-    print("V0.2", 2, 112, 5);
+    print("V1.0", 2, 112, 5);
     print("CYBERDELIA", 158 - textw("CYBERDELIA"), 112, 5);
 }
 

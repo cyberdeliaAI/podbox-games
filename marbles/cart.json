@@ -2,7 +2,7 @@
   "id": "379479e8711df8e4",
   "name": "Marble Chain",
   "author": "Cyberdelia",
-  "version": "0.2",
+  "version": "1.0",
   "rate": 33,
   "help": "A chain of balls rolls toward the hole. Shoot balls into it: three or more of one colour together pop. Where a gap's two sides match, the chain rolls back to close it, and that can pop again for a bigger score. Rest your thumb on the wheel to aim, tap Select to shoot, hold Select (or press Play) to swap your two balls. Balls with a mark carry a power-up: slow, back or bomb. Clear all six levels before the chain reaches the hole.",
   "boards": [

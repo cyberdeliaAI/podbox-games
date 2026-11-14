@@ -11,10 +11,11 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Bubble Beat](bubblebeat/) | A bubble shooter whose ceiling comes down with the bars of your music: shoot on the beat for double | [docs/bubblebeat.md](docs/bubblebeat.md) |
 | [Pocket Wings 3D](pocketwings/) | A relaxed flight over six 3D landscapes, no score, no hurry; Discovery finds thirty landmarks; plays in a browser too | [docs/pocketwings.md](docs/pocketwings.md) |
 | [Sloop](sloop/) | A wrecking ball on the beat: swing it with the wheel to smash the blocks landing on the beats of your music | [docs/sloop.md](docs/sloop.md) |
-| [Pocket City 3D](pocketcity/) | A city seen from above to drive about in (phase 1: Old Town and one car, drifting) | [docs/pocketcity.md](docs/pocketcity.md) |
 | [Outpost Echo 3D](outpostecho/) | A first-person sci-fi adventure: restore five sectors of a silent research station, past its security robots | [outpostecho/README.md](outpostecho/README.md) |
 | [Pocket Golf Deluxe](pocketgolf/) | Top-down mini golf: 36 holes in four themed courses, with tunnels, teleporters, gates and ice | [pocketgolf/README.md](pocketgolf/README.md) |
 | [Powder Run 3D](powderrun/) | Endless downhill skiing over a 3D mountain: five slopes, pines and boulders, Free Ride and Endless Run, plays in a browser too | [docs/powderrun.md](docs/powderrun.md) |
+
+Every game has been played on an iPod Video 5.5G. [Pocket City 3D](docs/pocketcity.md), a city seen from above to drive about in, is a prototype: it's in the repository but not in the releases yet.
 
 ## Playing
 
@@ -51,3 +52,7 @@ python3 tools/pocketgolf_test.py     # plays all 36 holes of Pocket Golf, checks
 To add a game, give its folder a `cart.json` and add its name to the cart list in `.github/workflows/build.yml`.
 
 `python3 tools/screenshots.py` takes the pictures in `docs/screenshots/`, and `docs/posts/` has a forum post for each game.
+
+## Licence
+
+MIT: see [LICENSE](LICENSE). The code, the art (made by the scripts in `tools/`), the levels and the sound effects are all original.

@@ -14,14 +14,14 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), a R
 | Outpost Echo 3D | `outpostecho/` | First-person sci-fi adventure on `walls.draw`: five sectors, puzzles, security robots, saves | `outpostecho/README.md` |
 | Pocket Golf Deluxe | `pocketgolf/` | Top-down mini golf: 36 authored holes in four courses, four modes, low-score records | `pocketgolf/README.md` |
 
-The repo is private. The owner works in English: code, comments, docs and commit messages.
+The repo is public (since 2026-11-14) under the MIT licence, with releases and a GitHub Pages site. The owner works in English: code, comments, docs and commit messages. Every cart but Pocket City has been played on an iPod Video 5.5G and works (2026-11-14).
 
 ## Layout
 
 ```
-.github/workflows/build.yml   CI: builds every cart in its matrix, attaches them to a release on a tag
+.github/workflows/build.yml   CI: builds every cart in its matrix, attaches them (not Pocket City) to a release on a tag
 .github/workflows/outpostecho.yml, pocketgolf.yml    CI of their own: pinned SDK, release checks, web pages
-.github/workflows/pages.yml   on a tag: the browser games and docs/web/index.html on GitHub Pages
+.github/workflows/pages.yml   after Build finishes a tag: the browser games and docs/web/index.html on GitHub Pages
 build.sh                      builds every folder with a cart.json into dist/<folder>.pbg
 dist/                         build output, not in git
 docs/                         one doc per game, plus preview images
@@ -527,7 +527,8 @@ Writing (docs, comments, commit messages): English, short direct sentences, natu
 
 - Commit as `cyberdeliaAI <cyberdeliaAI@users.noreply.github.com>`, never a personal address. This clone has no identity set, so set it per repo: `git config user.name cyberdeliaAI && git config user.email cyberdeliaAI@users.noreply.github.com`.
 - Don't push without asking.
-- `dist/` is ignored. CI builds on every push and releases on tags like `v0.3`.
+- `dist/` is ignored. CI builds on every push and releases on tags like `v1.0`. Pocket City stays out of releases, posts and the Pages site until it's ready.
+- Pages deploys only from `main` (the `github-pages` environment's rule), so `pages.yml` starts from Build's `workflow_run` and checks out the tag's commit, rather than from the tag.
 
 ## Adding a new game
 
