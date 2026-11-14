@@ -6,7 +6,7 @@
 
 Drive and walk about a city of five districts on islands joined by bridges: Old Town, Downtown's towers, the gardens of Greenside, the Harbour's containers and Sunset Beach. Traffic keeps to its lanes and the lights, people walk the sidewalks, and any car is yours if you can get to it. Twenty jobs wait at the phone boxes (deliveries, taxi fares, time trials and chases), thirty tapes are lost about the city, and red lights, ramming and stolen cars bring the police, up to three stars.
 
-<img width="320" height="240" alt="Pocket City 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketcity-1.png" />
+<img width="320" height="240" alt="Pocket City 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketcity.gif" />
 <img width="320" height="240" alt="Pocket City 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketcity-2.png" />
 <img width="320" height="240" alt="Pocket City 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketcity-3.png" />
 

@@ -6,7 +6,7 @@
 
 Top-down mini golf: 36 holes on four themed courses. Sunny Gardens has sand, slopes and tunnels, Pirate Cove islands, bridges and teleporters, Desert Adventure ramps, switches and gates, Winter Wonderland ice. Quick Play, a nine-hole Championship, the Full Tour of all 36, and Practice, with low-score records for every hole and course.
 
-<img width="320" height="240" alt="Pocket Golf Deluxe" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketgolf-1.png" />
+<img width="320" height="240" alt="Pocket Golf Deluxe" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketgolf.gif" />
 <img width="320" height="240" alt="Pocket Golf Deluxe" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketgolf-2.png" />
 <img width="320" height="240" alt="Pocket Golf Deluxe" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketgolf-3.png" />
 

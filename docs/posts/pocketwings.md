@@ -6,7 +6,7 @@
 
 Fly a small aircraft over six 3D landscapes: a green valley, coral islands, high alps, a red canyon, frozen lakes and volcanoes. No enemies, no score, no hurry. Free Flight is just that; Discovery points the way to each landscape's five landmarks, thirty in all. The ground can't hurt you, and the picture adjusts itself to what your iPod can draw smoothly.
 
-<img width="320" height="240" alt="Pocket Wings 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketwings-1.png" />
+<img width="320" height="240" alt="Pocket Wings 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketwings.gif" />
 <img width="320" height="240" alt="Pocket Wings 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketwings-2.png" />
 <img width="320" height="240" alt="Pocket Wings 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pocketwings-3.png" />
 

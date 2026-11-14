@@ -6,7 +6,7 @@
 
 A neon tube shooter that flies to whatever is playing. The game listens for your track's tempo and plans the whole run on its beats: gates on the bar, enemies and pickups on the beat, the guns firing on the eighth notes. Steer round the tube, keep your shields up and see how far a song takes you.
 
-<img width="320" height="240" alt="Pulse Tunnel" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pulsetunnel-1.png" />
+<img width="320" height="240" alt="Pulse Tunnel" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pulsetunnel.gif" />
 <img width="320" height="240" alt="Pulse Tunnel" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pulsetunnel-2.png" />
 <img width="320" height="240" alt="Pulse Tunnel" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/pulsetunnel-3.png" />
 

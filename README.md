@@ -2,7 +2,7 @@
 
 Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the firmware for the iPod Video and iPod Classic.
 
-<img src="docs/screenshots/pocketwings-1.png" width="240" alt="Pocket Wings 3D"> <img src="docs/screenshots/powderrun-1.png" width="240" alt="Powder Run 3D"> <img src="docs/screenshots/pocketcity-1.png" width="240" alt="Pocket City 3D"> <img src="beatdancer/previews/disco.gif" width="240" alt="Beat Dancer 3D">
+<img src="docs/screenshots/pocketwings.gif" width="240" alt="Pocket Wings 3D"> <img src="docs/screenshots/powderrun.gif" width="240" alt="Powder Run 3D"> <img src="docs/screenshots/pocketcity.gif" width="240" alt="Pocket City 3D"> <img src="kremlinblocks/previews/game.gif" width="240" alt="Kremlin Blocks">
 
 | Game | What it is | Docs |
 |---|---|---|

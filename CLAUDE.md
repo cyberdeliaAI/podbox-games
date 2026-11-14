@@ -28,7 +28,7 @@ build.sh                      builds every folder with a cart.json into dist/<fo
 dist/                         build output, not in git
 docs/                         one doc per game, plus preview images
   posts/                      a forum post per game, and the steps before posting (README.md)
-  screenshots/                three pictures per game, taken by tools/screenshots.py
+  screenshots/                three pictures per game (tools/screenshots.py) and a GIF of a few seconds of play (tools/gifs.py)
   web/index.html              the front page of the Pages site
 bubblebeat/                   Bubble Beat
   cart.json                   music: listen, three options, five achievements
@@ -137,6 +137,7 @@ tools/
   kremlinblocks_*             Kremlin Blocks' art (the city, its stages, the blocks), test (fixtures, pilot, probe), previews and web builder
   pocketgolf_*                Pocket Golf's holes and art, release test (with its pilot, probe and physics checks), previews and web builder
   screenshots.py              docs/screenshots/: each game built in a scratch copy, played by its harness, photographed in pbgvm
+  gifs.py                     docs/screenshots/<cart>.gif: the same builds, a run a frame, several at once, one palette
 ```
 
 ## Setup

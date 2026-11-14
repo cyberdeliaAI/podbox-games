@@ -6,7 +6,7 @@
 
 A first-person sci-fi adventure. In 2187 a maintenance shuttle reaches a research station that has stopped transmitting. Restore its five sectors, follow the crew's logs, slip past the security robots and bring the communications array back online. Progress is saved at pickups, terminals and the end of each sector.
 
-<img width="320" height="240" alt="Outpost Echo 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/outpostecho-1.png" />
+<img width="320" height="240" alt="Outpost Echo 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/outpostecho.gif" />
 <img width="320" height="240" alt="Outpost Echo 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/outpostecho-2.png" />
 <img width="320" height="240" alt="Outpost Echo 3D" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/outpostecho-3.png" />
 

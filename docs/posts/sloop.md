@@ -6,7 +6,7 @@
 
 A wrecking ball swings on its chain round a crane in the middle of the screen, and blocks fly in from all sides to cross its ring on the beat of your music. Swing it there with the wheel: the faster it goes the harder it hits, and a red block hit on its beat takes triple damage. A round lasts a track. ("Sloop" is Dutch for demolition.)
 
-<img width="320" height="240" alt="Sloop" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/sloop-1.png" />
+<img width="320" height="240" alt="Sloop" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/sloop.gif" />
 <img width="320" height="240" alt="Sloop" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/sloop-2.png" />
 <img width="320" height="240" alt="Sloop" src="https://raw.githubusercontent.com/cyberdeliaAI/podbox-games/main/docs/screenshots/sloop-3.png" />
 
