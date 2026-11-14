@@ -1,0 +1,51 @@
+{
+  "id": "ee298083e58ccd05",
+  "name": "Beat Dancer 3D",
+  "author": "Cyberdelia",
+  "version": "0.1",
+  "rate": 25,
+  "music": "listen",
+  "suspend": false,
+  "help": "A 3D robot dances while disco tiles and moving lights follow the beat of your music. It starts a silent demo tempo when no beat is found. Wheel turns the view. Prev and Next change the style. Play toggles camera orbit. Select starts a four-beat spin. Menu pauses and offers music sync, tempo, style and performance options. Your music is never changed.",
+  "options": [
+    {
+      "name": "music",
+      "title": "Follow music",
+      "type": "onoff",
+      "default": true
+    },
+    {
+      "name": "tempo",
+      "title": "Demo tempo",
+      "type": "number",
+      "min": 60,
+      "max": 180,
+      "step": 2,
+      "default": 112
+    },
+    {
+      "name": "style",
+      "title": "Dance style",
+      "type": "choice",
+      "choices": [
+        "Auto",
+        "Groove",
+        "Robot",
+        "Disco"
+      ],
+      "default": 0
+    },
+    {
+      "name": "orbit",
+      "title": "Camera orbit",
+      "type": "onoff",
+      "default": true
+    },
+    {
+      "name": "stats",
+      "title": "Performance",
+      "type": "onoff",
+      "default": false
+    }
+  ]
+}

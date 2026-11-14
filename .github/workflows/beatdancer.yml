@@ -1,0 +1,51 @@
+# A separate demo workflow keeps concurrent work on other carts untouched.
+name: Beat Dancer 3D
+on:
+  push:
+    paths:
+      - 'beatdancer/**'
+      - 'tools/beatdancer*'
+      - '.github/workflows/beatdancer.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: games
+      - uses: actions/checkout@v4
+        with:
+          repository: anthonyfletcher/podbox
+          ref: 126ebba20eb4f650d98ec03e6838d226af2e7013
+          path: podbox
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare SDK and asset tools
+        working-directory: podbox/arcade/sdk
+        run: |
+          npm ci
+          sh host/build.sh
+          python3 -m pip install 'Pillow==12.3.0'
+      - name: Build demo
+        working-directory: games
+        run: |
+          python3 tools/beatdancer_assets.py
+          mkdir -p dist
+          node ../podbox/arcade/sdk/pbgc.js build beatdancer -o dist/beatdancer.pbg
+      - name: Check sync, controls and Video FLAC budget
+        working-directory: games
+        run: python3 tools/beatdancer_test.py --keep dist/beatdancer-checks
+      - uses: actions/upload-artifact@v4
+        with:
+          name: beatdancer
+          path: |
+            games/dist/beatdancer.pbg
+            games/dist/beatdancer-checks/report.json
+            games/beatdancer/README.md
