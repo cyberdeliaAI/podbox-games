@@ -21,9 +21,13 @@ The repo is private. The owner works in English: code, comments, docs and commit
 ```
 .github/workflows/build.yml   CI: builds every cart in its matrix, attaches them to a release on a tag
 .github/workflows/outpostecho.yml, pocketgolf.yml    CI of their own: pinned SDK, release checks, web pages
+.github/workflows/pages.yml   on a tag: the browser games and docs/web/index.html on GitHub Pages
 build.sh                      builds every folder with a cart.json into dist/<folder>.pbg
 dist/                         build output, not in git
 docs/                         one doc per game, plus preview images
+  posts/                      a forum post per game, and the steps before posting (README.md)
+  screenshots/                three pictures per game, taken by tools/screenshots.py
+  web/index.html              the front page of the Pages site
 bubblebeat/                   Bubble Beat
   cart.json                   music: listen, three options, five achievements
   main.js                     scenes, the ceiling, scoring, effects, the cached field picture, panels
@@ -120,6 +124,7 @@ tools/
   pocketcity_test.js          the in-cart half of it, copied into a scratch build as stress.js
   outpostecho_*               Outpost Echo's maps, art, release test (with its pilot and probe) and web builder
   pocketgolf_*                Pocket Golf's holes and art, release test (with its pilot, probe and physics checks), previews and web builder
+  screenshots.py              docs/screenshots/: each game built in a scratch copy, played by its harness, photographed in pbgvm
 ```
 
 ## Setup
@@ -539,7 +544,7 @@ Writing (docs, comments, commit messages): English, short direct sentences, natu
 - Bubble Beat's and Sloop's difficulty curves and scoring are tuned against the autoplayers only, not against people on an iPod. Sloop's smart player is near perfect; its still player loses in nine seconds; people are somewhere between.
 - Pocket Wings and Powder Run: the iPod budgets in their `quality.js` are the manual's figures; Auto is only tested against them in simulation. Their `quality.js` files are copies of one another (both have `resume()` for `resumed()`): a fix to one belongs in both.
 - `plane.billboards` on `land.draw`: `zs` is the absolute height of the foot, not above the ground, and a billboard costs about 5 units a pixel, more in fog, so Powder Run and Pocket Wings draw their scenery themselves. Theirs can't be hidden by hills the way billboards are: Pocket Wings looks along the line of sight now and then, Powder Run doesn't bother (a slope seen from above).
-- Pocket Wings' and Powder Run's web pages are built by CI only: locally `pbgc html` needs the SDK's development packages (`npm ci` without `--omit=dev`).
+- Marble Chain's, Pocket Wings' and Powder Run's web pages are built by CI only: locally `pbgc html` needs the SDK's development packages (`npm ci` without `--omit=dev`).
 - The stress tests don't run in CI, but for Outpost Echo's and Pocket Golf's, whose workflows clone the PodBox repo at a pinned commit and build `pbgvm`. The same could carry the others.
 - Outpost Echo shows "Communications Center", American spelling on screen; Pocket Golf's previews (`pocketgolf/previews/*.png`) are 1.1 MB of RGB PNGs where indexed ones would be a few KB. Both are theirs to change.
 - No perf regression gate: the stress test reports units but doesn't fail on them. Compare against the baseline above by hand.

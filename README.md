@@ -2,6 +2,8 @@
 
 Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the firmware for the iPod Video and iPod Classic.
 
+<img src="docs/screenshots/pocketwings-1.png" width="240" alt="Pocket Wings 3D"> <img src="docs/screenshots/powderrun-1.png" width="240" alt="Powder Run 3D"> <img src="docs/screenshots/sloop-2.png" width="240" alt="Sloop"> <img src="docs/screenshots/bubblebeat-3.png" width="240" alt="Bubble Beat">
+
 | Game | What it is | Docs |
 |---|---|---|
 | [Pulse Tunnel](pulsetunnel/) | A tube shooter that flies to your own music | [docs/pulsetunnel.md](docs/pulsetunnel.md) |
@@ -16,9 +18,11 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 
 ## Playing
 
-Every push builds each game into a `.pbg` (see the **Actions** tab: open a run and download the game from its artifacts). A tag, such as `v0.2`, also attaches them all to a **Release**.
+Download a game's `.pbg` from the [latest release](https://github.com/cyberdeliaAI/podbox-games/releases/latest), copy it to a folder called `Games` on the iPod, eject it, and pick **Arcade** on the main menu.
 
-Copy a `.pbg` to a folder called `Games` on the iPod, eject it, and pick **Arcade** on the main menu.
+Marble Chain, Pocket Wings 3D, Powder Run 3D, Outpost Echo 3D and Pocket Golf Deluxe play in a browser too: [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/). The games that follow your music can't.
+
+Every push also builds each game into a `.pbg` (the **Actions** tab: open a run and download the game from its artifacts). A tag, such as `v1.0`, attaches them all to a release and publishes the browser pages.
 
 To play or edit in a browser, open a game's folder (or its `.pbg`) in the [Arcade IDE](https://anthonyfletcher.github.io/podbox/ide/). Chrome and Edge edit the folder in place.
 
@@ -45,3 +49,5 @@ python3 tools/pocketgolf_test.py     # plays all 36 holes of Pocket Golf, checks
 ```
 
 To add a game, give its folder a `cart.json` and add its name to the cart list in `.github/workflows/build.yml`.
+
+`python3 tools/screenshots.py` takes the pictures in `docs/screenshots/`, and `docs/posts/` has a forum post for each game.
