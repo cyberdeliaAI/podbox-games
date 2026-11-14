@@ -6,6 +6,7 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 |---|---|---|
 | [Pulse Tunnel](pulsetunnel/) | A tube shooter that flies to your own music | [docs/pulsetunnel.md](docs/pulsetunnel.md) |
 | [Marble Chain](marbles/) | A marble shooter with six levels and power-ups: stop the chain before it reaches the hole | [docs/marbles.md](docs/marbles.md) |
+| [Bubble Beat](bubblebeat/) | A bubble shooter whose ceiling comes down with the bars of your music: shoot on the beat for double | [docs/bubblebeat.md](docs/bubblebeat.md) |
 
 ## Playing
 
@@ -24,10 +25,11 @@ Every folder with a `cart.json` is a cart. With the PodBox repository cloned nex
 sh build.sh                                     # every cart into dist/ (not kept in git)
 ```
 
-`tools/` holds the scripts that make each game's placeholder art and data, and Marble Chain's stress test:
+`tools/` holds the scripts that make each game's placeholder art and data, and the stress tests:
 
 ```sh
-python3 tools/marbles_stress.py     # plays every level by itself, checks the chain, reports units a tick
+python3 tools/marbles_stress.py      # plays every level by itself, checks the chain, reports units a tick
+python3 tools/bubblebeat_stress.py   # the same for Bubble Beat, with and without music
 ```
 
 To add a game, give its folder a `cart.json` and add its name to the cart list in `.github/workflows/build.yml`.

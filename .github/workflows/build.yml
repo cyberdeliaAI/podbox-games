@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cart: [pulsetunnel, marbles]
+        cart: [pulsetunnel, marbles, bubblebeat]
     steps:
       - uses: actions/checkout@v4
 
