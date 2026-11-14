@@ -2,15 +2,40 @@
   "id": "2fef46f0bee75502",
   "name": "Pocket Wings 3D",
   "author": "Cyberdelia",
-  "version": "0.1",
+  "version": "1.0",
   "rate": 33,
-  "help": "Fly a small aircraft over a landscape, for as long as you like. Turn the wheel to bank and turn; leave it and the wings level. Hold Prev to climb and Next to dive. Play steps through slow, cruise and fast. Select switches between the view from behind and the cockpit. The ground can't hurt you: fly low and the aircraft lifts itself over the hills. The picture adjusts itself to what your iPod can draw smoothly.",
+  "help": "Fly a small aircraft over six landscapes, for as long as you like. Turn the wheel to bank and turn; leave it and the wings level. Hold Prev to climb and Next to dive. Play steps through slow, cruise and fast. Select switches between the view from behind and the cockpit. The ground can't hurt you. Discovery shows the way to each landscape's five landmarks: fly low over one to find it.",
   "lazy_images": [
     "valley_h",
     "valley_c",
     "valley_h2",
     "valley_c2",
-    "valley_sky"
+    "valley_sky",
+    "islands_h",
+    "islands_c",
+    "islands_h2",
+    "islands_c2",
+    "islands_sky",
+    "alps_h",
+    "alps_c",
+    "alps_h2",
+    "alps_c2",
+    "alps_sky",
+    "canyon_h",
+    "canyon_c",
+    "canyon_h2",
+    "canyon_c2",
+    "canyon_sky",
+    "frozen_h",
+    "frozen_c",
+    "frozen_h2",
+    "frozen_c2",
+    "frozen_sky",
+    "volcano_h",
+    "volcano_c",
+    "volcano_h2",
+    "volcano_c2",
+    "volcano_sky"
   ],
   "options": [
     {
@@ -23,6 +48,24 @@
       ],
       "default": 0,
       "help": "Spin: turning the wheel banks the aircraft, and the wings level when you stop. Thumb: rest your thumb right or left of the top of the wheel to bank that way."
+    },
+    {
+      "name": "height",
+      "title": "Height",
+      "type": "choice",
+      "choices": [
+        "Hold height",
+        "Follow the ground"
+      ],
+      "default": 0,
+      "help": "Hold height: the aircraft keeps its height above the water, and Prev and Next climb and dive. Follow the ground: it keeps a height above the ground, rising and sinking with the hills, and Prev and Next set that height."
+    },
+    {
+      "name": "engine",
+      "title": "Engine sound",
+      "type": "onoff",
+      "default": true,
+      "help": "The engine's hum, higher the faster you fly."
     },
     {
       "name": "picture",
@@ -42,6 +85,33 @@
       "type": "onoff",
       "default": false,
       "help": "Shows the picture's level (Q0 finest to Q4 plainest) and the frames a second."
+    }
+  ],
+  "achievements": [
+    {
+      "name": "first",
+      "title": "First Find",
+      "text": "Find a landmark."
+    },
+    {
+      "name": "explorer",
+      "title": "Explorer",
+      "text": "Find all five landmarks of one landscape."
+    },
+    {
+      "name": "cartographer",
+      "title": "Cartographer",
+      "text": "Find all thirty landmarks."
+    },
+    {
+      "name": "worldtour",
+      "title": "World Tour",
+      "text": "Fly for a minute over every landscape."
+    },
+    {
+      "name": "ceiling",
+      "title": "Cloud Nine",
+      "text": "Climb as high as the aircraft goes."
     }
   ]
 }
