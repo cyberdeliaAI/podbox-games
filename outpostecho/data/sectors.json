@@ -1,0 +1,840 @@
+[
+  {
+    "name": "Arrival Bay",
+    "rooms": [
+      "Docking Hall",
+      "Transit Control",
+      "Cargo Hold",
+      "Maintenance",
+      "Relay Room",
+      "Security"
+    ],
+    "intro": [
+      "ECHO / 2187",
+      "The docking clamps still work.",
+      "No one answers your call.",
+      "Restore local power and the relay.",
+      "Find a pass for Transit Control."
+    ],
+    "doors": [
+      {
+        "x": 16,
+        "y": 8,
+        "lock": 2,
+        "secret": 0
+      },
+      {
+        "x": 32,
+        "y": 8,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 24,
+        "y": 18,
+        "lock": 1,
+        "secret": 0
+      },
+      {
+        "x": 40,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 23,
+        "y": 18,
+        "lock": 0,
+        "secret": 1
+      }
+    ],
+    "items": [
+      {
+        "kind": 1,
+        "x": 44,
+        "y": 236,
+        "label": "POWER BUS",
+        "text": [
+          "POWER BUS RESTORED",
+          "Local systems have power.",
+          "Access panels are online."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 2,
+        "x": 332,
+        "y": 44,
+        "label": "ACCESS PASS",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 4,
+        "x": 332,
+        "y": 244,
+        "label": "SECTOR RELAY",
+        "text": [
+          "RELAY ONLINE",
+          "Sector signal is stable.",
+          "The transit hatch is ready."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 5,
+        "x": 204,
+        "y": 44,
+        "label": "TRANSIT HATCH",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 6,
+        "x": 172,
+        "y": 148,
+        "label": "SERVICE CACHE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 84,
+        "y": 212,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 300,
+        "y": 84,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 8,
+        "x": 84,
+        "y": 44,
+        "label": "CREW LOG",
+        "text": [
+          "ECHO / 2187",
+          "The docking clamps still work.",
+          "No one answers your call.",
+          "Restore local power and the relay.",
+          "Find a pass for Transit Control."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 28,
+        "y": 28,
+        "label": "CONSOLE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 236,
+        "y": 204,
+        "label": "EQUIPMENT",
+        "text": [],
+        "need": 0
+      }
+    ],
+    "robots": [
+      {
+        "x": 316,
+        "y": 220,
+        "tx": 348,
+        "ty": 220
+      },
+      {
+        "x": 164,
+        "y": 92,
+        "tx": 220,
+        "ty": 92
+      }
+    ]
+  },
+  {
+    "name": "Research Laboratories",
+    "rooms": [
+      "Sample Intake",
+      "Observation",
+      "Cold Storage",
+      "Workshop",
+      "Data Vault",
+      "Isolation Lab"
+    ],
+    "intro": [
+      "RESEARCH / LAST LOG",
+      "The crew moved into shelter.",
+      "A security update cut their access.",
+      "Find the decoder in the workshop.",
+      "Use it on the data relay."
+    ],
+    "doors": [
+      {
+        "x": 16,
+        "y": 8,
+        "lock": 2,
+        "secret": 0
+      },
+      {
+        "x": 32,
+        "y": 8,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 24,
+        "y": 18,
+        "lock": 1,
+        "secret": 0
+      },
+      {
+        "x": 40,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 23,
+        "y": 18,
+        "lock": 0,
+        "secret": 1
+      }
+    ],
+    "items": [
+      {
+        "kind": 1,
+        "x": 332,
+        "y": 244,
+        "label": "POWER BUS",
+        "text": [
+          "POWER BUS RESTORED",
+          "Local systems have power.",
+          "Access panels are online."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 2,
+        "x": 44,
+        "y": 236,
+        "label": "ACCESS PASS",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 3,
+        "x": 172,
+        "y": 244,
+        "label": "ACCESS DECODER",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 4,
+        "x": 332,
+        "y": 44,
+        "label": "SECTOR RELAY",
+        "text": [
+          "RELAY ONLINE",
+          "Sector signal is stable.",
+          "The transit hatch is ready."
+        ],
+        "need": 1
+      },
+      {
+        "kind": 5,
+        "x": 204,
+        "y": 44,
+        "label": "TRANSIT HATCH",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 6,
+        "x": 172,
+        "y": 148,
+        "label": "SERVICE CACHE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 84,
+        "y": 212,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 300,
+        "y": 84,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 8,
+        "x": 84,
+        "y": 44,
+        "label": "CREW LOG",
+        "text": [
+          "RESEARCH / LAST LOG",
+          "The crew moved into shelter.",
+          "A security update cut their access.",
+          "Find the decoder in the workshop.",
+          "Use it on the data relay."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 28,
+        "y": 28,
+        "label": "CONSOLE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 236,
+        "y": 204,
+        "label": "EQUIPMENT",
+        "text": [],
+        "need": 0
+      }
+    ],
+    "robots": [
+      {
+        "x": 316,
+        "y": 220,
+        "tx": 348,
+        "ty": 220
+      },
+      {
+        "x": 164,
+        "y": 92,
+        "tx": 220,
+        "ty": 92
+      }
+    ]
+  },
+  {
+    "name": "Power Reactor",
+    "rooms": [
+      "Reactor Access",
+      "Control Deck",
+      "Coolant Hall",
+      "Turbine Room",
+      "Service Deck",
+      "Core Relay"
+    ],
+    "intro": [
+      "REACTOR / EMERGENCY",
+      "Coolant pumps are running dry.",
+      "The crew shut down the main bus.",
+      "Restart it before the relay.",
+      "The drones still guard the core."
+    ],
+    "doors": [
+      {
+        "x": 16,
+        "y": 8,
+        "lock": 2,
+        "secret": 0
+      },
+      {
+        "x": 32,
+        "y": 8,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 24,
+        "y": 18,
+        "lock": 1,
+        "secret": 0
+      },
+      {
+        "x": 40,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 23,
+        "y": 18,
+        "lock": 0,
+        "secret": 1
+      }
+    ],
+    "items": [
+      {
+        "kind": 1,
+        "x": 172,
+        "y": 244,
+        "label": "POWER BUS",
+        "text": [
+          "POWER BUS RESTORED",
+          "Local systems have power.",
+          "Access panels are online."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 2,
+        "x": 332,
+        "y": 44,
+        "label": "ACCESS PASS",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 4,
+        "x": 44,
+        "y": 236,
+        "label": "SECTOR RELAY",
+        "text": [
+          "RELAY ONLINE",
+          "Sector signal is stable.",
+          "The transit hatch is ready."
+        ],
+        "need": 1
+      },
+      {
+        "kind": 5,
+        "x": 204,
+        "y": 44,
+        "label": "TRANSIT HATCH",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 6,
+        "x": 172,
+        "y": 148,
+        "label": "SERVICE CACHE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 84,
+        "y": 212,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 300,
+        "y": 84,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 8,
+        "x": 84,
+        "y": 44,
+        "label": "CREW LOG",
+        "text": [
+          "REACTOR / EMERGENCY",
+          "Coolant pumps are running dry.",
+          "The crew shut down the main bus.",
+          "Restart it before the relay.",
+          "The drones still guard the core."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 28,
+        "y": 28,
+        "label": "CONSOLE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 236,
+        "y": 204,
+        "label": "EQUIPMENT",
+        "text": [],
+        "need": 0
+      }
+    ],
+    "robots": [
+      {
+        "x": 316,
+        "y": 220,
+        "tx": 348,
+        "ty": 220
+      },
+      {
+        "x": 164,
+        "y": 92,
+        "tx": 220,
+        "ty": 92
+      }
+    ]
+  },
+  {
+    "name": "Botanical Research",
+    "rooms": [
+      "Seed Bank",
+      "Glasshouse",
+      "Irrigation",
+      "Growth Chamber",
+      "Water Control",
+      "Bio Relay"
+    ],
+    "intro": [
+      "BOTANICAL / CREW NOTE",
+      "We kept the shelter alive here.",
+      "The garden fed us for six weeks.",
+      "The uplink has no power.",
+      "Route the irrigation bus to it."
+    ],
+    "doors": [
+      {
+        "x": 16,
+        "y": 8,
+        "lock": 2,
+        "secret": 0
+      },
+      {
+        "x": 32,
+        "y": 8,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 24,
+        "y": 18,
+        "lock": 1,
+        "secret": 0
+      },
+      {
+        "x": 40,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 23,
+        "y": 18,
+        "lock": 0,
+        "secret": 1
+      }
+    ],
+    "items": [
+      {
+        "kind": 1,
+        "x": 332,
+        "y": 44,
+        "label": "POWER BUS",
+        "text": [
+          "POWER BUS RESTORED",
+          "Local systems have power.",
+          "Access panels are online."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 2,
+        "x": 172,
+        "y": 244,
+        "label": "ACCESS PASS",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 4,
+        "x": 44,
+        "y": 236,
+        "label": "SECTOR RELAY",
+        "text": [
+          "RELAY ONLINE",
+          "Sector signal is stable.",
+          "The transit hatch is ready."
+        ],
+        "need": 1
+      },
+      {
+        "kind": 5,
+        "x": 332,
+        "y": 244,
+        "label": "TRANSIT HATCH",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 6,
+        "x": 172,
+        "y": 148,
+        "label": "SERVICE CACHE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 84,
+        "y": 212,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 300,
+        "y": 84,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 8,
+        "x": 84,
+        "y": 44,
+        "label": "CREW LOG",
+        "text": [
+          "BOTANICAL / CREW NOTE",
+          "We kept the shelter alive here.",
+          "The garden fed us for six weeks.",
+          "The uplink has no power.",
+          "Route the irrigation bus to it."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 28,
+        "y": 28,
+        "label": "CONSOLE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 236,
+        "y": 204,
+        "label": "PLANTS",
+        "text": [],
+        "need": 0
+      }
+    ],
+    "robots": [
+      {
+        "x": 316,
+        "y": 220,
+        "tx": 348,
+        "ty": 220
+      },
+      {
+        "x": 164,
+        "y": 92,
+        "tx": 220,
+        "ty": 92
+      }
+    ]
+  },
+  {
+    "name": "Communications Center",
+    "rooms": [
+      "Antenna Access",
+      "Command",
+      "Archive",
+      "Service Hub",
+      "Uplink Room",
+      "Signal Control"
+    ],
+    "intro": [
+      "COMMUNICATIONS / LAST CALL",
+      "The crew left in a rescue shuttle.",
+      "Their distress call never escaped.",
+      "Restore the communications array.",
+      "Tell the next ship we made it."
+    ],
+    "doors": [
+      {
+        "x": 16,
+        "y": 8,
+        "lock": 2,
+        "secret": 0
+      },
+      {
+        "x": 32,
+        "y": 8,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 8,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 24,
+        "y": 18,
+        "lock": 1,
+        "secret": 0
+      },
+      {
+        "x": 40,
+        "y": 18,
+        "lock": 0,
+        "secret": 0
+      },
+      {
+        "x": 23,
+        "y": 18,
+        "lock": 0,
+        "secret": 1
+      }
+    ],
+    "items": [
+      {
+        "kind": 1,
+        "x": 44,
+        "y": 236,
+        "label": "POWER BUS",
+        "text": [
+          "POWER BUS RESTORED",
+          "Local systems have power.",
+          "Access panels are online."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 2,
+        "x": 332,
+        "y": 244,
+        "label": "ACCESS PASS",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 4,
+        "x": 332,
+        "y": 44,
+        "label": "SECTOR RELAY",
+        "text": [
+          "RELAY ONLINE",
+          "Sector signal is stable.",
+          "The transit hatch is ready."
+        ],
+        "need": 1
+      },
+      {
+        "kind": 5,
+        "x": 204,
+        "y": 44,
+        "label": "TRANSIT HATCH",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 6,
+        "x": 172,
+        "y": 148,
+        "label": "SERVICE CACHE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 84,
+        "y": 212,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 7,
+        "x": 300,
+        "y": 84,
+        "label": "ENERGY CELL",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 8,
+        "x": 84,
+        "y": 44,
+        "label": "CREW LOG",
+        "text": [
+          "COMMUNICATIONS / LAST CALL",
+          "The crew left in a rescue shuttle.",
+          "Their distress call never escaped.",
+          "Restore the communications array.",
+          "Tell the next ship we made it."
+        ],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 28,
+        "y": 28,
+        "label": "CONSOLE",
+        "text": [],
+        "need": 0
+      },
+      {
+        "kind": 9,
+        "x": 236,
+        "y": 204,
+        "label": "EQUIPMENT",
+        "text": [],
+        "need": 0
+      }
+    ],
+    "robots": [
+      {
+        "x": 316,
+        "y": 220,
+        "tx": 348,
+        "ty": 220
+      },
+      {
+        "x": 164,
+        "y": 92,
+        "tx": 220,
+        "ty": 92
+      }
+    ]
+  }
+]

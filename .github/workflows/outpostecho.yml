@@ -1,0 +1,49 @@
+# An independent workflow so development of the other carts stays separate.
+name: Outpost Echo
+on:
+  push:
+    paths:
+      - 'outpostecho/**'
+      - 'tools/outpostecho*'
+      - '.github/workflows/outpostecho.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: games
+      - uses: actions/checkout@v4
+        with:
+          repository: anthonyfletcher/podbox
+          ref: 126ebba20eb4f650d98ec03e6838d226af2e7013
+          path: podbox
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare SDK
+        working-directory: podbox/arcade/sdk
+        run: |
+          npm ci
+          sh host/build.sh
+      - name: Build standalone releases
+        working-directory: games
+        run: node tools/outpostecho_web.mjs
+      - name: Verify campaign, saves, browser and performance
+        working-directory: games
+        run: |
+          python3 tools/outpostecho_test.py --browser-runtime dist/outpostecho-runtime.wasm
+          python3 tools/outpostecho_test.py --selftest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: outpostecho
+          path: |
+            games/dist/outpostecho.pbg
+            games/dist/outpostecho.html
+            games/dist/outpostecho-release.json
