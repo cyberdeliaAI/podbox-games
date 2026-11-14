@@ -1,17 +1,39 @@
 # Kremlin Blocks
 
-An original falling-block game for PodBox Arcade, with a Russian-inspired
-pixel-art style. Red-brick walls, green spires, a clock tower, a golden
-onion dome and geometric borders frame the board. The skyline is newly
-drawn by the asset generator. It isn't copied game art or a photograph.
+An original falling-block game for PodBox Arcade, in a city of onion
+domes and red brick. The well stands in a brick tower gate with swallowtail
+merlons; round it are churches with striped, scaled and chevroned domes,
+clock towers with tent roofs, the wall and a woven folk border. Everything
+is drawn by the asset generator from a plan of shapes. It isn't copied game
+art or a photograph.
 
-![Native title and autoplay](previews/game.gif)
+![Native title and autoplay through the five stages](previews/game.gif)
 
 The well is 10 columns by 20 rows. Complete horizontal rows to clear them.
 Seven four-cell pieces arrive from shuffled bags, so every group of seven
 contains each kind once. The next three pieces and a landing outline help
-with planning. Every ten cleared rows increases the level, up to twenty.
-There are high scores, lifetime cleared rows and four achievements.
+with planning.
+
+## Ways to play
+
+| Mode | The round |
+| --- | --- |
+| Marathon | Every ten cleared rows raise the level, up to twenty. It ends when the stack is full |
+| Sprint | Forty rows as fast as you can, at level one. The time is the score |
+| Blitz | The most points in two minutes |
+
+The city round the well changes as the round goes on, through five stages:
+Red Square by day, winter (with falling snow), sunset, white nights and
+the night sky, with lit windows and stars. In Marathon a stage lasts four
+levels; in Sprint eight rows; in Blitz 24 seconds. A new stage shows its
+name in a banner and sets off fireworks; so do four rows at once. A short
+tune of the game's own plays for a new level, a new stage and the end of a
+round.
+
+The start screen has the three modes, the high scores (the best five of
+each, from the native boards) and how to play. The wheel, Prev and Next
+move through it and Select chooses; Select on Marathon, the first, starts
+straight away.
 
 ## Controls
 
@@ -32,20 +54,25 @@ SRS. Ground contact gives 350 ms to adjust, with at most eight grounded
 movement resets. Hidden cells above the well may be used while spawning.
 A piece that locks above the top ends the round without writing debris.
 
-Options toggle sound, the landing guide and a performance overlay. The
-starting level, from one to ten, applies to the next game. The game never
-controls the owner's music. Its short original tone effects are optional.
+Options toggle sound and tunes, the landing guide, a performance overlay,
+and snow and fireworks. The starting level, from one to ten, applies to the
+next Marathon or Blitz. The game never controls the owner's music. Its
+short original tones and tunes are optional.
 
 ## Scoring and progress
 
 Single, double, triple and four-row clears award 100, 300, 500 and 800
 points times the current level. Consecutive clearing blocks add a combo
 bonus. A hard drop gives two points per row and a soft drop gives one.
-The native high-score board keeps the best finished rounds.
+Three native boards keep the best finished rounds: Marathon and Blitz by
+points, Sprint by the lowest time.
 
-Achievements reward four rows at once, forty lines in one game, five
-consecutive clearing blocks and reaching level ten. `dget(0)` keeps the
-best score and `dget(1)` keeps lifetime cleared rows. The cart ID is stable
+Seven achievements: four rows at once, forty lines in one game, five
+consecutive clearing blocks, level ten, a Sprint finished, 10,000 points in
+a Blitz and the night sky reached in Marathon. `dget(0)` keeps the best
+Marathon score, `dget(1)` lifetime cleared rows, `dget(2)` the best Sprint
+in ms and `dget(3)` the best Blitz. A round that beats the best it started
+with says NEW BEST. The cart ID is stable
 and independent of every other game. Native pause-menu Quit retains the
 VM for Continue, including the bag, board, active piece and cached image.
 Returning to the main menu or choosing New game abandons the current run.
@@ -107,15 +134,24 @@ python3 tools/kremlinblocks_preview.py
 ```
 
 Edit the generator, not its output. It owns `sheet.png`, `logo.png`,
-`images/back.png`, `palettes/kremlin.gpl` and `pieces.js`. The preview tool
-uses the saved autoplay trace and renders actual native frames.
+`images/title.png`, `images/stage1.png` to `stage5.png`,
+`palettes/kremlin.gpl` and `pieces.js`. The shapes are its functions: an
+onion dome by its profile and pattern (`spiral`, `chevron`, `scales`,
+`gold`), tent roofs, drums, clock towers, kokoshnik arches, brick with
+swallowtail merlons, stone plaques and the folk border. The stone plaques
+the numbers are printed on are part of the pictures, at the places
+`view.js` prints to; move one and move the other. The pieces' rotations
+must stay as they are, or saved traces stop replaying. The preview tool
+uses the saved autoplay trace and renders actual native frames: the title
+and seven frames in each of the five stages.
 
 ## Performance and architecture
 
 The target is 33 Hz within 12,500 units per tick on an iPod Video playing
-FLAC. The measured replay averages 6,590 units and peaks at 9,444. The
-performance overlay peaks at 9,527. High-level random input with pause and
-skipped draws peaks at 10,470. These measurements use the plain cartridge.
+FLAC. The measured replay averages 5,646 units and peaks at 8,416. The
+performance overlay peaks at 8,499. High-level random input with pause and
+skipped draws peaks at 9,244. A stage's picture is one opaque blit, about
+1,060 units. These measurements use the plain cartridge.
 Real iPod playback and click-wheel feel still need a hardware test.
 
 | File | Responsibility |
@@ -123,7 +159,8 @@ Real iPod playback and click-wheel feel still need a hardware test.
 | `main.js` | Input edges, gravity, lock delay, bag, scoring and scenes |
 | `board.js` | Bounded placement, row counts and compaction |
 | `pieces.js` | Generated four-cell rotation coordinates |
-| `view.js` | Kremlin background, cached well, guide, previews and HUD |
+| `view.js` | The stages and the title, cached well, guide, previews, HUD, banners, snow and fireworks |
+| `tune.js` | Original short tunes, a tone at a time |
 | `tools/kremlinblocks_assets.py` | Original art and rotation generation |
 | `tools/kremlinblocks_pilot.js` | Scratch-only placement search and real input trace |
 | `tools/kremlinblocks_probe.js` | Scratch-only board invariants |
@@ -137,6 +174,14 @@ write. Counts detect full rows without scanning every occupied block each
 tick. The landing position is cached until the board or orientation
 changes. A new piece computes its landing on the following tick so two
 searches don't make the hard-drop frame expensive.
+
+A clear moves whole rows with `copy()` and empties the top with `fill()`,
+engine work rather than a script loop per cell.
+
+The snow and the fireworks are particle pools moved in update. Their
+chance comes from a generator of their own (`rng` with `view.fx`), never
+`rnd()`, so the bag deals the same pieces with or without them; a firework
+waits in a queue and at most one goes up a tick.
 
 Settled blocks live in a 50x100 image. Normal locks paint four cells. After
 a clear, two cached rows rebuild per tick during a twelve-tick animation.
