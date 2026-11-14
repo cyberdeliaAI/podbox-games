@@ -558,6 +558,7 @@ Writing (docs, comments, commit messages): English, short direct sentences, natu
 - Don't push without asking.
 - `dist/` is ignored. CI builds on every push and releases on tags like `v1.0`.
 - Pages deploys only from `main` (the `github-pages` environment's rule), so `pages.yml` starts from Build's `workflow_run` and checks out the tag's commit, rather than from the tag.
+- The builder action writes pages with the click wheel on touch screens only and has no input for it: `build.yml` and `pages.yml` set `"wheel":"touch"` to `"always"` in each page right after it, and fail if it isn't there to change.
 
 ## Adding a new game
 

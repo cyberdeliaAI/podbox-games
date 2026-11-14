@@ -48,6 +48,19 @@ jobs:
           cart: ${{ matrix.cart }}
           page: true
 
+      # The builder writes pages with the click wheel drawn on touch screens
+      # only (pbgc html's default), and has no input to change it: on a
+      # computer the wheel's buttons were nowhere to be seen. Every page shows
+      # it, as Outpost Echo's and Pocket Golf's own builders do
+      - name: The click wheel on every page, not only on touch screens
+        if: ${{ true }}
+        env:
+          PAGE: ${{ steps.cart.outputs.page }}
+        run: |
+          grep -q '"wheel":"touch"' "$PAGE"
+          sed -i 's/"wheel":"touch"/"wheel":"always"/' "$PAGE"
+          grep -q '"wheel":"always"' "$PAGE"
+
       - uses: actions/upload-artifact@v4
         with:
           name: page-${{ matrix.cart }}
