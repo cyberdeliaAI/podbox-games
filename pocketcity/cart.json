@@ -2,7 +2,7 @@
   "id": "8a0657134ddb56b7",
   "name": "Pocket City 3D",
   "author": "Cyberdelia",
-  "version": "0.1",
+  "version": "1.0",
   "rate": 33,
   "flags": [
     "solid",
@@ -11,7 +11,7 @@
     "walk",
     "road"
   ],
-  "help": "Drive about a small city seen from above. Hold Select for the throttle, Prev to brake and reverse, turn the wheel to steer; the wheels come back straight when you let go. Play is the handbrake, for a slide round a corner. Next sounds the horn. Grass and sidewalks slow you down. Phase 1: one district, one car.",
+  "help": "Drive and walk about a city of five districts seen from above. In a car: hold Select for the throttle, Prev to brake and reverse, turn the wheel to steer, Play is the handbrake, Next gets out when you stand still (or sounds the horn). On foot: the wheel turns, Select walks, Play with it runs, Next gets into the nearest car. The next job waits at a phone box: follow the yellow arrow. Red lights, ramming and knocking people down bring the police: lose them, or get fresh paint at a paint shop. Thirty tapes are lost about the city. The city map is in the pause menu.",
   "options": [
     {
       "name": "steering",
@@ -26,10 +26,10 @@
     },
     {
       "name": "sounds",
-      "title": "Engine sounds",
+      "title": "Engine and siren",
       "type": "onoff",
       "default": true,
-      "help": "The engine and the tyres."
+      "help": "The engine, the tyres and the police sirens."
     },
     {
       "name": "stats",
@@ -37,6 +37,44 @@
       "type": "onoff",
       "default": false,
       "help": "Shows the frames a second."
+    }
+  ],
+  "boards": [
+    {
+      "name": "cash",
+      "title": "Cash"
+    }
+  ],
+  "achievements": [
+    {
+      "name": "first",
+      "title": "First Fare",
+      "text": "Finish a job."
+    },
+    {
+      "name": "city",
+      "title": "Key to the City",
+      "text": "Finish all twenty jobs."
+    },
+    {
+      "name": "mixtape",
+      "title": "Mixtape",
+      "text": "Find ten lost tapes."
+    },
+    {
+      "name": "collector",
+      "title": "Box Set",
+      "text": "Find all thirty lost tapes."
+    },
+    {
+      "name": "getaway",
+      "title": "Clean Getaway",
+      "text": "Lose the police after three stars."
+    },
+    {
+      "name": "tourist",
+      "title": "Grand Tour",
+      "text": "Visit all five districts."
     }
   ]
 }

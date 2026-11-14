@@ -15,7 +15,7 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Pocket Golf Deluxe](pocketgolf/) | Top-down mini golf: 36 holes in four themed courses, with tunnels, teleporters, gates and ice | [pocketgolf/README.md](pocketgolf/README.md) |
 | [Powder Run 3D](powderrun/) | Endless downhill skiing over a 3D mountain: five slopes, pines and boulders, Free Ride and Endless Run, plays in a browser too | [docs/powderrun.md](docs/powderrun.md) |
 
-Every game has been played on an iPod Video 5.5G. [Pocket City 3D](docs/pocketcity.md), a city seen from above to drive about in, is a prototype: it's in the repository but not in the releases yet.
+Every game has been played on an iPod Video 5.5G. [Pocket City 3D](docs/pocketcity.md), an open city seen from above (five districts, traffic, people, twenty jobs, the police), is new: it's in the repository but not in the releases until it has been played on an iPod too.
 
 ## Playing
 
@@ -44,7 +44,7 @@ python3 tools/bubblebeat_stress.py   # the same for Bubble Beat, with and withou
 python3 tools/sloop_stress.py        # the same for Sloop: a smart, a blind and a still player
 python3 tools/pocketwings_test.py    # flies Pocket Wings, checks it and measures every level (--sessions: long flights, saves, memory)
 python3 tools/powderrun_test.py      # the same for Powder Run, skiing (--sessions: long runs, saves, memory)
-python3 tools/pocketcity_test.py     # drives Pocket City, checks the car, the camera and the picture, measures it
+python3 tools/pocketcity_test.py     # plays Pocket City on wheels and on foot, with the police and all the jobs, checks it and measures it
 python3 tools/outpostecho_test.py    # plays Outpost Echo's whole campaign, checks saves and measures it
 python3 tools/pocketgolf_test.py     # plays all 36 holes of Pocket Golf, checks the physics and measures it
 ```
