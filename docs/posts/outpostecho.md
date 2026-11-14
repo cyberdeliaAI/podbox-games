@@ -14,6 +14,8 @@ A first-person sci-fi adventure. In 2187 a maintenance shuttle reaches a researc
 
 **Play in the browser:** [https://cyberdeliaai.github.io/podbox-games/outpostecho.html](https://cyberdeliaai.github.io/podbox-games/outpostecho.html) (Chrome or Edge). Up and Down turn, Left walks backward, Right interacts, Enter is Select, Space is Play, Escape pauses; the drawn wheel works too.
 
+**All the games:** [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/), to download or play in a browser.
+
 **Tested on:** iPod Video 5.5G. Also tested at length in PodBox's own VM (`pbgvm`): played by an automatic player with its rules checked every tick, and measured against the iPod Video's budget while playing FLAC.
 
 **Built with:** PodBox release 2026-11-13 (Latest build).
