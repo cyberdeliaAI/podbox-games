@@ -22,8 +22,10 @@
 const LEVELS = 5;
 var COARSE = [1, 2, 2, 2, 2];
 var HALF = [0, 0, 1, 1, 1];
-var FAR = [200, 200, 200, 150, 150];
+var FAR = [200, 200, 140, 130, 130];
 var RATES = [33, 33, 25, 25, 20];
+var CAP = [24, 16, 7, 6, 6];       // pines and boulders drawn at most
+var RANGE = [130, 120, 100, 90, 90];   // ...and how far ahead they are looked for
 
 const AUTO = 0, FAST = 1, DETAILED = 2;
 var mode = AUTO;
@@ -43,6 +45,7 @@ function start() {
     changes = 0;
 }
 
+// The Picture option: Auto, or a level held
 function setMode(m) {
     mode = m;
     if (m == FAST)
@@ -51,6 +54,7 @@ function setMode(m) {
         setLevel(0);
 }
 
+// Level q, its rate set
 function setLevel(q) {
     level = q;
     if (rate() != RATES[q])
@@ -104,6 +108,13 @@ function tick() {
         }
     }
     late = 0;
+}
+
+// Back from a pause: what skipped() saw meanwhile doesn't count
+function resume() {
+    skipped();
+    late = 0;
+    settle = 2;
 }
 
 // At the end of draw(), for sim: did this tick cost more than it had?
