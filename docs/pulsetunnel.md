@@ -14,6 +14,8 @@ A tube shooter for the PodBox Arcade, on the iPod Video and iPod Classic. You fl
 
 Without music the tunnel runs at 120 BPM. With music the iPod's beat tracker finds the tempo and the tunnel takes its colours from the album art.
 
+When the tracker can't find a beat, a quiet intro say, the tunnel keeps the last tempo, the screen says NO BEAT YET and it listens again four bars later. A track gets three tries. After that it says NO BEAT FOUND and flies on the last tempo until the next track. No new enemies come while it listens, so the tunnel goes quiet for a moment at the start of a track and at each try.
+
 ## On the iPod
 
 Copy `dist/pulsetunnel.pbg` to a folder called `Games` on the iPod, eject, and pick **Arcade** on the main menu.
@@ -49,6 +51,7 @@ Set `AUTOPILOT` to `true` in `main.js` and the ship flies itself, which is handy
 - `SECTOR_BEATS` in `main.js` is the length of a sector.
 - `plan()` in `main.js` decides what comes on each beat: gate spacing, spawn chance, formations and pickups.
 - `BEAT_FAST` decides when a fast track is flown at half its tempo (now above about 162 BPM). The Tempo option in the pause menu overrides it per player.
+- `LISTEN_BEATS` is how long a try listens for the beat, `RETRY_BEATS` how long it waits before the next try and `LISTEN_TRIES` how many tries a track gets.
 
 ## Performance
 
