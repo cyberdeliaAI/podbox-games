@@ -38,13 +38,15 @@ function clear(){
         rows[y]=full?1:0;if(full)n++;
     }
     if(n==0)return 0;
+    // whole rows move with copy() and the rows left at the top empty with
+    // fill(): engine work, not a loop of script per cell
     var dest=H-1;
     for(var y=H-1;y>=0;y--){
         if(rows[y]!=0)continue;
-        for(var x=0;x<W;x++)tiles[dest*W+x]=tiles[y*W+x];
+        if(dest!=y)copy(tiles,dest*W,tiles,y*W,W);
         counts[dest]=counts[y];dest--;
     }
-    for(var y=dest;y>=0;y--){counts[y]=0;for(var x=0;x<W;x++)tiles[y*W+x]=0;}
+    if(dest>=0){fill(tiles,0,0,(dest+1)*W);fill(counts,0,0,dest+1);}
     revision++;
     return n;
 }

@@ -16,6 +16,7 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Powder Run 3D](powderrun/) | Endless downhill skiing over a 3D mountain: five slopes, pines and boulders, Free Ride and Endless Run, plays in a browser too | [docs/powderrun.md](docs/powderrun.md) |
 | [Pocket City 3D](pocketcity/) | An open city seen from above: five districts, traffic and lights, people, any car you can get to, twenty jobs, the police and thirty lost tapes; plays in a browser too | [docs/pocketcity.md](docs/pocketcity.md) |
 | [Beat Dancer 3D](beatdancer/) | A 3D robot dances on a disco floor, the lights keeping time with your music | [beatdancer/README.md](beatdancer/README.md) |
+| [Kremlin Blocks](kremlinblocks/) | Falling blocks in a city of onion domes: Marathon, Sprint and Blitz, five stages from Red Square by day to the night sky | [kremlinblocks/README.md](kremlinblocks/README.md) |
 
 Every game has been played on an iPod Video 5.5G.
 
@@ -50,6 +51,7 @@ python3 tools/pocketcity_test.py     # plays Pocket City on wheels and on foot, 
 python3 tools/outpostecho_test.py    # plays Outpost Echo's whole campaign, checks saves and measures it
 python3 tools/pocketgolf_test.py     # plays all 36 holes of Pocket Golf, checks the physics and measures it
 python3 tools/beatdancer_test.py     # Beat Dancer silent, with and without a beat, across playlists and pauses, every style, against the budget
+python3 tools/kremlinblocks_test.py  # Kremlin Blocks' rules, an autoplay replayed through real input, saves, pauses, the budget
 ```
 
 To add a game, give its folder a `cart.json` and add its name to the cart list in `.github/workflows/build.yml`.

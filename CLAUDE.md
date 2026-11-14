@@ -13,6 +13,7 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), a R
 | Pocket City 3D | `pocketcity/` | Open city seen from above: five districts, traffic and lights, people, on foot, twenty jobs, the police, thirty tapes | `docs/pocketcity.md` |
 | Outpost Echo 3D | `outpostecho/` | First-person sci-fi adventure on `walls.draw`: five sectors, puzzles, security robots, saves | `outpostecho/README.md` |
 | Beat Dancer 3D | `beatdancer/` | A 3D robot dancing on a disco floor in time with the owner's music, its lights on the beat | `beatdancer/README.md` |
+| Kremlin Blocks | `kremlinblocks/` | Falling blocks in a city of onion domes: Marathon, Sprint, Blitz, five stages | `kremlinblocks/README.md` |
 | Pocket Golf Deluxe | `pocketgolf/` | Top-down mini golf: 36 authored holes in four courses, four modes, low-score records | `pocketgolf/README.md` |
 
 The repo is public (since 2026-11-14) under the MIT licence, with releases and a GitHub Pages site. The owner works in English: code, comments, docs and commit messages. Every cart has been played on an iPod Video 5.5G and works (2026-11-14).
@@ -21,7 +22,7 @@ The repo is public (since 2026-11-14) under the MIT licence, with releases and a
 
 ```
 .github/workflows/build.yml   CI: builds every cart in its matrix, attaches them to a release on a tag
-.github/workflows/outpostecho.yml, pocketgolf.yml, beatdancer.yml    CI of their own: pinned SDK, release checks (and the first two's web pages)
+.github/workflows/outpostecho.yml, pocketgolf.yml, beatdancer.yml, kremlinblocks.yml    CI of their own: pinned SDK, release checks (and web pages, but for Beat Dancer's)
 .github/workflows/pages.yml   after Build finishes a tag: the browser games and docs/web/index.html on GitHub Pages
 build.sh                      builds every folder with a cart.json into dist/<folder>.pbg
 dist/                         build output, not in git
@@ -101,6 +102,7 @@ pocketcity/                   Pocket City 3D
   sounds/*.json               sfxr settings
 outpostecho/                  Outpost Echo 3D: its own README.md says what each file does
 beatdancer/                   Beat Dancer 3D: likewise; previews/disco.gif is its moving picture for posts and the site
+kremlinblocks/                Kremlin Blocks: likewise; previews/game.gif runs through its five stages
 pocketgolf/                   Pocket Golf Deluxe: likewise, in its README.md
 pulsetunnel/                  Pulse Tunnel
   cart.json                   music: control, suspend: false, three options
@@ -132,6 +134,7 @@ tools/
   pocketcity_test.js          the in-cart half of it, copied into a scratch build as stress.js
   outpostecho_*               Outpost Echo's maps, art, release test (with its pilot and probe) and web builder
   beatdancer_*                Beat Dancer's art, its test (with a probe) and the GIF capture
+  kremlinblocks_*             Kremlin Blocks' art (the city, its stages, the blocks), test (fixtures, pilot, probe), previews and web builder
   pocketgolf_*                Pocket Golf's holes and art, release test (with its pilot, probe and physics checks), previews and web builder
   screenshots.py              docs/screenshots/: each game built in a scratch copy, played by its harness, photographed in pbgvm
 ```
@@ -269,6 +272,8 @@ python3 tools/pocketgolf_test.py                      # all 36 holes played by a
 python3 tools/pocketgolf_test.py --selftest           # collision resolution removed in a scratch copy: must fail
 python3 tools/pocketgolf_assets.py --check            # the generated holes and art match the script, by pixels
 python3 tools/beatdancer_test.py                      # silent, no beat, 48 and 180 BPM, playlists, pause and suspend, every style and view; a fault injected must be caught
+python3 tools/kremlinblocks_test.py                   # rule fixtures, a pilot's autoplay replayed through real input, suspend, held buttons, random input at level 10
+python3 tools/kremlinblocks_test.py --selftest        # row compaction broken in a scratch copy: must be caught
 ```
 
 Unlike the other tools they fail on a tick over budget. `--browser-runtime` (with the WASM from `tools/*_web.mjs`) also checks the browser engine gives the same units and checkpoint as the native VM; building that needs the SDK's development packages.
@@ -343,6 +348,7 @@ Baseline measured 2026-11-14 with SDK `126ebba`, units a tick of play. Marble Ch
 | Pocket Golf, all 36 holes replayed (41,449 ticks at 33) | 2,700 | 3,500 (p99) | 12,000 | 0% |
 | Pocket Golf, its loading ticks (at 25, budget 17,500) | 2,900 | 14,600 (p99) | 17,400 | 0% |
 | Beat Dancer, its checks (at 25, budget 17,500) | 15,400 to 15,650 | | 17,070 | 0% over 17,500 |
+| Kremlin Blocks, the autoplay replayed (9,000 ticks) | 5,650 | | 8,400 (9,240 random input at level 10) | 0% |
 
 Bubble Beat's worst ticks are a single shot that pops and drops 30 bubbles or more. Its p99 is 8,000 to 10,000.
 
@@ -511,13 +517,14 @@ An open city in five districts (see `docs/pocketcity.md`): traffic, people, the 
 - **Saved numbers**: 1 cash, 2 jobs done, 3 tapes found (bits), 4 districts seen (bits).
 - **Units**: about 8,500 a tick of driving, p95 10,500 (the city 1,300, traffic 1,600, people 1,000). More than four late frames in a second drop it to 25 for good; `settle` ignores the ticks after the camera jumps.
 
-## Outpost Echo 3D, Pocket Golf Deluxe and Beat Dancer 3D
+## Outpost Echo 3D, Pocket Golf Deluxe, Beat Dancer 3D and Kremlin Blocks
 
 Made separately (by Codex) with their own conventions on top of these, and maintained that way: **read the cart's own `README.md` before changing it**. Each has an architecture table, its editing rules, saved numbers and store files, its release checks and its remaining hardware checks. In short:
 
 - **Outpost Echo 3D** runs at 25 ticks a second by default and falls to 20 after repeated late frames; speeds scale by `25.0 / rate()`. `walls.draw` on 8-pixel cells with `FLAG.wall` and `FLAG.solid`, `actors.move()` for the player, a 112-column visor, a bounded prop pool and robots that look for the player on staggered ticks. Maps come from `tools/outpostecho_levels.py`, art from `tools/outpostecho_assets.py`. Checkpoints go to the `checkpoint` store file. Its worst ticks come within 4% of 17,500 (2% with the overlay): keep new work out of the busiest rooms.
 - **Pocket Golf Deluxe** runs the ball on fixed 33 Hz steps with an integer debt, so 25 and 33 play alike. Collision comes from each hole's `data/hNN.json` segments, not from pixels; `tools/pocketgolf_assets.py` owns every hole, picture and map (edit `HOLES` there). One hole's lazy background (at most 240x144) and overview are loaded at a time, over four loading ticks at 25; the biggest leaves almost nothing of 17,500 spare.
 - **Beat Dancer 3D** runs at 25 ticks a second, reads the music (`"music": "listen"`, `"suspend": false`) and never changes it. It listens at most ten seconds for a tempo, retries once after twenty, then follows `beat.clock()`; without a beat it dances to the options' demo tempo and says so (`DEMO`). A solid head and chest, limbs as shaded strips between 3D joints, painted far to near; the floor is an atlas of 32 baked camera angles (`tools/beatdancer_assets.py`). Its ticks average about 15,400 of 17,500: keep new work out of it. No web page (the exporter refuses music carts); `previews/disco.gif` comes from `tools/beatdancer_preview.py`.
+- **Kremlin Blocks** (Codex's rules and checks, its look and modes since redone): the board, the bag, rotation and scoring are `main.js` and `board.js` and its fixtures test them; **its test drives input through `btn()` and `wheel()` only** (the pilot replaces those two), so menus must use them, never `btnp()` or `wheelsteps()`. Options are addressed by index in the test (`--opt 1:2:10,1:3:1`): add new ones at the end. The pieces' rotations in `pieces.js` must not change or the saved trace stops replaying. Effects take chance from `view.fx` with `rng`, never `rnd()`, so the bag deals the same pieces with or without them. Every tick must stay within 12,500 (the test fails otherwise).
 - Outpost Echo and Pocket Golf build web pages with their own `tools/*_web.mjs` (a pinned WASM engine, its SHA-256 checked) in their workflows, which pin SDK `126ebba` and upload the pages as workflow artifacts. `build.yml` builds all three as carts too, so a tagged release carries them, and `pages.yml` publishes the two pages.
 
 ## Assets

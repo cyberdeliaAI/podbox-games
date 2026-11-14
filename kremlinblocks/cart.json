@@ -2,20 +2,30 @@
   "id": "f8d58ac1293dd3eb",
   "name": "Kremlin Blocks",
   "author": "Cyberdelia",
-  "version": "0.1",
+  "version": "1.0",
   "rate": 33,
   "music": "listen",
-  "help": "Turn the wheel to move a falling block. Prev rotates left, Next rotates right. Select drops instantly. Hold Play for a soft drop. Complete horizontal rows to clear them. The ghost marks your landing and the next three pieces are shown. Every ten lines raises the speed. Menu pauses. Your own music keeps playing.",
+  "help": "Turn the wheel to move a falling block. Prev rotates left, Next rotates right. Select drops it at once; hold Play to drop it faster. Complete horizontal rows to clear them. Three ways to play: Marathon (faster every ten rows, to level 20), Sprint (forty rows as fast as you can) and Blitz (the most points in two minutes). The city round the well changes as you go: Red Square, winter, sunset, white nights and the night sky. Menu pauses. Your own music keeps playing.",
   "boards": [
     {
       "name": "points",
-      "title": "Kremlin Blocks"
+      "title": "Marathon"
+    },
+    {
+      "name": "sprint",
+      "title": "Sprint 40",
+      "wins": "low",
+      "format": "time"
+    },
+    {
+      "name": "blitz",
+      "title": "Blitz 2:00"
     }
   ],
   "options": [
     {
       "name": "sounds",
-      "title": "Sound effects",
+      "title": "Sound and tunes",
       "type": "onoff",
       "default": true
     },
@@ -39,6 +49,12 @@
       "title": "Performance",
       "type": "onoff",
       "default": false
+    },
+    {
+      "name": "effects",
+      "title": "Snow and fireworks",
+      "type": "onoff",
+      "default": true
     }
   ],
   "achievements": [
@@ -61,6 +77,21 @@
       "name": "ten",
       "title": "Level Ten",
       "text": "Reach level ten."
+    },
+    {
+      "name": "sprint",
+      "title": "Forty to the Finish",
+      "text": "Finish a Sprint."
+    },
+    {
+      "name": "blitz",
+      "title": "Blitz of Points",
+      "text": "Score 10,000 points in a Blitz."
+    },
+    {
+      "name": "night",
+      "title": "Under the Night Sky",
+      "text": "Reach the night sky in Marathon."
     }
   ]
 }
