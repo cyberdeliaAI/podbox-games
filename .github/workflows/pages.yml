@@ -1,7 +1,10 @@
 # Publishes the games that play in a browser on GitHub Pages, with a front
-# page listing every game (docs/web/index.html), for every tag like v1.0 and
-# by hand. It needs the repository public and Settings > Pages > Source set
-# to GitHub Actions; until then the deploy step fails and nothing else does.
+# page listing every game (docs/web/index.html), once Build has finished a
+# tag like v1.0 (and its release), or by hand from main.
+#
+# It starts from Build's end rather than from the tag itself because the
+# github-pages environment only takes deployments from main: a run started
+# by Build runs on main, and checks out the tag's commit.
 #
 # Marble Chain, Pocket Wings 3D and Powder Run 3D get their pages from the
 # Arcade builder, as in build.yml. Outpost Echo 3D and Pocket Golf Deluxe
@@ -13,8 +16,9 @@
 name: Pages
 
 on:
-  push:
-    tags: ['v*']
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -26,12 +30,18 @@ concurrency:
 
 jobs:
   builder:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' &&
+       startsWith(github.event.workflow_run.head_branch, 'v'))
     runs-on: ubuntu-latest
     strategy:
       matrix:
         cart: [marbles, pocketwings, powderrun]
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - uses: anthonyfletcher/podbox-arcade-builder@latest
         id: cart
@@ -45,11 +55,16 @@ jobs:
           path: ${{ steps.cart.outputs.page }}
 
   own:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' &&
+       startsWith(github.event.workflow_run.head_branch, 'v'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           path: games
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - uses: actions/checkout@v4
         with:
@@ -89,6 +104,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - uses: actions/download-artifact@v4
         with:

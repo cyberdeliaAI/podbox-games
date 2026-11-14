@@ -109,7 +109,7 @@ function draw() {
         s = "NO BEAT: THE SHOTS DROP IT";
     centre(s, 104, 13);
     centre("SELECT: OK", 112, 5);
-    print("V0.1", 3, 3, 5);
+    print("V1.0", 3, 3, 5);
 }
 
 function drawHelp() {
