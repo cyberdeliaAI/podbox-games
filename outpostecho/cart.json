@@ -1,0 +1,100 @@
+{
+  "id": "838c8873b83f5228",
+  "name": "Outpost Echo 3D",
+  "author": "Cyberdelia",
+  "version": "1.0",
+  "rate": 25,
+  "music": "listen",
+  "flags": [
+    "wall",
+    "solid"
+  ],
+  "help": "Restore five sectors of Outpost Echo. Wheel turns. Select toggles walking. Hold Prev to reverse, Next interacts. Tap Play to use a tool; hold Play to switch Pulse, Scanner and Decoder. Menu pauses. Restore power, find the access card, activate the relay and reach the exit. Scan for hidden service panels. Progress is saved at pickups, terminals and when leaving. Your music keeps playing.",
+  "options": [
+    {
+      "name": "controls",
+      "title": "Movement",
+      "type": "choice",
+      "choices": [
+        "Toggle walking",
+        "Hold to walk"
+      ],
+      "default": 0
+    },
+    {
+      "name": "sensitivity",
+      "title": "Turn sensitivity",
+      "type": "number",
+      "min": 1,
+      "max": 5,
+      "default": 3
+    },
+    {
+      "name": "stats",
+      "title": "Performance",
+      "type": "onoff",
+      "default": false
+    },
+    {
+      "name": "sounds",
+      "title": "Sound effects",
+      "type": "onoff",
+      "default": true
+    },
+    {
+      "name": "difficulty",
+      "title": "Security",
+      "type": "choice",
+      "choices": [
+        "Explorer",
+        "Standard",
+        "Alert"
+      ],
+      "default": 1,
+      "help": "Robot detection and damage. Explorer is a gentler expedition."
+    },
+    {
+      "name": "tool",
+      "title": "Equipped tool",
+      "type": "choice",
+      "choices": [
+        "Pulse",
+        "Scanner",
+        "Decoder"
+      ],
+      "default": 0
+    }
+  ],
+  "boards": [
+    {
+      "name": "expedition",
+      "title": "Signal Restored"
+    },
+    {
+      "name": "sectors",
+      "title": "Sector Records"
+    }
+  ],
+  "achievements": [
+    {
+      "name": "arrival",
+      "title": "First Contact",
+      "text": "Restore Arrival Bay."
+    },
+    {
+      "name": "secret",
+      "title": "Behind the Walls",
+      "text": "Find a hidden service cache."
+    },
+    {
+      "name": "quiet",
+      "title": "Ghost in the Machine",
+      "text": "Clear a sector without taking damage."
+    },
+    {
+      "name": "signal",
+      "title": "Signal Restored",
+      "text": "Complete all five sectors."
+    }
+  ]
+}
