@@ -37,6 +37,7 @@ var lastTrack = -2;
 var beatMs = DEFAULT_BEAT;
 var bmF = 500.0;                   // beatMs as a fraction, for depths
 var bpm = 120;
+var bpmText = "120";               // bpm as the HUD shows it, made when it changes
 var anchor = 0;                    // game time of beat 0
 var curBeat = 0;                   // the last beat passed
 var planned = 0;                   // the last beat planned
@@ -66,8 +67,10 @@ var fxp;                           // the explosions' particles
 // what the screen says
 var msg = "", msgUntil = 0;
 var trackName = "", trackUntil = 0;
+var trackText = "";                // trackName cut to fit the screen
 var volShown = -1, volUntil = 0;
 var late = 0;
+var slowed = false;                // the iPod fell behind this run: it stays at 25
 
 // ---- the Arcade's three --------------------------------------------------------
 
@@ -182,6 +185,8 @@ function newMusic() {
     trackName = playback.title();
     if (playback.artist() != "")
         trackName = trackName + " - " + playback.artist();
+    font(FONT.CAPS);
+    trackText = textfit(trackName, 150);
     trackUntil = gt + 3500;
     startListening();
 }
@@ -233,6 +238,7 @@ function setTempo(ms, at) {
     beatMs = ms;
     bmF = ms * 1.0;
     bpm = 60000 / ms;
+    bpmText = "" + bpm;
     anchor = at - (curBeat + 1) * beatMs;
     setSub();
 }
@@ -243,6 +249,18 @@ function startListening() {
     beat.listen(true);
     listening = true;
     listened = 0;
+    // the tracker takes about 6,300 units a tick at 33, half of what a
+    // tick has: at 25 there is room for it and the tunnel both, and the
+    // game, timed on the music's ms, plays the same
+    setrate(25);
+}
+
+// Done listening: back to 33, unless the iPod fell behind this run
+function stopListening() {
+    beat.listen(false);
+    listening = false;
+    if (!slowed)
+        setrate(33);
 }
 
 // Take the tempo once it is held
@@ -252,8 +270,7 @@ function tryLatch() {
     var ms = shifted(octave(bs[2]));
     if (ms < 150 || ms > 1800)
         return false;
-    beat.listen(false);
-    listening = false;
+    stopListening();
     locked = true;
     var c = beat.clock(), next = beat.next(c, 0);
     setTempo(ms, next >= 0 ? next + mOff : gt + ms);
@@ -353,8 +370,7 @@ function onBeat() {
     }
     if (listening) {
         if (!tryLatch() && ++listened >= LISTEN_BEATS) {
-            beat.listen(false);
-            listening = false;
+            stopListening();
             if (!locked)
                 announce("NO BEAT FOUND");
         }
@@ -556,7 +572,8 @@ function startRun() {
     invulnUntil = 0;
     alive = true;
     state = ST_PLAY;
-    setrate(33);
+    slowed = false;
+    setrate(listening ? 25 : 33);
     announce("GET READY");
     sfx(SFX.sector);
     if (playback.playing() && !locked && !listening)
@@ -647,14 +664,17 @@ function gameOver() {
     shots.clear();
 }
 
-// Run at 25 a second when the iPod keeps falling behind
+// Run at 25 a second when the iPod keeps falling behind. Listening runs at
+// 25 anyway, and its late frames don't count.
 function pace() {
     var sk = skipped();
     if (!listening)
         late += sk;
     if (frame() % 33 == 0) {
-        if (late > 4 && rate() > 25)
+        if (late > 4 && rate() > 25) {
             setrate(25);
+            slowed = true;
+        }
         late = 0;
     }
 }
@@ -676,6 +696,7 @@ function titleUpdate() {
 
 function overUpdate() {
     overTicks++;
+    wheelVolume();
     if (overTicks > 30 && btnp(4))
         startRun();
 }

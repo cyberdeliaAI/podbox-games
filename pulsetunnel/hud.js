@@ -6,9 +6,9 @@ function centre(text, y, c) {
 
 // The track that just started, along the bottom for a few seconds
 function trackLine(y) {
-    if (gt >= trackUntil || trackName == "")
+    if (gt >= trackUntil || trackText == "")
         return;
-    centre(textfit(trackName, 150), y, 6);
+    centre(trackText, y, 6);
 }
 
 function message() {
@@ -38,8 +38,7 @@ function play() {
 
     // the tempo, bottom right; a blink while it listens for a new one
     var c = listening && (frame() & 8) != 0 ? 5 : 13;
-    var b = "" + bpm;
-    print(b, 158 - textw(b), 113, c);
+    print(bpmText, 158 - textw(bpmText), 113, c);
 
     if (state == ST_DYING)
         return;
