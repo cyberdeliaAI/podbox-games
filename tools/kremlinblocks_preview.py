@@ -34,6 +34,8 @@ def main():
                 subprocess.run(base+['--ticks',str(start+i*6),'--buttons',(args.trace/'buttons.txt').read_text(),'--wheel',(args.trace/'wheel.txt').read_text(),'--shot',str(p)],check=True,capture_output=True)
                 with Image.open(p) as image:frames.append(image.convert('P',palette=Image.Palette.ADAPTIVE,colors=96))
         frames[4].save(args.out/'game.png')
+        frames[11].save(args.out/'winter.png')
+        frames[32].save(args.out/'night.png')
         durations=[1500]+([150]*6+[700])*len(STAGE_TICKS)
         frames[0].save(args.out/'game.gif',save_all=True,append_images=frames[1:],duration=durations,loop=0,disposal=2)
     print('Native previews:',args.out)

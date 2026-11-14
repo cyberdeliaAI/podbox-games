@@ -7,9 +7,9 @@
 # by Build runs on main, and checks out the tag's commit.
 #
 # Marble Chain, Pocket Wings 3D, Powder Run 3D and Pocket City 3D get their
-# pages from the Arcade builder, as in build.yml. Outpost Echo 3D and Pocket
-# Golf Deluxe from their own web builders on the SDK their workflows pin, so
-# these are the pages their release checks test. The games that follow the
+# pages from the Arcade builder, as in build.yml. Outpost Echo 3D, Pocket
+# Golf Deluxe and Kremlin Blocks from their own web builders on the SDK
+# their workflows pin, so these are the pages their release checks test. The games that follow the
 # music have no page: the exporter refuses them.
 
 name: Pages
@@ -97,6 +97,7 @@ jobs:
         run: |
           node tools/outpostecho_web.mjs
           node tools/pocketgolf_web.mjs
+          node tools/kremlinblocks_web.mjs
 
       - uses: actions/upload-artifact@v4
         with:
@@ -104,6 +105,7 @@ jobs:
           path: |
             games/dist/outpostecho.html
             games/dist/pocketgolf.html
+            games/dist/kremlinblocks.html
 
   deploy:
     needs: [builder, own]
@@ -131,6 +133,7 @@ jobs:
           mkdir -p site/screenshots
           cp docs/screenshots/*.png site/screenshots/
           cp beatdancer/previews/disco.gif site/screenshots/beatdancer.gif
+          cp kremlinblocks/previews/game.gif site/screenshots/kremlinblocks.gif
           ls -la site
 
       - uses: actions/upload-pages-artifact@v3
