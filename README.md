@@ -2,7 +2,7 @@
 
 Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the firmware for the iPod Video and iPod Classic.
 
-<img src="docs/screenshots/pocketwings-1.png" width="240" alt="Pocket Wings 3D"> <img src="docs/screenshots/powderrun-1.png" width="240" alt="Powder Run 3D"> <img src="docs/screenshots/sloop-2.png" width="240" alt="Sloop"> <img src="docs/screenshots/bubblebeat-3.png" width="240" alt="Bubble Beat">
+<img src="docs/screenshots/pocketwings-1.png" width="240" alt="Pocket Wings 3D"> <img src="docs/screenshots/powderrun-1.png" width="240" alt="Powder Run 3D"> <img src="docs/screenshots/pocketcity-1.png" width="240" alt="Pocket City 3D"> <img src="beatdancer/previews/disco.gif" width="240" alt="Beat Dancer 3D">
 
 | Game | What it is | Docs |
 |---|---|---|
@@ -14,14 +14,16 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Outpost Echo 3D](outpostecho/) | A first-person sci-fi adventure: restore five sectors of a silent research station, past its security robots | [outpostecho/README.md](outpostecho/README.md) |
 | [Pocket Golf Deluxe](pocketgolf/) | Top-down mini golf: 36 holes in four themed courses, with tunnels, teleporters, gates and ice | [pocketgolf/README.md](pocketgolf/README.md) |
 | [Powder Run 3D](powderrun/) | Endless downhill skiing over a 3D mountain: five slopes, pines and boulders, Free Ride and Endless Run, plays in a browser too | [docs/powderrun.md](docs/powderrun.md) |
+| [Pocket City 3D](pocketcity/) | An open city seen from above: five districts, traffic and lights, people, any car you can get to, twenty jobs, the police and thirty lost tapes; plays in a browser too | [docs/pocketcity.md](docs/pocketcity.md) |
+| [Beat Dancer 3D](beatdancer/) | A 3D robot dances on a disco floor, the lights keeping time with your music | [beatdancer/README.md](beatdancer/README.md) |
 
-Every game has been played on an iPod Video 5.5G. [Pocket City 3D](docs/pocketcity.md), an open city seen from above (five districts, traffic, people, twenty jobs, the police), is new: it's in the repository but not in the releases until it has been played on an iPod too.
+Every game has been played on an iPod Video 5.5G.
 
 ## Playing
 
 Download a game's `.pbg` from the [latest release](https://github.com/cyberdeliaAI/podbox-games/releases/latest), copy it to a folder called `Games` on the iPod, eject it, and pick **Arcade** on the main menu.
 
-Marble Chain, Pocket Wings 3D, Powder Run 3D, Outpost Echo 3D and Pocket Golf Deluxe play in a browser too: [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/). The games that follow your music can't.
+Marble Chain, Pocket Wings 3D, Powder Run 3D, Pocket City 3D, Outpost Echo 3D and Pocket Golf Deluxe play in a browser too: [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/). The games that follow your music can't.
 
 Every push also builds each game into a `.pbg` (the **Actions** tab: open a run and download the game from its artifacts). A tag, such as `v1.0`, attaches them all to a release and publishes the browser pages.
 
@@ -47,6 +49,7 @@ python3 tools/powderrun_test.py      # the same for Powder Run, skiing (--sessio
 python3 tools/pocketcity_test.py     # plays Pocket City on wheels and on foot, with the police and all the jobs, checks it and measures it
 python3 tools/outpostecho_test.py    # plays Outpost Echo's whole campaign, checks saves and measures it
 python3 tools/pocketgolf_test.py     # plays all 36 holes of Pocket Golf, checks the physics and measures it
+python3 tools/beatdancer_test.py     # Beat Dancer silent, with and without a beat, across playlists and pauses, every style, against the budget
 ```
 
 To add a game, give its folder a `cart.json` and add its name to the cart list in `.github/workflows/build.yml`.

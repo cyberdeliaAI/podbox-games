@@ -6,12 +6,11 @@
 # github-pages environment only takes deployments from main: a run started
 # by Build runs on main, and checks out the tag's commit.
 #
-# Marble Chain, Pocket Wings 3D and Powder Run 3D get their pages from the
-# Arcade builder, as in build.yml. Outpost Echo 3D and Pocket Golf Deluxe
-# from their own web builders on the SDK their workflows pin, so these are
-# the pages their release checks test. The games that follow the music have
-# no page: the exporter refuses them. Pocket City 3D is left out while it's
-# a prototype.
+# Marble Chain, Pocket Wings 3D, Powder Run 3D and Pocket City 3D get their
+# pages from the Arcade builder, as in build.yml. Outpost Echo 3D and Pocket
+# Golf Deluxe from their own web builders on the SDK their workflows pin, so
+# these are the pages their release checks test. The games that follow the
+# music have no page: the exporter refuses them.
 
 name: Pages
 
@@ -37,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cart: [marbles, pocketwings, powderrun]
+        cart: [marbles, pocketwings, powderrun, pocketcity]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -118,6 +117,7 @@ jobs:
           cp docs/web/index.html site/
           mkdir -p site/screenshots
           cp docs/screenshots/*.png site/screenshots/
+          cp beatdancer/previews/disco.gif site/screenshots/beatdancer.gif
           ls -la site
 
       - uses: actions/upload-pages-artifact@v3

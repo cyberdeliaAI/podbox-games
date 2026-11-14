@@ -5,8 +5,8 @@
 
 Each shot builds a scratch copy of the cart, with the game's own test
 harness playing it where a game needs a player (Marble Chain, Bubble Beat
-and Sloop play themselves through their stress harness; Pulse Tunnel flies
-on its AUTOPILOT), runs it in pbgvm to the tick given with the input given
+and Sloop play themselves through their stress harness, Pocket City's
+pilot does its jobs; Pulse Tunnel flies on its AUTOPILOT), runs it in pbgvm to the tick given with the input given
 and keeps pbgvm's picture of the screen (160x120, doubled to 320x240). The
 shots go to docs/screenshots/<cart>-<n>.png as indexed PNGs, small enough
 for a post. The cart folders aren't touched.
@@ -96,6 +96,21 @@ SHOTS = {
         ("title", None, [], ["--ticks", "40"], {}),
         ("pirate", "copy", [], ["pocketgolf/previews/pirate.png"], {}),
         ("desert", "copy", [], ["pocketgolf/previews/desert.png"], {}),
+    ],
+    # the test's pilot plays the jobs: a chase through Downtown, a fare in
+    # Greenside; then the police after a player standing still
+    "pocketcity": [
+        ("downtown", "pocketcity_test", [], ["--ticks", "1830", "--seed", "1", "--setting", "stress_ticks=14000",
+                                             "--setting", "stress_jobs=1"], {}),
+        ("greenside", "pocketcity_test", [], ["--ticks", "3130", "--seed", "1", "--setting", "stress_ticks=14000",
+                                              "--setting", "stress_jobs=1"], {}),
+        ("police", "pocketcity_test", [], ["--ticks", "430", "--seed", "2", "--setting", "stress_ticks=9000",
+                                           "--setting", "stress_heat=60", "--buttons", "20:0"], {}),
+    ],
+    "beatdancer": [
+        ("groove", None, [], ["--ticks", "400", "--seed", "1"] + BEAT, {}),
+        ("disco", None, [], ["--ticks", "900", "--seed", "1"] + BEAT, {}),
+        ("robot", None, [], ["--ticks", "1650", "--seed", "1"] + BEAT, {}),
     ],
 }
 

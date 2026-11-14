@@ -12,10 +12,10 @@ Drafts of one thread per game for the **Games** category of [PodBox's Discussion
 | Powder Run 3D | [powderrun.md](powderrun.md) | yes | [#53](https://github.com/anthonyfletcher/podbox/discussions/53) |
 | Outpost Echo 3D | [outpostecho.md](outpostecho.md) | yes | [#54](https://github.com/anthonyfletcher/podbox/discussions/54) |
 | Pocket Golf Deluxe | [pocketgolf.md](pocketgolf.md) | yes | [#55](https://github.com/anthonyfletcher/podbox/discussions/55) |
+| Pocket City 3D | [pocketcity.md](pocketcity.md) | yes | not yet posted |
+| Beat Dancer 3D | [beatdancer.md](beatdancer.md) | no: it follows the music (its post shows the GIF from `beatdancer/previews/`) | not yet posted |
 
-Pocket City 3D gets a post when it's more than a prototype.
-
-Posted on 2026-11-14 as cyberdeliaAI. The thread's title is the draft's first heading, the post the rest, from the line under it.
+The first eight were posted on 2026-11-14 as cyberdeliaAI. The thread's title is the draft's first heading, the post the rest, from the line under it.
 
 ## Before posting
 
