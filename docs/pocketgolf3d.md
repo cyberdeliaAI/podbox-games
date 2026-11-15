@@ -138,6 +138,10 @@ Every tick it checks the scene, the club, the meter, the aim, the hole loaded, t
 
 `tools/screenshots.py pocketgolf3d` and `tools/gifs.py pocketgolf3d` take the pictures above with the same pilot, running the swing meter as a player would (`stress_show`).
 
+## The web page
+
+CI builds the cart as a web page too (`page: true` in `.github/workflows/build.yml`), attached to a release beside it, and `pages.yml` puts it on the games' site: [cyberdeliaai.github.io/podbox-games/pocketgolf3d.html](https://cyberdeliaai.github.io/podbox-games/pocketgolf3d.html). It leaves the music alone, so it plays the same in a browser. To make it locally, `pbgc html pocketgolf3d` needs the SDK's development packages (`npm ci` without `--omit=dev`).
+
 ## Files
 
 | File | What it does |
