@@ -17,15 +17,15 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Pocket City 3D](pocketcity/) | An open city seen from above: five districts, traffic and lights, people, any car you can get to, twenty jobs, the police and thirty lost tapes; plays in a browser too | [docs/pocketcity.md](docs/pocketcity.md) |
 | [Beat Dancer 3D](beatdancer/) | A 3D robot dances on a disco floor, the lights keeping time with your music | [beatdancer/README.md](beatdancer/README.md) |
 | [Kremlin Blocks](kremlinblocks/) | Falling blocks in a city of onion domes: Marathon, Sprint and Blitz, five stages from Red Square by day to the night sky | [kremlinblocks/README.md](kremlinblocks/README.md) |
-| [Pocket Golf 3D](pocketgolf3d/) | Golf over a rolling 3D landscape: nine holes of Meadow Links, a three-press swing meter, wind, water and sloping greens | [docs/pocketgolf3d.md](docs/pocketgolf3d.md) |
+| [Pocket Golf 3D](pocketgolf3d/) | Golf over a rolling 3D landscape: nine holes of Meadow Links, a three-press swing meter, wind, water and sloping greens; plays in a browser too | [docs/pocketgolf3d.md](docs/pocketgolf3d.md) |
 
-Every game but Pocket Golf 3D, the newest, has been played on an iPod Video 5.5G.
+Every game has been played on an iPod Video 5.5G.
 
 ## Playing
 
 Download a game's `.pbg` from the [latest release](https://github.com/cyberdeliaAI/podbox-games/releases/latest), copy it to a folder called `Games` on the iPod, eject it, and pick **Arcade** on the main menu.
 
-Marble Chain, Pocket Wings 3D, Powder Run 3D, Pocket City 3D, Outpost Echo 3D, Pocket Golf Deluxe and Kremlin Blocks play in a browser too: [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/). The games that follow your music can't.
+Marble Chain, Pocket Wings 3D, Powder Run 3D, Pocket City 3D, Outpost Echo 3D, Pocket Golf Deluxe, Kremlin Blocks and Pocket Golf 3D play in a browser too: [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/). The games that follow your music can't.
 
 Every push also builds each game into a `.pbg` (the **Actions** tab: open a run and download the game from its artifacts). A tag, such as `v1.0`, attaches them all to a release and publishes the browser pages.
 

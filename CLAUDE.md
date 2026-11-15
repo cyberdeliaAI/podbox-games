@@ -17,7 +17,7 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), a R
 | Pocket Golf Deluxe | `pocketgolf/` | Top-down mini golf: 36 authored holes in four courses, four modes, low-score records | `pocketgolf/README.md` |
 | Pocket Golf 3D | `pocketgolf3d/` | Golf over a rolling `land.draw` landscape: nine holes of Meadow Links, a three-press swing meter, wind, water, sloping greens | `docs/pocketgolf3d.md` |
 
-The repo is public (since 2026-11-14) under the MIT licence, with releases and a GitHub Pages site. The owner works in English: code, comments, docs and commit messages. Every cart has been played on an iPod Video 5.5G and works (2026-11-14), but Pocket Golf 3D (made 2026-11-15), not yet on hardware, released or on the site.
+The repo is public (since 2026-11-14) under the MIT licence, with releases and a GitHub Pages site. The owner works in English: code, comments, docs and commit messages. Every cart has been played on an iPod Video 5.5G and works (2026-11-14; Pocket Golf 3D 2026-11-15).
 
 ## Layout
 
@@ -623,11 +623,11 @@ Writing (docs, comments, commit messages): English, short direct sentences, natu
 - Bubble Beat's and Sloop's difficulty curves and scoring are tuned against the autoplayers only, not against people on an iPod. Sloop's smart player is near perfect; its still player loses in nine seconds; people are somewhere between.
 - Pocket Wings and Powder Run: the iPod budgets in their `quality.js` are the manual's figures; Auto is only tested against them in simulation. Their `quality.js` files are copies of one another (both have `resume()` for `resumed()`): a fix to one belongs in both.
 - `plane.billboards` on `land.draw`: `zs` is the absolute height of the foot, not above the ground, and a billboard costs about 5 units a pixel, more in fog, so Powder Run and Pocket Wings draw their scenery themselves. Theirs can't be hidden by hills the way billboards are: Pocket Wings looks along the line of sight now and then, Powder Run doesn't bother (a slope seen from above).
-- Marble Chain's, Pocket Wings' and Powder Run's web pages are built by CI only: locally `pbgc html` needs the SDK's development packages (`npm ci` without `--omit=dev`).
+- Marble Chain's, Pocket Wings', Powder Run's and Pocket Golf 3D's web pages are built by CI only: locally `pbgc html` needs the SDK's development packages (`npm ci` without `--omit=dev`).
 - The stress tests don't run in CI, but for Outpost Echo's, Pocket Golf's and Beat Dancer's, whose workflows clone the PodBox repo at a pinned commit and build `pbgvm`. The same could carry the others.
 - Beat Dancer's `cart.json` says version 0.1 and its README calls it a demo still to be reviewed on hardware, though it has been played on an iPod Video. Codex's to change.
 - Outpost Echo shows "Communications Center", American spelling on screen; Pocket Golf's previews (`pocketgolf/previews/*.png`) are 1.1 MB of RGB PNGs where indexed ones would be a few KB. Both are theirs to change.
 - No perf regression gate: the stress test reports units but doesn't fail on them. Compare against the baseline above by hand.
 - Pulse Tunnel has no invariant checks, only `AUTOPILOT`.
-- Pocket Golf 3D hasn't been played on an iPod yet, and its scoring and difficulty are tuned against its pilot only. Its web page is built by CI (in `build.yml`) but not yet published by `pages.yml` or on the site, and it has no forum post.
+- Pocket Golf 3D's scoring and difficulty are tuned against its pilot, not yet against people playing it for a while.
 - The SDK isn't pinned: local builds use whatever `../podbox` is checked out, CI uses the builder action's `@latest`.
