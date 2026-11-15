@@ -6,7 +6,8 @@
 Each shot builds a scratch copy of the cart, with the game's own test
 harness playing it where a game needs a player (Marble Chain, Bubble Beat
 and Sloop play themselves through their stress harness, Pocket City's
-pilot does its jobs; Pulse Tunnel flies on its AUTOPILOT), runs it in pbgvm to the tick given with the input given
+pilot does its jobs, Pocket Golf 3D's plays its holes; Pulse Tunnel flies
+on its AUTOPILOT), runs it in pbgvm to the tick given with the input given
 and keeps pbgvm's picture of the screen (160x120, doubled to 320x240). The
 shots go to docs/screenshots/<cart>-<n>.png as indexed PNGs, small enough
 for a post. The cart folders aren't touched.
@@ -106,6 +107,17 @@ SHOTS = {
                                               "--setting", "stress_jobs=1"], {}),
         ("police", "pocketcity_test", [], ["--ticks", "430", "--seed", "2", "--setting", "stress_ticks=9000",
                                            "--setting", "stress_heat=60", "--buttons", "20:0"], {}),
+    ],
+    # the test's pilot plays, running the swing meter as a player would: the
+    # first tee, a putt on the first green, the tee shot over the pond on the
+    # second hole seen from its landing
+    "pocketgolf3d": [
+        ("tee", "pocketgolf3d_test", [], ["--ticks", "80", "--seed", "2", "--setting", "stress_rounds=1",
+                                          "--setting", "stress_show=1"], {}),
+        ("putt", "pocketgolf3d_test", [], ["--ticks", "524", "--seed", "2", "--setting", "stress_rounds=1",
+                                           "--setting", "stress_show=1"], {}),
+        ("pond", "pocketgolf3d_test", [], ["--ticks", "890", "--seed", "2", "--setting", "stress_rounds=1",
+                                           "--setting", "stress_show=1"], {}),
     ],
     # Kremlin Blocks' own previews, from its autoplay (tools/kremlinblocks_preview.py)
     "kremlinblocks": [

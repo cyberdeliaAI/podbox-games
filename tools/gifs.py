@@ -9,7 +9,8 @@ runs of the same game with the same input, each a few ticks longer than the
 last, several at once. Each game is built once in a scratch copy, the way
 tools/screenshots.py builds it for its stills: with its own test harness
 playing where it needs a player (Marble Chain, Bubble Beat, Sloop; Pocket
-City drives its test's plan, Powder Run's harness steers round the trees),
+City drives its test's plan, Powder Run's harness steers round the trees,
+Pocket Golf 3D's pilot plays the first hole running the swing meter),
 Pulse Tunnel on its AUTOPILOT, Pocket Golf
 replaying the input its release test saved (run
 `python3 tools/pocketgolf_test.py --keep dist/pocketgolf-checks` first).
@@ -69,6 +70,9 @@ GIFS = {
                    pocketcity_test.plan(2, 9000, False), {}, 3240, 40, 3, 90),
     "outpostecho": (None, [], lambda: ["--buttons", "2:16,3:0,5:16,6:0,40:16,41:0"], {}, 40, 40, 3, 120),
     "pocketgolf": (None, [], golf_trace, {}, 12280, 44, 3, 90),
+    # the first tee shot: the meter, the drive, the cut to its landing, the roll
+    "pocketgolf3d": ("pocketgolf3d_test", [], lambda: ["--seed", "2", "--setting", "stress_rounds=1",
+                                                       "--setting", "stress_show=1"], {}, 64, 50, 4, 110),
 }
 
 

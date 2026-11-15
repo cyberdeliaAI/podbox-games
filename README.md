@@ -17,8 +17,9 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Pocket City 3D](pocketcity/) | An open city seen from above: five districts, traffic and lights, people, any car you can get to, twenty jobs, the police and thirty lost tapes; plays in a browser too | [docs/pocketcity.md](docs/pocketcity.md) |
 | [Beat Dancer 3D](beatdancer/) | A 3D robot dances on a disco floor, the lights keeping time with your music | [beatdancer/README.md](beatdancer/README.md) |
 | [Kremlin Blocks](kremlinblocks/) | Falling blocks in a city of onion domes: Marathon, Sprint and Blitz, five stages from Red Square by day to the night sky | [kremlinblocks/README.md](kremlinblocks/README.md) |
+| [Pocket Golf 3D](pocketgolf3d/) | Golf over a rolling 3D landscape: nine holes of Meadow Links, a three-press swing meter, wind, water and sloping greens | [docs/pocketgolf3d.md](docs/pocketgolf3d.md) |
 
-Every game has been played on an iPod Video 5.5G.
+Every game but Pocket Golf 3D, the newest, has been played on an iPod Video 5.5G.
 
 ## Playing
 
@@ -52,6 +53,7 @@ python3 tools/outpostecho_test.py    # plays Outpost Echo's whole campaign, chec
 python3 tools/pocketgolf_test.py     # plays all 36 holes of Pocket Golf, checks the physics and measures it
 python3 tools/beatdancer_test.py     # Beat Dancer silent, with and without a beat, across playlists and pauses, every style, against the budget
 python3 tools/kremlinblocks_test.py  # Kremlin Blocks' rules, an autoplay replayed through real input, saves, pauses, the budget
+python3 tools/pocketgolf3d_test.py   # plays Pocket Golf 3D's rounds, wild and by random input, checks the ball every tick, memory over 36 holes, saves
 ```
 
 To add a game, give its folder a `cart.json` and add its name to the cart list in `.github/workflows/build.yml`.

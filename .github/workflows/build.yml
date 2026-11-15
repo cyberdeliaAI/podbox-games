@@ -2,9 +2,9 @@
 # release for every tag pushed. To add a game, put its folder next to the
 # others (it needs a cart.json) and add the folder's name to the cart list.
 #
-# Marble Chain, Pocket City 3D, Pocket Wings 3D and Powder Run 3D also get a
-# web page to play them in a browser (the builder's page option), attached
-# beside the carts: none of them touches the music. The exporter refuses any
+# Marble Chain, Pocket City 3D, Pocket Wings 3D, Powder Run 3D and Pocket
+# Golf 3D also get a web page to play them in a browser (the builder's page
+# option), attached beside the carts: none of them touches the music. The exporter refuses any
 # cart that reads the music (Pulse Tunnel, Bubble Beat and Sloop, even with
 # their modes without it). pages.yml publishes the pages on GitHub Pages.
 #
@@ -27,7 +27,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cart: [pulsetunnel, marbles, bubblebeat, sloop, pocketwings, powderrun, pocketcity, outpostecho, pocketgolf, beatdancer, kremlinblocks]
+        cart: [pulsetunnel, marbles, bubblebeat, sloop, pocketwings, powderrun, pocketcity, outpostecho, pocketgolf, beatdancer, kremlinblocks, pocketgolf3d]
         include:
           - cart: marbles
             page: true
@@ -36,6 +36,8 @@ jobs:
           - cart: pocketwings
             page: true
           - cart: powderrun
+            page: true
+          - cart: pocketgolf3d
             page: true
     steps:
       - uses: actions/checkout@v4
