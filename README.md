@@ -10,6 +10,7 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Marble Chain](marbles/) | A marble shooter with six levels and power-ups: stop the chain before it reaches the hole | [docs/marbles.md](docs/marbles.md) |
 | [Bubble Beat](bubblebeat/) | A bubble shooter whose ceiling comes down with the bars of your music: shoot on the beat for double | [docs/bubblebeat.md](docs/bubblebeat.md) |
 | [Pocket Wings 3D](pocketwings/) | A relaxed flight over six 3D landscapes, no score, no hurry; Discovery finds thirty landmarks; plays in a browser too | [docs/pocketwings.md](docs/pocketwings.md) |
+| [Pocket Wings for PICO-8](pico8/pocketwings/) | An additional PICO-8 edition: six landscapes, Free Flight, Discovery and Sky Rings | [PICO-8 edition](pico8/pocketwings/README.md) |
 | [Sloop](sloop/) | A wrecking ball on the beat: swing it with the wheel to smash the blocks landing on the beats of your music | [docs/sloop.md](docs/sloop.md) |
 | [Outpost Echo 3D](outpostecho/) | A first-person sci-fi adventure: restore five sectors of a silent research station, past its security robots | [outpostecho/README.md](outpostecho/README.md) |
 | [Pocket Golf Deluxe](pocketgolf/) | Top-down mini golf: 36 holes in four themed courses, with tunnels, teleporters, gates and ice | [pocketgolf/README.md](pocketgolf/README.md) |
@@ -19,15 +20,23 @@ Games for the Arcade of [PodBox](https://github.com/anthonyfletcher/podbox), the
 | [Kremlin Blocks](kremlinblocks/) | Falling blocks in a city of onion domes: Marathon, Sprint and Blitz, five stages from Red Square by day to the night sky | [kremlinblocks/README.md](kremlinblocks/README.md) |
 | [Pocket Golf 3D](pocketgolf3d/) | Golf over a rolling 3D landscape: nine holes of Meadow Links, a three-press swing meter, wind, water and sloping greens; plays in a browser too | [docs/pocketgolf3d.md](docs/pocketgolf3d.md) |
 
-Every game has been played on an iPod Video 5.5G.
+Every PodBox game has been played on an iPod Video 5.5G. The additional
+PICO-8 edition runs in PICO-8 and is kept alongside the iPod version.
 
 ## Playing
 
 Download a game's `.pbg` from the [latest release](https://github.com/cyberdeliaAI/podbox-games/releases/latest), copy it to a folder called `Games` on the iPod, eject it, and pick **Arcade** on the main menu.
 
+For Pocket Wings on PICO-8, use the [`.p8` source cartridge](pico8/pocketwings/pocketwings.p8)
+or [`.p8.png` cartridge image](pico8/pocketwings/pocketwings.p8.png). Open it in
+PICO-8. These files are also included in future tagged releases.
+
 Marble Chain, Pocket Wings 3D, Powder Run 3D, Pocket City 3D, Outpost Echo 3D, Pocket Golf Deluxe, Kremlin Blocks and Pocket Golf 3D play in a browser too: [cyberdeliaai.github.io/podbox-games](https://cyberdeliaai.github.io/podbox-games/). The games that follow your music can't.
 
-Every push also builds each game into a `.pbg` (the **Actions** tab: open a run and download the game from its artifacts). A tag, such as `v1.0`, attaches them all to a release and publishes the browser pages.
+Every push also builds each PodBox game into a `.pbg` (the **Actions** tab: open a run and download the game from its artifacts). A tag, such as `v1.0`, attaches them all to a release and publishes the browser pages.
+
+The PICO-8 edition has a separate `pocketwings-pico8` artifact. Its supplied
+cartridges are copied directly and don't pass through the PodBox builder.
 
 To play or edit in a browser, open a game's folder (or its `.pbg`) in the [Arcade IDE](https://anthonyfletcher.github.io/podbox/ide/). Chrome and Edge edit the folder in place.
 

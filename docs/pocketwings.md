@@ -1,5 +1,8 @@
 # Pocket Wings 3D
 
+An additional [PICO-8 edition](../pico8/pocketwings/README.md) is available
+alongside this PodBox version, with its own cartridge and controls.
+
 ![Pocket Wings 3D over Green Valley: the aircraft from behind over wooded hills, the river below](pocketwings-preview.png)
 
 A relaxed flying game for the PodBox Arcade: a small propeller aircraft over six landscapes, with no enemies, no score and no time limit. Just fly, or go and find the landmarks.
