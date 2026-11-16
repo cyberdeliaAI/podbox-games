@@ -11,6 +11,8 @@
 # Outpost Echo 3D, Pocket Golf Deluxe, Beat Dancer 3D and Kremlin Blocks
 # are built here as carts too, so a release carries them; their own
 # workflows test them (and build the pages, but for Beat Dancer's).
+# The additional Pocket Wings PICO-8 edition is uploaded as supplied
+# cartridges, separately from the PodBox build matrix.
 
 name: Build
 
@@ -68,9 +70,22 @@ jobs:
             ${{ steps.cart.outputs.pbg }}
             ${{ steps.cart.outputs.page }}
 
+  pico8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pocketwings-pico8
+          if-no-files-found: error
+          path: |
+            pico8/pocketwings/pocketwings.p8
+            pico8/pocketwings/pocketwings.p8.png
+
   release:
     if: startsWith(github.ref, 'refs/tags/')
-    needs: build
+    needs: [build, pico8]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
